@@ -1,0 +1,120 @@
+<!DOCTYPE html><html>
+<head>
+<title>Bentokit</title>
+<link rel="stylesheet" href="stylesheets/basic.css"/>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<link href='http://fonts.googleapis.com/css?family=Exo:300,500' rel='stylesheet' type='text/css'>
+<link rel="shortcut icon" href="images/favicon.ico"/>
+<meta name="handheldfriendly" content="true">
+<meta name="mobileoptimized" content="240">
+<meta name="viewport" content="width=device-width,initial-scale=1,target-densitydpi=device-dpi">
+</head>
+<body>
+
+<div class="wrapper">
+<div class="menu">
+<div class="fixed">
+<div class="box">
+<a href="javascript:location.reload(true);"><img src="images/appbookmark-logo.png" class="logo" alt="Logo"/>
+<h1>AppBookmark</h1>
+</a>
+<p>Curating only the best free online design tools.</p>
+</div>
+<div class="box">
+<p>Follow <a href="#">@appbookmark</a> for any new additions.</p>
+</div>
+<div class="box">
+<ul id="filter">
+<li><h2>Filters</h2></li>
+<li class="current"><a href="#" class="filter">All</a>
+<li><a href="#" class="filter html5-style">HTML5</a></li>
+<li><a href="#" class="filter css3-style">CSS3</a></li>
+<li><a href="#" class="filter jquery-style">jQuery</a></li>
+<li><a href="#" class="filter editor-style">Editor</a></li>
+<li><a href="#" class="filter typography-style">Typography</a></li>
+<li><a href="#" class="filter color-style">Color</a></li>
+<li><a href="#" class="filter design-style">Design</a></li>
+<li><a href="#" class="filter framework-style">Framework</a></li>
+<li><a href="#" class="filter cms-style">CMS</a></li>
+<li><a href="#" class="filter utility-style">Utility</a></li>
+<li><a href="#" class="filter animation-style">Animation</a></li>
+</ul>
+</div>
+<div class="box">
+<a href="mailto:hi@appbookmark.co">// Suggest an awesome app</a></li>
+<a href="mailto:hi@appbookmark.co">// Report a dead link</a></li>
+</div>
+<div class="box">
+<p>Created by<a href="https://twitter.com/taulantsulko">@taulantsulko</a>
+and <a href="https://twitter.com/BossLewis79">@BossLewis79</a>
+</p>
+</div>
+</div>
+</div>
+<div class="links" >
+<ul id="links">      
+</ul> 
+</div>
+</div>
+
+
+</body>
+</html>
+script(type='text/javascript')
+    var clickFunc= function(event){
+    if(event.target.alt.indexOf("google") != -1){
+            var win=window.open(event.target.alt, '_blank');
+            win.focus();
+            return;
+     }
+      var f = document.createElement("form");
+      f.setAttribute('method',"get");
+      f.setAttribute('action',"/frame");
+      var s = document.createElement("input"); //input element, Submit button
+      s.setAttribute('type',"hidden");
+      s.setAttribute('name',"user[link]");
+      s.setAttribute('value',event.target.alt);
+      f.appendChild(s);
+      document.body.appendChild(f);
+      f.submit();
+    }
+    var apps =!{JSON.stringify(myObj)};
+    console.log(apps);
+    console.log("test");
+    var ul = document.getElementById("links");
+    for(i=0;i<apps.length;i++){
+        var newLi= document.createElement("LI");
+        newLi.className =apps[i].c1+" "+ apps[i].c2;
+        var newA = document.createElement("a");
+        newA.addEventListener('click',clickFunc);
+        var newImage = new Image();
+        newImage.alt=apps[i].link;
+        newImage.src=apps[i].image;
+        newImage.style.height="100px";
+        newImage.style.height="100px";
+        var newDiv= document.createElement('div');
+        newDiv.className="center";
+        newDiv.innerHTML=apps[i].name;
+        newP1 = document.createElement('p');
+        newP2 = document.createElement('p');
+        newP1.className="tag "+apps[i].c1+"-style";
+        newP2.className="tag "+apps[i].c2+"-style";
+        if(apps[i].c1 != null){
+          var p1Text = document.createTextNode(apps[i].c1);
+          newP1.appendChild(p1Text);
+        }
+        if(apps[i].c2 != null){
+          var p2Text = document.createTextNode(apps[i].c2);
+          newP2.appendChild(p2Text);
+        }
+        newA.appendChild(newImage);
+        newA.appendChild(newDiv);
+        newLi.appendChild(newA);
+        newLi.appendChild(newP1);
+        newLi.appendChild(newP2);
+        console.log(newP2);
+        
+        ul.appendChild(newLi);
+    }
+<script type="text/javascript" src="javascripts/jquery.js"></script>
+<script type="text/javascript" src="javascripts/framework.js"></script>

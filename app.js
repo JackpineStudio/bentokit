@@ -7,7 +7,8 @@ var express = require('express')
   , routes = require('./routes')
   , http = require('http')
   , path = require('path')
-  , passport = require('passport');
+  , passport = require('passport')
+  , LocalStrategy = require('passport-local').Strategy;
 
 var app = express();
 
@@ -40,7 +41,7 @@ app.post('/login',
 										failureFlash: true})
 		);
 
-passport.use(new BasicStrategy(
+passport.use(new LocalStrategy(
 		function(username, password, done) {
 			User.findOne({username: username}, function(err, user) {
 				if (err) {return done(err);}

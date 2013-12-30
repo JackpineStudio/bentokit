@@ -154,7 +154,7 @@ exports.getAllApps = function (callback){
 	});
 };
 
-exports.findbyUsername(username, fn) {
+exports.findbyUsername = function(username, fn) {
 	db.collection("users", function(error, collection) {
 		collection.findOne({username: username}, function(error, doc) {
 			if(error) console.log(error);
@@ -164,7 +164,7 @@ exports.findbyUsername(username, fn) {
 	});
 };
 
-exports.putUser(username, password) {
+exports.putUser = function(username, password) {
 	db.collection("users", function(error, collection) {
 		collection.find({username: username}).count(function(error, count) {
 			if(count == 0) {

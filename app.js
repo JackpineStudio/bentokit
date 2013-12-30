@@ -6,7 +6,8 @@
 var express = require('express')
   , routes = require('./routes')
   , http = require('http')
-  , path = require('path');
+  , path = require('path')
+  , passport = require('passport');
 
 var app = express();
 
@@ -31,6 +32,27 @@ app.use(app.router);
 app.get('/', routes.home);
 app.get("/frame",routes.frame);
 app.post("/updateRating",routes.updateRating);
+app.use(passport.initialize());
+app.use(passport.session());
+app.post('/login',
+		passport.authenticate('local', {successRedirect: '/success',
+										failureRedirect: '/login',
+										failureFlash: true})
+		);
+
+passport.use(new BasicStrategy(
+		function(username, password, done) {
+			User.findOne({username: username}, function(err, user) {
+				if (err) {return done(err);}
+				if (!user) {
+					return done(null, false, {message : "Incorrect username."});
+				}
+				if (!user.validPassword(password)) {
+					return done(null, false, {message: "Incorrect password."});
+				}
+				return done(null, user);
+			});
+		}));
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

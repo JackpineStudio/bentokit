@@ -154,3 +154,26 @@ exports.getAllApps = function (callback){
 	});
 };
 
+exports.findbyUsername(username, fn) {
+	db.collection("users", function(error, collection) {
+		collection.findOne({username: username}, function(error, doc) {
+			if(error) console.log(error);
+			else console.log("User", doc);
+			
+		});
+	});
+};
+
+exports.putUser(username, password) {
+	db.collection("users", function(error, collection) {
+		collection.find({username: username}).count(function(error, count) {
+			if(count == 0) {
+				var userDetails = [{username: username, password: password, usertype: null}];
+				collection.insert(userDetails, function(error) {
+					if(error) console.log(error);
+				});
+			}
+		})
+	});
+}
+

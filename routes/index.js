@@ -1,4 +1,4 @@
-var db = require("../database.js");
+var db = require('../node_modules/Database_functions.js');
 /*
  * GET home page.
  */
@@ -13,7 +13,12 @@ exports.frame = function(req, res){
   console.log(req.query);
   var link = req.query.user.link;
   console.log(link);
-  res.render('frame',{frameSrc: link });
+  var object = -1;
+  db.getApp(link, object);
+  var value = -1;
+  if(object != -1 )
+	  value = object.getRating();
+  res.render('frame',{frameSrc: link, rating: value});
   
 }
 exports.home= function(req,res){

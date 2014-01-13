@@ -7,9 +7,8 @@ $('#clickme').click(function() {
 $('#rating').click(function(eventObject) {
 	eventObject.preventDefault();
 	var s = $("meta[name=locale]").attr("content");
-    console.log(s);	
     var appName = $("#appName").attr("value");
-    var s = "";
+    var s = $("#frameSrc").attr("value");
     var liked = new Array();
     for (var i = 0; i < cookies.length; i++) {
 		var curCookie = cookies[i].trim();
@@ -34,6 +33,10 @@ $('#rating').click(function(eventObject) {
 			console.log('Error: ' + error.message);
 		}
 	});
+    var rating = $("#appRating").attr("value");
+    rating = parseInt(rating) + 1;
+    var str = "Likes " + rating;
+    $(".likes").html(str);
 	$('#rating').fadeOut('slow',function(){
 		//Animation 
 	});

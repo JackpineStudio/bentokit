@@ -33,7 +33,7 @@ if ('development' == app.get('env')) {
 app.use(app.router);
 app.get('/', routes.home);
 app.get("/frame",routes.frame);
-app.post("/updateRating",routes.updateRating);
+app.post("/updateRating", routes.updateRating);
 app.use(passport.initialize());
 app.use(passport.session());
 app.post('/login',

@@ -26,7 +26,6 @@
 
 
 <a href="#" id="clickme"><img src="images/appbookmark-close.png" class="close"  height="24px" alt="(X) Close"/></a>
-<p class ="likes"> Likes #{rating}</p>
 
 script(type='text/javascript')
 	var cookies = document.cookie.split(";");
@@ -36,7 +35,6 @@ script(type='text/javascript')
 	for (var i = 0; i < cookies.length; i++) {
 		var curCookie = cookies[i].split(',');
 		for (var j = 0; j < curCookie.length; j++) {
-			console.log('curCookie', curCookie[j]);
 			if(curCookie[j] == appName) {
 				liked = true;
 				break;
@@ -45,8 +43,9 @@ script(type='text/javascript')
 	}
 	if(!liked) {
 		var button = document.createElement("BUTTON");
-		button.setAttribute("href", "");
+		//button.setAttribute("href", "");
 		button.setAttribute("id", "rating");
+		//button.setAttribute("class", "filter");
 		var t = document.createTextNode("Like This App");
 		button.appendChild(t);
 		div.appendChild(button);

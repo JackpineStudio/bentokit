@@ -52,20 +52,29 @@ and <a href="https://twitter.com/BossLewis79">@BossLewis79</a>
 </p>
 </div>
 
-<form action="/login" method="post">
+<div id="loginForm">
 <div class="box">
 <label>Username:</label>
-<input type="text" name="username"/>
+<input id="username" type="text" name="username"/>
 </div>
 <div class="box">
 <label>Password:</label>
-<input type="password" name="password"/>
+<input id="password" type="password" name="password"/>
 </div>
 <div class="box">
-<input type="submit" value="Login"/>
+<a href="#" id="loginButton"> Login </a>
+</div>
 </div>
 
-</form>
+<div id="logoutForm">
+<div class="box">
+<p> Logged in as <label id="usernameLabel"></label></p>
+</div>
+<div class="box">
+<a href="#" id="logoutButton"> Logout </a>
+</div>
+</div>
+
 </div>
 </div>
 <div class="links" >
@@ -77,61 +86,94 @@ and <a href="https://twitter.com/BossLewis79">@BossLewis79</a>
 
 </body>
 </html>
-script(type='text/javascript')
-    var clickFunc= function(event){
-    if(event.target.alt.indexOf("google") != -1){
-            var win=window.open(event.target.alt, '_blank');
-            win.focus();
-            return;
-     }
-      var f = document.createElement("form");
-      f.setAttribute('method',"get");
-      f.setAttribute('action',"/frame");
-      var s = document.createElement("input"); //input element, Submit button
-      s.setAttribute('type',"hidden");
-      s.setAttribute('name',"user[link]");
-      s.setAttribute('value',event.target.alt);
-      f.appendChild(s);
-      document.body.appendChild(f);
-      f.submit();
-    }
-    var apps =!{JSON.stringify(myObj)};
-    console.log(apps);
-    console.log("test");
-    var ul = document.getElementById("links");
-    for(i=0;i<apps.length;i++){
-        var newLi= document.createElement("LI");
-        newLi.className =apps[i].c1+" "+ apps[i].c2;
-        var newA = document.createElement("a");
-        newA.addEventListener('click',clickFunc);
-        var newImage = new Image();
-        newImage.alt=apps[i].link;
-        newImage.src=apps[i].image;
-        newImage.style.height="100px";
-        newImage.style.height="100px";
-        var newDiv= document.createElement('div');
-        newDiv.className="center";
-        newDiv.innerHTML=apps[i].name;
-        newP1 = document.createElement('p');
-        newP2 = document.createElement('p');
-        newP1.className="tag "+apps[i].c1+"-style";
-        newP2.className="tag "+apps[i].c2+"-style";
-        if(apps[i].c1 != null){
-          var p1Text = document.createTextNode(apps[i].c1);
-          newP1.appendChild(p1Text);
-        }
-        if(apps[i].c2 != null){
-          var p2Text = document.createTextNode(apps[i].c2);
-          newP2.appendChild(p2Text);
-        }
-        newA.appendChild(newImage);
-        newA.appendChild(newDiv);
-        newLi.appendChild(newA);
-        newLi.appendChild(newP1);
-        newLi.appendChild(newP2);
-        console.log(newP2);
-        
-        ul.appendChild(newLi);
-    }
+script(type = 'text/javascript').
+	var clickFunc= function(event){
+	if(event.target.alt.indexOf("google") != -1){
+			var win=window.open(event.target.alt, '_blank');
+			win.focus();
+			return;
+	}
+	var f = document.createElement("form");
+	f.setAttribute('method',"get");
+	f.setAttribute('action',"/frame");
+	var s = document.createElement("input"); //input element, Submit button
+	s.setAttribute('type',"hidden");
+	s.setAttribute('name',"user[link]");
+	s.setAttribute('value',event.target.alt);
+	f.appendChild(s);
+	document.body.appendChild(f);
+	f.submit();
+	}
+	var apps =!{JSON.stringify(myObj)};
+	console.log(apps);
+	console.log("test");
+	var ul = document.getElementById("links");
+	for(i=0;i<apps.length;i++){
+		var newLi= document.createElement("LI");
+		newLi.className =apps[i].c1+" "+ apps[i].c2;
+		var newA = document.createElement("a");
+		newA.addEventListener('click',clickFunc);
+		var newImage = new Image();
+		newImage.alt=apps[i].link;
+		newImage.src=apps[i].image;
+		newImage.style.height="100px";
+		newImage.style.height="100px";
+		var newDiv= document.createElement('div');
+		newDiv.className="center";
+		newDiv.innerHTML=apps[i].name;
+		newP1 = document.createElement('p');
+		newP2 = document.createElement('p');
+		newP1.className="tag "+apps[i].c1+"-style";
+		newP2.className="tag "+apps[i].c2+"-style";
+		if(apps[i].c1 != null){
+			var p1Text = document.createTextNode(apps[i].c1);
+			newP1.appendChild(p1Text);
+		}
+		if(apps[i].c2 != null){
+			var p2Text = document.createTextNode(apps[i].c2);
+			newP2.appendChild(p2Text);
+		}
+		newA.appendChild(newImage);
+		newA.appendChild(newDiv);
+		newLi.appendChild(newA);
+		newLi.appendChild(newP1);
+		newLi.appendChild(newP2);
+		ul.appendChild(newLi);
+	}
+	var cookies = document.cookie.split(";");
+	var loggedIn = false;
+	var userName = "";
+	for(var i = 0; i < cookies.length; i++) {
+		var curCookie = cookies[i].split(',');
+		for (var j = 0; j < curCookie.length; j++) {
+			console.log('curCookie', curCookie[j]);
+			if(curCookie[j].indexOf('loggedIn') != -1) {
+				console.log("Logged in", curCookie[j]);
+				if(curCookie[j].indexOf('true') != -1)
+					loggedIn = true;
+			}
+			if(curCookie[j].indexOf('username') != -1 ) {
+				userName = curCookie[j].split(':')[1];
+			}
+		}
+	}
+	var loginDiv = document.getElementById("loginForm");
+	var logoutDiv = document.getElementById("logoutForm");
+	var userLabel = document.getElementById("usernameLabel");
+				
+	if(loggedIn) {
+		loginDiv.style.display = "none";	
+		logoutDiv.style.display = "block";	
+		userLabel.innerHTML = userName;
+	} else {
+		loginDiv.style.display = "block";	
+		logoutDiv.style.display = "none";	
+		userLabel.innerHTML = "";
+	}	
+	
+    
+    
+
 <script type="text/javascript" src="javascripts/jquery.js"></script>
 <script type="text/javascript" src="javascripts/framework.js"></script>
+<script type="text/javascript" src="javascripts/indexJQuery.js"></script>

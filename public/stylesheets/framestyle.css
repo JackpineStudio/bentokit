@@ -1,6 +1,7 @@
 img {
 	margin: 10px;
 }
+
 button {
   width: 150px;
   height: 50px;
@@ -12,8 +13,12 @@ button {
   top: 0%;
   left: 15%;
   font-family: verdana;
-  font-size: 1em;
+ 
+
+  font-size: 0.9em;
+
 }
+
 .close{
 	float: right;
 }
@@ -22,21 +27,30 @@ button {
 	position: relative;
 	display: inline-block;
 	color: #fff;
-	font-size: .75em;
+	/*font-size: .75em;*/
 	padding: 0;
 	margin: 0 0 20px 0;
-	height: 20px;
+	/*height: 20px;*/
 }
+
 p{
 	display: inline-block;
 	height: 0;
 }
+
 #rating{
 	color: #333;
 	background-color: #fff;
 	text-decoration: none;
 	padding: 5px;
-	border-radius: 3px;
+	border-radius: 5px;
+	
+
+	margin-top: 5px;
+	margin-left: 100px;
+	height: 35px;
+	width: 130px;
+
 }
 #rating:hover{
 	color: #fff;
@@ -44,4 +58,17 @@ p{
 }
 iframe{
 	border: none;
+}
+
+@media (min-width: 900px){
+
+	button {
+		 font-size: 1em;
+	}
+
+	#rating {
+		height : 40px;
+		margin-top: 3px;
+		width: 150px;
+	}
 }

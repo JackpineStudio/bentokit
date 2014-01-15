@@ -9,7 +9,8 @@ var express = require('express')
   , path = require('path')
   , passport = require('passport')
   , LocalStrategy = require('passport-local').Strategy
-  , databaseHandler = require('./node_modules/Database_functions.js');
+  , databaseHandler = require('./node_modules/Database_functions.js')
+  , flash = require('connect-flash');
 
 var app = express();
 
@@ -36,25 +37,24 @@ app.get("/frame",routes.frame);
 app.post("/updateRating", routes.updateRating);
 app.use(passport.initialize());
 app.use(passport.session());
-app.post('/login',
-		passport.authenticate('local', {successRedirect: '/success',
-										failureRedirect: '/login',
-										failureFlash: true})
-		);
 
-passport.use(new LocalStrategy(
-		function(username, password, done) {
-			User.findOne({username: username}, function(err, user) {
-				if (err) {return done(err);}
-				if (!user) {
-					return done(null, false, {message : "Incorrect username."});
-				}
-				if (!user.validPassword(password)) {
-					return done(null, false, {message: "Incorrect password."});
-				}
-				return done(null, user);
-			});
-		}));
+/*app.post('/login', function(req, res) {
+	var userDetails = {};
+	userDetails['username'] = req.body.username;
+	userDetails['password'] = req.body.password;
+	console.log('username', userDetails['username'], 'password', userDetails['password'] );
+	var callback = {};
+	callback['success'] = function(request) {
+		routes.loginSuccess();
+		res.redirect('/');
+		
+	};
+	callback['failure'] = routes.loginFailure;
+	routes.login(userDetails, callback);
+});*/
+
+app.post('/login', routes.loginHandler);
+
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

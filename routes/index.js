@@ -5,7 +5,6 @@ var db = require('../node_modules/Database_functions.js');
 exports.updateRating = function(req,res){
 	console.log("Update Rating");
 	var object = (req.body.objectData);
-	console.log("Index.js", "Object:", req.body.objectData); 
 	db.updateRating(object);
 };
 
@@ -34,3 +33,46 @@ exports.home = function(req,res){
 	});
 };
 
+exports.login = function(userDetails, callback) {
+	login(userDetails, callback);
+	
+};
+
+function login(userDetails, callback) {
+	console.log("index", "Trying login");
+	db.login(userDetails, callback);
+}
+
+exports.loginSuccess = function() {
+	loginSuccess();
+	
+	
+};
+
+function loginSuccess(user) {
+	console.log("index", "Login Success", user);
+	
+}
+
+exports.loginFailure = function() {
+	loginFailure();
+};
+
+function loginFailure() {
+	console.log("Cannot login");
+	
+}
+
+exports.loginHandler = function (req, res) {
+	var userDetails = {};
+	userDetails['username'] = req.body.username;
+	userDetails['password'] = req.body.password;
+	console.log('username', userDetails['username'], 'password', userDetails['password'] );
+	var callback = {};
+	callback['success'] = function(user) {
+		loginSuccess(user);
+		res.redirect('/');
+	};
+	callback['failure'] = loginFailure;
+	login(userDetails, callback);
+};

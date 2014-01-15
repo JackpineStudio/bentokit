@@ -15,9 +15,7 @@ $('#rating').click(function(eventObject) {
 		liked.push(curCookie);
     }
     liked.push(appName);
-    var value = liked[0];
-    if(liked.length > 1)
-    	value = liked.join(',');
+    var value = liked.join(',');
     document.cookie = value;
     $.ajax({
 		type: 'POST' ,// added,
@@ -26,8 +24,6 @@ $('#rating').click(function(eventObject) {
 		data: {objectData: s} ,
 		success: function (data) {
 			var ret = jQuery.parseJSON(data);
-			
-			
 		},
 		error: function (xhr, status, error) {
 			console.log('Error: ' + error.message);

@@ -1,0 +1,80 @@
+!!! 5
+html(ng-app='ng-app')
+head
+    title Bentokit
+    link(rel='stylesheet', href='stylesheets/basic.css')
+    script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js')
+    link(href='http://fonts.googleapis.com/css?family=Exo:300,500', rel='stylesheet', type='text/css')
+    link(rel='shortcut icon', href='images/favicon.ico')
+    link(rel='stylesheet', href='http://netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css')
+    link(rel='stylesheet', href='stylesheets/bootstrap.min.css')
+    link(rel='stylesheet', href='stylesheets/bootstrap-theme.min.css')
+    link(rel='stylesheet', href='stylesheets/main.css')
+    script(src='http://code.angularjs.org/1.2.9/angular.min.js')
+    script(src='javascripts/script.js')
+    meta(name='handheldfriendly', content='true')
+    meta(name='mobileoptimized', content='240')
+    meta(name='viewport', content='width=device-width,initial-scale=1,target-densitydpi=device-dpi')
+ 
+  body
+    .container(ng-controller='Controller')
+      form.simple-form(novalidate='novalidate', method='POST', action='/signUser', name ="userForm")
+        .row
+          .col-md-3
+          .col-md-6.col-sm-12
+            h3.signupLabel Name:
+            input#usernameField.form-control.ng-dirty.ng-invalid.ng-invalid-required(
+             ng-model='user.name'
+             type='text'
+             name = "user[name]"
+            )
+          .col-md-3
+        .row
+          .col-md-3
+          .col-md-6.col-sm-12
+            h3.signupLabel Username:
+            input#usernameField.form-control.ng-dirty.ng-invalid.ng-invalid-required(
+             ng-model='user.username'
+             type='text'
+             name = "user[username]"
+            )
+          .col-md-3
+        .row
+          .col-md-3
+          .col-md-6.col-sm-12
+            h3.signupLabel Password:
+            input#passwordField1.form-control.ng-dirty.ng-invalid.ng-invalid-required(
+             ng-model='user.password1'
+             type='password'
+             name = "user[password]"
+            )
+          .col-md-3
+        .row
+          .col-md-3
+          .col-md-6.col-sm-12
+            h3.signupLabel Re-Type Password:
+            input#passwordField2.form-control.ng-dirty.ng-invalid.ng-invalid-required(
+             ng-model='user.password2'
+             type='password'
+            )
+          .col-md-3
+        .row
+          .col-md-3
+          .col-md-6.col-sm-12
+           h3.signupLabel Email:
+           input#usernameField.form-control.ng-dirty.ng-invalid.ng-invalid-required(
+            ng-model='user.emailAddress'
+            type='text'
+            name = "user[email]"
+           )
+          .col-md-3
+        .row
+          .col-md-3
+          .col-md-6.col-sm-12
+           button(
+            type="submit"
+            ng-disabled = "userForm.$invalid"
+            enabled = "enabled"
+           ) Submit
+          .col-md-3 
+           

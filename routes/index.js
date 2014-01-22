@@ -8,6 +8,10 @@ exports.updateRating = function(req,res){
 	db.updateRating(object);
 };
 
+exports.approveApp = function(req, res) {
+	var object = "";
+	db.approveApp(object);
+};
 exports.frame = function(req, res){
   var link = req.query.user.link;
   var object = -1;
@@ -20,9 +24,9 @@ exports.frame = function(req, res){
   res.render('frame',{frameSrc: link, rating: value, curApp:name}); 
 };
 
-exports.home = function(req,res){
-	db.getAllApps(function(data){
-		data.sort(function(a,b){
+function home(req, res) {
+	db.getAllApps(function(data) {
+		data.sort(function(a,b) {
 			if(a.rating == undefined)
 				a.rating = 0;
 			if(b.rating == undefined)
@@ -31,11 +35,15 @@ exports.home = function(req,res){
 		});
 		res.render('index', {myObj: data} );
 	});
-};
+}
 
 exports.login = function(userDetails, callback) {
 	login(userDetails, callback);
 	
+};
+
+exports.home = function(req,res){
+	home(req, res);
 };
 
 function login(userDetails, callback) {
@@ -49,8 +57,8 @@ exports.loginSuccess = function() {
 	
 };
 
-function loginSuccess(user) {
-	console.log("index", "Login Success", user);
+function loginSuccess(user, req, res) {
+	console.log("index", "Login Success", user); 
 	
 }
 
@@ -71,8 +79,79 @@ exports.loginHandler = function (req, res) {
 	var callback = {};
 	callback['success'] = function(user) {
 		loginSuccess(user);
-		res.redirect('/');
+		//res.render('index',{myObj: data, userType:user['userType']});
+		console.log(user['userType']);
+		if(user['userType'] == 'moderator') {
+			console.log('moderator');
+			//editPage(req, res);
+			res.redirect('/');
+			//home(req, res);
+		} else {
+			console.log('regular user');
+			home(req, res);
+		}
+		
 	};
 	callback['failure'] = loginFailure;
 	login(userDetails, callback);
+};
+
+exports.loginPage = function(req, res) {
+	var userType = req.body.userType;
+	console.log('Login Page', userType);
+};
+
+function editPage(req, res) {
+	db.getAll(function(apps, pendingApps){
+		res.render('edit', {myObj: apps, pending: pendingApps} );
+	});
+}
+
+exports.editPage = function(req, res){
+	/*console.log('UserType', req.body.userType);
+	db.getAll(function(apps, pendingApps){
+		res.render('edit', {myObj: apps, pending: pendingApps} );
+	});*/
+	editPage(req, res);
+};
+
+exports.approveApp = function(req, res) {
+	var link = req.body.appLink;
+	db.approveApp(link, function() {
+		res.render('edit', {} );
+	});
+};
+
+exports.removeApp = function(req, res) {
+	var link = req.body.appLink;
+	db.removeApp(link, function() {
+		db.getAll(function(apps, pendingApps){
+			res.render('edit', {myObj: apps, pending: pendingApps} );
+		});
+	});
+};
+
+exports.addItem = function(req, res) {
+	//db.addNewItem
+};
+
+exports.signUp = function(req, res) {
+	//db.getUsers(function(users) {
+		res.render('signup', {});
+	//});
+};
+
+exports.signUser = function(req, res) {
+	var userDetails = {};
+	userDetails = req.body.user;
+	console.log(userDetails);
+	db.addUser(userDetails, function() {
+		//Success or failure
+		var callback = {};
+		console.log('Password', userDetails['password']);
+		callback['success'] = function() {
+			res.redirect('/');
+		};
+		
+	});
 };

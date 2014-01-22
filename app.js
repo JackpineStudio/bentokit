@@ -37,24 +37,14 @@ app.get("/frame",routes.frame);
 app.post("/updateRating", routes.updateRating);
 app.use(passport.initialize());
 app.use(passport.session());
-
-/*app.post('/login', function(req, res) {
-	var userDetails = {};
-	userDetails['username'] = req.body.username;
-	userDetails['password'] = req.body.password;
-	console.log('username', userDetails['username'], 'password', userDetails['password'] );
-	var callback = {};
-	callback['success'] = function(request) {
-		routes.loginSuccess();
-		res.redirect('/');
-		
-	};
-	callback['failure'] = routes.loginFailure;
-	routes.login(userDetails, callback);
-});*/
-
+app.get("/edit", routes.editPage);
+app.get('/loginPage', routes.loginPage);
 app.post('/login', routes.loginHandler);
-
+app.post("/approve", routes.approveApp);
+app.post("/remove", routes.removeApp);
+app.get("/addItem", routes.addItem);
+app.get("/signup", routes.signUp);
+app.post("/signUser", routes.signUser);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

@@ -4,8 +4,11 @@
 <link rel="stylesheet" href="stylesheets/basic.css"/>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 <link href='http://fonts.googleapis.com/css?family=Exo:300,500' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="stylesheets/main.css"/>
 <link rel="shortcut icon" href="images/favicon.ico"/>
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="stylesheets/bootstrap.min.css">
+<link rel="stylesheet" href="stylesheets/bootstrap-theme.min.css">		
+<link rel="stylesheet" href="stylesheets/main.css">		
 <meta name="handheldfriendly" content="true">
 <meta name="mobileoptimized" content="240">
 <meta name="viewport" content="width=device-width,initial-scale=1,target-densitydpi=device-dpi">
@@ -19,7 +22,7 @@
 <div class="fixed">
 <div class="box">
 <a href="/">
-<h1 class=logo" >Bentokit</h1>
+<h1>Bentokit</h1>
 </a>
 <p>Curating only the best free online design tools.</p>
 </div>
@@ -50,10 +53,6 @@ and <a href="https://twitter.com/BossLewis79">@BossLewis79</a>
 </p>
 </div>
 
-<div class="box" id = "editDiv">
-<a href="/edit">Edit Page</a>
-</div>
-
 <div id="loginForm">
 <div class="box">
 <label>Username:</label>
@@ -73,15 +72,60 @@ and <a href="https://twitter.com/BossLewis79">@BossLewis79</a>
 <p> Logged in as <label id="usernameLabel"></label></p>
 </div>
 <div class="box">
-<a href="#" id="logoutButton"> Logout </a>
+<a href="/" id="logoutButton"> Logout </a>
 </div>
 </div>
 
 </div>
 </div>
-<div class="links" >
-<ul id="links">      
-</ul> 
+
+<div class="links">
+
+<h1>Add New Item</h1>
+<table class="addItem">
+<tr>
+<th>App Name</th>
+<th>Link</th>
+<th>Image</th>
+<th>Category 1</th>
+<th>Category 2</th>
+<th></th>
+</tr>
+<tr>
+<td class="col-sm-12 col-md-1"><input id="nameInput"></td>
+<td class="col-sm-12 col-md-1"><input id="linkInput"></td>
+<td class="col-sm-12 col-md-1"><input type="file" id="imageInput"></td>
+<td class="col-sm-12 col-md-1"><input id="category1Input"></td>
+<td class="col-sm-12 col-md-1"><input id="category2Input"></td>
+<td class="col-sm-12 col-md-1"><a href="#">Add Item</a>
+</tr>
+</table>
+
+<h1>Apps </h1>
+<table class="table" id="linksTable">
+<tr>
+<th>App Name</th>
+<th>Link</th>
+<th>Image</th>
+<th>Category 1</th>
+<th>Category 2</th>
+<th>Rating</th>
+</tr>
+</table>
+
+<h1>Pending Apps</h1>
+<table class="table" id="pendingLinksTable">
+<tr>
+<th>App Name</th>
+<th>Link</th>
+<th>Image</th>
+<th>Category 1</th>
+<th>Category 2</th>
+<th>User Added</th>
+<th>Approve</th>
+</tr>
+</table>
+
 </div>
 </div>
 
@@ -107,41 +151,56 @@ script(type = 'text/javascript').
 	f.submit();
 	}
 	var apps =!{JSON.stringify(myObj)};
-	console.log(apps);
-	console.log("test");
-	var ul = document.getElementById("links");
+	var table = document.getElementById("linksTable");
+	
 	for(i=0;i<apps.length;i++){
-		var newLi= document.createElement("LI");
-		newLi.className =apps[i].c1+" "+ apps[i].c2;
-		var newA = document.createElement("a");
-		newA.addEventListener('click',clickFunc);
-		var newImage = new Image();
-		newImage.alt=apps[i].link;
-		newImage.src=apps[i].image;
-		newImage.style.height="100px";
-		newImage.style.height="100px";
-		var newDiv= document.createElement('div');
-		newDiv.className="center";
-		newDiv.innerHTML=apps[i].name;
-		newP1 = document.createElement('p');
-		newP2 = document.createElement('p');
-		newP1.className="tag "+apps[i].c1+"-style";
-		newP2.className="tag "+apps[i].c2+"-style";
-		if(apps[i].c1 != null){
-			var p1Text = document.createTextNode(apps[i].c1);
-			newP1.appendChild(p1Text);
+		var curApp = apps[i];
+		var details = {};
+		details['name'] = curApp.name, details['link'] =curApp.link, details['image'] = curApp.image,
+		details['category1'] = curApp.c1, details['category2'] = curApp.c2, details['rating'] = curApp.rating;
+		var newRow = document.createElement("TR");
+		for(var detail in details) {
+			var newColumn = document.createElement("TD");
+			newColumn.innerHTML = details[detail];
+			newRow.appendChild(newColumn);
 		}
-		if(apps[i].c2 != null){
-			var p2Text = document.createTextNode(apps[i].c2);
-			newP2.appendChild(p2Text);
-		}
-		newA.appendChild(newImage);
-		newA.appendChild(newDiv);
-		newLi.appendChild(newA);
-		newLi.appendChild(newP1);
-		newLi.appendChild(newP2);
-		ul.appendChild(newLi);
+		table.appendChild(newRow);
 	}
+	apps =!{JSON.stringify(pending)};
+	table = document.getElementById("pendingLinksTable");
+	
+	for(i=0;i<apps.length;i++){
+		var curApp = apps[i];
+		var details = {};
+		details['name'] = curApp.name, details['link'] =curApp.link, details['image'] = curApp.image,
+		details['category1'] = curApp.c1, details['category2'] = curApp.c2, details['user'] = curApp.user;
+		var newRow = document.createElement("TR");
+		for(var detail in details) {
+			var newColumn = document.createElement("TD");
+			newColumn.innerHTML = details[detail];
+			newRow.appendChild(newColumn);
+		}
+		var newColumn = document.createElement("TD");
+		var button = document.createElement("A");
+		button.setAttribute('href', "#");
+		button.setAttribute('class', "approveButton glyphicon glyphicon-ok");
+		button.setAttribute('id', details['link']);
+		button.innerHTML = "&nbsp;";
+		newColumn.appendChild(button);
+		
+		var button = document.createElement("A");
+		button.setAttribute('href', "#");
+		button.setAttribute('class', "removeButton glyphicon glyphicon-remove");
+		button.setAttribute('id', details['link']);
+		button.innerHTML = "";
+		newColumn.appendChild(button);
+		
+		newRow.appendChild(newColumn);
+		table.appendChild(newRow);
+		
+	
+	}
+	
 	var cookies = document.cookie.split(";");
 	var loggedIn = false;
 	var userName = "";
@@ -162,19 +221,15 @@ script(type = 'text/javascript').
 	var loginDiv = document.getElementById("loginForm");
 	var logoutDiv = document.getElementById("logoutForm");
 	var userLabel = document.getElementById("usernameLabel");
-	var editDiv = document.getElementById("editDiv");	
+				
 	if(loggedIn) {
 		loginDiv.style.display = "none";	
 		logoutDiv.style.display = "block";	
 		userLabel.innerHTML = userName;
-		
-		//if(userType == 'moderator')
-		editDiv.style.display = "block";		
 	} else {
 		loginDiv.style.display = "block";	
 		logoutDiv.style.display = "none";	
 		userLabel.innerHTML = "";
-		editDiv.style.display = "none";
 	}	
 	
     
@@ -183,3 +238,4 @@ script(type = 'text/javascript').
 <script type="text/javascript" src="javascripts/jquery.js"></script>
 <script type="text/javascript" src="javascripts/framework.js"></script>
 <script type="text/javascript" src="javascripts/indexJQuery.js"></script>
+<script type="text/javascript" src="javascripts/editJQuery.js"></script>

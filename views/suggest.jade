@@ -20,7 +20,7 @@ head
       form.simple-form(method='POST', action='/suggestApp', name ="userForm", novalidate='novalidate')
         .row
           .col-md-3
-          .col-md-6.col-sm-12.form-group(ng-class="{'has-error' : userForm.appname.$invalid && !userForm.appname.$pristine}")
+          .col-md-6.col-sm-12.form-group(ng-class="{'has-error' : userForm.name.$invalid && !userForm.name.$pristine}")
            h3.signupLabel App Name:
            input#appnameField.form-control(
             ng-model='app.appname'
@@ -28,11 +28,11 @@ head
             name = "name"
             required = "required" 
            )
-           p.help-block(ng-show="userForm.appname.$invalid && !userForm.appname.$pristine") Please enter a username
+           p.help-block(ng-show="userForm.name.$invalid && !userForm.name.$pristine") Please enter an app name
           .col-md-3
         .row
           .col-md-3
-          .col-md-6.col-sm-12.form-group(ng-class="{'has-error' : userForm.applink.$invalid && !userForm.applink.$pristine}")
+          .col-md-6.col-sm-12.form-group(ng-class="{'has-error' : userForm.link.$invalid && !userForm.link.$pristine}")
            h3.signupLabel Link:
            input#applinkField.form-control(
             ng-model='app.applink'
@@ -40,17 +40,17 @@ head
             name = "link"
             required = "required" 
            )
-           p.help-block(ng-show="userForm.applink.$invalid && !userForm.applink.$pristine") Please enter an password
+           p.help-block(ng-show="userForm.link.$invalid && !userForm.link.$pristine") Please enter an link
           .col-md-3
         .row
           .col-md-3
-          .col-md-6.col-sm-12.form-group()
-           h3.signupLabel Image:
+          .col-md-6.col-sm-12.form-group(ng-class="{'has-error' : userForm.image.$invalid && !userForm.image.$pristine}")
+           h3.signupLabel Logo Image:
            input#appimageField.form-control(
             ng-model='app.appimage'
             type='file'
             name = "image"
-           )
+           )p.help-block(ng-show="userForm.link.$invalid && !userForm.link.$pristine") Please add an image
           .col-md-3
         .row
           .col-md-3

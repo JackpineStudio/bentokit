@@ -76,16 +76,20 @@ exports.loginHandler = function (req, res) {
 	userDetails['username'] = req.body.username;
 	userDetails['password'] = req.body.password;
 	console.log('username', userDetails['username'], 'password', userDetails['password'] );
+	db.getAll(function(apps, pendingApps){
+		res.render('edit', {myObj: apps, pending: pendingApps} );
+	});
 	var callback = {};
 	callback['success'] = function(user) {
 		loginSuccess(user);
 		//res.render('index',{myObj: data, userType:user['userType']});
-		console.log(user['userType']);
+		console.log('Usertype',user['userType']);
 		if(user['userType'] == 'moderator') {
 			console.log('moderator');
 			//editPage(req, res);
-			res.redirect('/');
+			//res.redirect('/');
 			//home(req, res);
+			
 		} else {
 			console.log('regular user');
 			home(req, res);

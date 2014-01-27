@@ -13,7 +13,7 @@ $('#loginButton').click(function(eventObject) {
 			$('#logoutForm').show();
 			var user = "username:" + $('#username').attr('value');
 			var logged = "loggedIn:true";
-			var cookies = document.cookie.split(";")
+			var cookies = document.cookie.split(";");
 			var liked = new Array();
 			var contains = false;
 		    for (var i = 0; i < cookies.length; i++) {
@@ -39,9 +39,7 @@ $('#loginButton').click(function(eventObject) {
 		    $('#usernameLabel').attr('innerHTML', $('#username').attr('value'));
 		    $('#username').attr('value','');
 		    $('#password').attr('value', '');
-		},
-		error: function(xhr, status, error) {
-			console.log("Error:", error);
+		    location.reload();
 		}
 	});
 	return false;
@@ -52,7 +50,7 @@ $('#logoutButton').click(function(eventObject) {
 	$('#loginForm').show();
 	$('#logoutForm').hide();
 	$('#editDiv').hide();
-	var cookies = document.cookie.split(";")
+	var cookies = document.cookie.split(";");
 	var liked = new Array();
     for (var i = 0; i < cookies.length; i++) {
 		var curCookie = cookies[i].split(',');
@@ -67,7 +65,9 @@ $('#logoutButton').click(function(eventObject) {
 			}
 		}     
     }
+    window.location.href = "/";
     var value = liked.join(',');
     document.cookie = value;
 	return false;
 });
+

@@ -1,0 +1,83 @@
+!!! 5
+html
+head
+    title Bentokit
+    link(rel='stylesheet', href='stylesheets/basic.css')
+    link(href='http://fonts.googleapis.com/css?family=Exo:300,500', rel='stylesheet', type='text/css')
+    link(rel='shortcut icon', href='images/favicon.ico')
+    link(rel='stylesheet', href='http://netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css')
+    link(rel='stylesheet', href='stylesheets/bootstrap.min.css')
+    link(rel='stylesheet', href='stylesheets/bootstrap-theme.min.css')
+    link(rel='stylesheet', href='stylesheets/main.css')
+    script(src="http://code.angularjs.org/1.2.6/angular.js")
+    script(src='javascripts/script.js')
+    meta(name='handheldfriendly', content='true')
+    meta(name='mobileoptimized', content='240')
+    meta(name='viewport', content='width=device-width,initial-scale=1,target-densitydpi=device-dpi')
+ 
+  body(ng-app='validationApp', ng-controller='mainController')
+    .container()
+      form.simple-form(method='POST', action='/suggestApp', name ="userForm", novalidate='novalidate')
+        .row
+          .col-md-3
+          .col-md-6.col-sm-12.form-group(ng-class="{'has-error' : userForm.appname.$invalid && !userForm.appname.$pristine}")
+           h3.signupLabel App Name:
+           input#appnameField.form-control(
+            ng-model='app.appname'
+            type='text'
+            name = "name"
+            required = "required" 
+           )
+           p.help-block(ng-show="userForm.appname.$invalid && !userForm.appname.$pristine") Please enter a username
+          .col-md-3
+        .row
+          .col-md-3
+          .col-md-6.col-sm-12.form-group(ng-class="{'has-error' : userForm.applink.$invalid && !userForm.applink.$pristine}")
+           h3.signupLabel Link:
+           input#applinkField.form-control(
+            ng-model='app.applink'
+            type='text'
+            name = "link"
+            required = "required" 
+           )
+           p.help-block(ng-show="userForm.applink.$invalid && !userForm.applink.$pristine") Please enter an password
+          .col-md-3
+        .row
+          .col-md-3
+          .col-md-6.col-sm-12.form-group()
+           h3.signupLabel Image:
+           input#appimageField.form-control(
+            ng-model='app.appimage'
+            type='file'
+            name = "image"
+           )
+          .col-md-3
+        .row
+          .col-md-3
+          .col-md-6.col-sm-12.form-group
+           h3.signupLabel Category 1:
+           input#appcategory1Field.form-control(
+            ng-model='app.category1'
+            type='text'
+            name = "category1"
+           )
+          .col-md-3
+        .row
+          .col-md-3
+          .col-md-6.col-sm-12.form-group
+           h3.signupLabel Category 2:
+           input#appcategory2Field.form-control(
+            ng-model='app.category2'
+            type='text'
+            name = "category2"
+           )
+          .col-md-3
+        .row
+          .col-md-3
+          .col-md-6.col-sm-12
+           button(
+            type="submit"
+            ng-disabled = "userForm.$invalid"
+           ) Submit
+          .col-md-3 
+           

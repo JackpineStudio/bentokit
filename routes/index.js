@@ -155,3 +155,17 @@ exports.signUser = function(req, res) {
 		
 	});
 };
+
+exports.suggest = function(req, res) {
+	res.render('suggest', {});
+};
+
+exports.suggestApp = function(req, res) {
+	var appDetails = {};
+	appDetails = req.body;
+	appDetails['user'] = "bob";
+	console.log('AppDetails', appDetails);
+	db.suggestApp(appDetails, function() {
+		res.redirect('/');
+	});
+};

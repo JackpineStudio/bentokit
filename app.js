@@ -45,6 +45,9 @@ app.post("/remove", routes.removeApp);
 app.get("/addItem", routes.addItem);
 app.get("/signup", routes.signUp);
 app.post("/signUser", routes.signUser);
+app.get("/suggest", routes.suggest)
+app.post("/suggestApp", routes.suggestApp);
+
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

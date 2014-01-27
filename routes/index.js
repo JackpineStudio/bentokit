@@ -143,8 +143,8 @@ exports.signUp = function(req, res) {
 
 exports.signUser = function(req, res) {
 	var userDetails = {};
-	userDetails = req.body.user;
-	console.log(userDetails);
+	userDetails = req.body;
+	console.log('UserDetails', userDetails);
 	db.addUser(userDetails, function() {
 		//Success or failure
 		var callback = {};

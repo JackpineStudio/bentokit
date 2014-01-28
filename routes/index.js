@@ -164,10 +164,11 @@ exports.suggest = function(req, res) {
 	res.render('suggest', {});
 };
 
-exports.suggestApp = function(req, res) {
+exports.suggestApp = function(req, res, imageDir) {
 	var appDetails = {};
 	appDetails = req.body;
 	appDetails['user'] = "bob";
+	appDetails['image'] = imageDir;
 	console.log('AppDetails', appDetails);
 	db.suggestApp(appDetails, function() {
 		res.redirect('/');

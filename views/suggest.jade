@@ -17,7 +17,7 @@ head
  
   body(ng-app='validationApp', ng-controller='mainController')
     .container()
-      form.simple-form(method='POST', action='/suggestApp', name ="userForm", novalidate='novalidate')
+      form.simple-form(method='POST', action='/suggestApp', name ="userForm",enctype="multipart/form-data", novalidate='novalidate')
         .row
           .col-md-3
           .col-md-6.col-sm-12.form-group(ng-class="{'has-error' : userForm.name.$invalid && !userForm.name.$pristine}")

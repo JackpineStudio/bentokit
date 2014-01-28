@@ -10,7 +10,8 @@ var express = require('express')
   , passport = require('passport')
   , LocalStrategy = require('passport-local').Strategy
   , databaseHandler = require('./node_modules/Database_functions.js')
-  , flash = require('connect-flash');
+  , flash = require('connect-flash')
+  , fs = require('fs');
 
 var app = express();
 
@@ -46,7 +47,25 @@ app.get("/addItem", routes.addItem);
 app.get("/signup", routes.signUp);
 app.post("/signUser", routes.signUser);
 app.get("/suggest", routes.suggest)
-app.post("/suggestApp", routes.suggestApp);
+
+app.post("/suggestApp", function(req, res, next) {
+	console.log("file", req.files);
+	fs.readFile(req.files.image.path, function(err, data) {
+		var imageName = req.files.image.name;
+		if(!imageName) {
+			res.redirect('/suggest');
+			res.end();
+		} else {
+			var filePath = "images/" + imageName;
+			var path = __dirname + "/public/" + filePath; 
+			routes.suggestApp(req, res, filePath);
+			fs.writeFile(path, data, function(err) {
+				res.redirect('/');
+			});
+		}
+	});
+	
+});
 
 
 http.createServer(app).listen(app.get('port'), function(){

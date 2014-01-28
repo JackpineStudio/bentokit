@@ -77,8 +77,8 @@ html
                 label#usernameLabel
             .box
               button#logoutButton(type='submit')  Logout 
-      .links.simple-form(method='POST', action='/suggestApp', name ="userForm", enctype="multipart/form-data", novalidate='novalidate')
-        form
+      .links
+        form.simple-form(method='POST', action='/suggestApp', name ="userForm", enctype="multipart/form-data", novalidate='novalidate')
           h1 Add New Item
           table.table
             tr
@@ -91,25 +91,30 @@ html
             tr
               td.col-sm-12.col-md-1
                 input#nameInput.form-control(
+                 ng-model='app.appname'
                  type='text'
                  name = "name"
-                 )
+                 required = "required"
+                )
               td.col-sm-12.col-md-1
-                input#linkInpu.form-control(
+                input#linkInput.form-control(
                  type='text'
-                 name = "name"
+                 name = "link"
                  )
               td.col-sm-12.col-md-1
-                input#imageInput(type='file')
+                input#imageInput(
+                 type='file'
+                 name = "image"
+                )
               td.col-sm-12.col-md-1
                 input#category1Input.form-control(
                  type='text'
-                 name = "name"
+                 name = "category1"
                  )
               td.col-sm-12.col-md-1
                 input#category2Input.form-control(
                  type='text'
-                 name = "name"
+                 name = "category2"
                  )
               td.col-sm-12.col-md-1
                 button(

@@ -16,8 +16,13 @@ head
     meta(name='viewport', content='width=device-width,initial-scale=1,target-densitydpi=device-dpi')
  
   body(ng-app='validationApp', ng-controller='mainController')
-    .container()
-      form.simple-form(method='POST', action='/suggestApp', name ="userForm",enctype="multipart/form-data", novalidate='novalidate')
+    .container() 
+      form.simple-form(method='POST', action='/suggestApp', name ="userForm", enctype="multipart/form-data", novalidate='novalidate')
+        input#usernameLabel(
+         name = "usernameLabel"
+         type = 'hidden'
+         value = " "
+        )
         .row
           .col-md-3
           .col-md-6.col-sm-12.form-group(ng-class="{'has-error' : userForm.name.$invalid && !userForm.name.$pristine}")
@@ -80,4 +85,32 @@ head
             ng-disabled = "userForm.$invalid"
            ) Submit
           .col-md-3 
-           
+         
+ script(type="text/javascript").
+  var cookies = document.cookie.split(";");
+  var loggedIn = false;
+  var userName = "";
+  for(var i = 0; i < cookies.length; i++) {
+   var curCookie = cookies[i].split(',');
+   for (var j = 0; j < curCookie.length; j++) {
+    console.log('curCookie', curCookie[j]);
+    if(curCookie[j].indexOf('loggedIn') != -1) {
+     console.log("Logged in", curCookie[j]);
+     if(curCookie[j].indexOf('true') != -1)
+      loggedIn = true;
+     }
+     if(curCookie[j].indexOf('username') != -1 ) {
+      userName = curCookie[j].split(':')[1];
+     }
+   }
+  }
+  //var loginDiv = document.getElementById("loginForm");
+  //var logoutDiv = document.getElementById("logoutForm");
+  var userLabel = document.getElementById("usernameLabel");
+  //var editDiv = document.getElementById("editDiv");	
+  if(loggedIn) {
+   userLabel.value = userName;
+  } else {
+   userLabel.innerHTML = "";
+  }	 
+ 

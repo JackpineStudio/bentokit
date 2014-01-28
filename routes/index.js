@@ -167,9 +167,13 @@ exports.suggest = function(req, res) {
 
 exports.suggestApp = function(req, res, imageDir) {
 	var appDetails = {};
+	var userName = req.body.usernameLabel;
 	appDetails = req.body;
-	appDetails['user'] = "bob";
 	appDetails['image'] = imageDir;
+	if(userName)
+		appDetails['user'] = userName;
+	else
+		appDetails['user'] = "Anon";
 	console.log('AppDetails', appDetails);
 	db.suggestApp(appDetails, function() {
 		res.redirect('/');

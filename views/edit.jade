@@ -1,257 +1,248 @@
-<!DOCTYPE html><html>
-<head>
-<title>Bentokit</title>
-<link rel="stylesheet" href="stylesheets/basic.css"/>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-<link href='http://fonts.googleapis.com/css?family=Exo:300,500' rel='stylesheet' type='text/css'>
-<link rel="shortcut icon" href="images/favicon.ico"/>
-<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css">
-<link rel="stylesheet" href="stylesheets/bootstrap.min.css">
-<link rel="stylesheet" href="stylesheets/bootstrap-theme.min.css">		
-<link rel="stylesheet" href="stylesheets/main.css">		
-<meta name="handheldfriendly" content="true">
-<meta name="mobileoptimized" content="240">
-<meta name="viewport" content="width=device-width,initial-scale=1,target-densitydpi=device-dpi">
-
-
-</head>
-<body>
-
-<div class="wrapper">
-<div class="menu">
-<div class="fixed">
-<div class="box">
-<a href="/">
-<h1>Bentokit</h1>
-</a>
-<p>Curating only the best free online design tools.</p>
-</div>
-<div class="box">
-<ul id="filter">
-<li><h2>Filters</h2></li>
-<li class="current"><a href="#" class="filter">All</a>
-<li><a href="#" class="filter html5-style">HTML5</a></li>
-<li><a href="#" class="filter css3-style">CSS3</a></li>
-<li><a href="#" class="filter jquery-style">jQuery</a></li>
-<li><a href="#" class="filter editor-style">Editor</a></li>
-<li><a href="#" class="filter typography-style">Typography</a></li>
-<li><a href="#" class="filter color-style">Color</a></li>
-<li><a href="#" class="filter design-style">Design</a></li>
-<li><a href="#" class="filter framework-style">Framework</a></li>
-<li><a href="#" class="filter cms-style">CMS</a></li>
-<li><a href="#" class="filter utility-style">Utility</a></li>
-<li><a href="#" class="filter animation-style">Animation</a></li>
-</ul>
-</div>
-<div class="box">
-<a href="mailto:hi@appbookmark.co">// Suggest an awesome app</a></li>
-<a href="mailto:hi@appbookmark.co">// Report a dead link</a></li>
-</div>
-<div class="box">
-<p>Created by<a href="https://twitter.com/taulantsulko">@taulantsulko</a>
-and <a href="https://twitter.com/BossLewis79">@BossLewis79</a>
-</p>
-</div>
-
-<div id="loginForm">
-<div class="box">
-<label>Username:</label>
-<input id="username" type="text" name="username"/>
-</div>
-<div class="box">
-<label>Password:</label>
-<input id="password" type="password" name="password"/>
-</div>
-<div class="box">
-<button type='submit' id="loginButton"> Login </button>
-</div>
-</div>
-
-<div id="logoutForm">
-<div class="box">
-<p> Logged in as <label id="usernameLabel"></label></p>
-</div>
-<div class="box">
-<button type='submit' id="logoutButton"> Logout </button>
-</div>
-</div>
-
-</div>
-</div>
-
-<div class="links">
-
-<h1>Add New Item</h1>
-<table class="addItem">
-<tr>
-<th>App Name</th>
-<th>Link</th>
-<th>Image</th>
-<th>Category 1</th>
-<th>Category 2</th>
-<th></th>
-</tr>
-<tr>
-<td class="col-sm-12 col-md-1"><input id="nameInput"></td>
-<td class="col-sm-12 col-md-1"><input id="linkInput"></td>
-<td class="col-sm-12 col-md-1"><input type="file" id="imageInput"></td>
-<td class="col-sm-12 col-md-1"><input id="category1Input"></td>
-<td class="col-sm-12 col-md-1"><input id="category2Input"></td>
-<td class="col-sm-12 col-md-1"><a href="#">Add Item</a>
-</tr>
-</table>
-
-<h1>Apps </h1>
-<table class="table" id="linksTable">
-<tr>
-<th>App Name</th>
-<th>Link</th>
-<th>Image</th>
-<th>Category 1</th>
-<th>Category 2</th>
-<th>Rating</th>
-</tr>
-</table>
-
-<h1>Pending Apps</h1>
-<table class="table" id="pendingLinksTable">
-<tr>
-<th>App Name</th>
-<th>Link</th>
-<th>Image</th>
-<th>Category 1</th>
-<th>Category 2</th>
-<th>User Added</th>
-<th>Approve</th>
-</tr>
-</table>
-
-</div>
-</div>
-
-
-</body>
-</html>
+html
+  head
+    title Bentokit
+    link(rel='stylesheet', href='stylesheets/basic.css')
+    script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js')
+    script(type='text/javascript', src='javascripts/jquery.js')
+    script(type='text/javascript', src='javascripts/framework.js')
+    script(type='text/javascript', src='javascripts/indexJQuery.js')
+    script(type='text/javascript', src='javascripts/editJQuery.js')
+    link(href='http://fonts.googleapis.com/css?family=Exo:300,500', rel='stylesheet', type='text/css')
+    link(rel='shortcut icon', href='images/favicon.ico')
+    link(rel='stylesheet', href='http://netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css')
+    link(rel='stylesheet', href='stylesheets/bootstrap.min.css')
+    link(rel='stylesheet', href='stylesheets/bootstrap-theme.min.css')
+    link(rel='stylesheet', href='stylesheets/main.css')
+    meta(name='handheldfriendly', content='true')
+    meta(name='mobileoptimized', content='240')
+    meta(name='viewport', content='width=device-width,initial-scale=1,target-densitydpi=device-dpi')
+  body
+    .wrapper
+      .menu
+        .fixed
+          .box
+            a(href='/')
+              h1 Bentokit
+            p Curating only the best free online design tools.
+          .box
+            ul#filter
+              li
+                h2 Filters
+              li.current
+                a.filter(href='#') All
+                li
+                  a.filter.html5-style(href='#') HTML5
+                li
+                  a.filter.css3-style(href='#') CSS3
+                li
+                  a.filter.jquery-style(href='#') jQuery
+                li
+                  a.filter.editor-style(href='#') Editor
+                li
+                  a.filter.typography-style(href='#') Typography
+                li
+                  a.filter.color-style(href='#') Color
+                li
+                  a.filter.design-style(href='#') Design
+                li
+                  a.filter.framework-style(href='#') Framework
+                li
+                  a.filter.cms-style(href='#') CMS
+                li
+                  a.filter.utility-style(href='#') Utility
+                li
+                  a.filter.animation-style(href='#') Animation
+          .box
+            a(href='mailto:hi@appbookmark.co') // Suggest an awesome app
+            a(href='mailto:hi@appbookmark.co') // Report a dead link
+          .box
+            p
+              | Created by
+              a(href='https://twitter.com/taulantsulko') @taulantsulko
+              | and
+              a(href='https://twitter.com/BossLewis79') @BossLewis79
+          #loginForm
+            .box
+              label Username:
+              input#username(type='text', name='username')
+            .box
+              label Password:
+              input#password(type='password', name='password')
+            .box
+              button#loginButton(type='submit')  Login 
+          #logoutForm
+            .box
+              p
+                | Logged in as
+                label#usernameLabel
+            .box
+              button#logoutButton(type='submit')  Logout 
+      .links.simple-form(method='POST', action='/suggestApp', name ="userForm", enctype="multipart/form-data", novalidate='novalidate')
+        form
+          h1 Add New Item
+          table.table
+            tr
+              th App Name
+              th Link
+              th Image
+              th Category 1
+              th Category 2
+              th
+            tr
+              td.col-sm-12.col-md-1
+                input#nameInput.form-control(
+                 type='text'
+                 name = "name"
+                 )
+              td.col-sm-12.col-md-1
+                input#linkInpu.form-control(
+                 type='text'
+                 name = "name"
+                 )
+              td.col-sm-12.col-md-1
+                input#imageInput(type='file')
+              td.col-sm-12.col-md-1
+                input#category1Input.form-control(
+                 type='text'
+                 name = "name"
+                 )
+              td.col-sm-12.col-md-1
+                input#category2Input.form-control(
+                 type='text'
+                 name = "name"
+                 )
+              td.col-sm-12.col-md-1
+                button(
+                 type = "submit"
+				) Add Item
+        h1 Apps 
+        table#linksTable.table
+          tr
+            th App Name
+            th Link
+            th Image
+            th Category 1
+            th Category 2
+            th Rating
+        h1 Pending Apps
+        table#pendingLinksTable.table
+          tr
+            th App Name
+            th Link
+            th Image
+            th Category 1
+            th Category 2
+            th User Added
+            th Approve
 script(type = 'text/javascript').
-	var clickFunc= function(event){
-	if(event.target.alt.indexOf("google") != -1){
-			var win=window.open(event.target.alt, '_blank');
-			win.focus();
-			return;
-	}
-	var f = document.createElement("form");
-	f.setAttribute('method',"get");
-	f.setAttribute('action',"/frame");
-	var s = document.createElement("input"); //input element, Submit button
-	s.setAttribute('type',"hidden");
-	s.setAttribute('name',"user[link]");
-	s.setAttribute('value',event.target.alt);
-	f.appendChild(s);
-	document.body.appendChild(f);
-	f.submit();
-	}
-	var apps =!{JSON.stringify(myObj)};
-	var table = document.getElementById("linksTable");
-	
-	for(i=0;i<apps.length;i++){
-		var curApp = apps[i];
-		var details = {};
-		details['name'] = curApp.name, details['link'] =curApp.link, details['image'] = curApp.image,
-		details['category1'] = curApp.c1, details['category2'] = curApp.c2, details['rating'] = curApp.rating;
-		var newRow = document.createElement("TR");
-		for(var detail in details) {
-			var newColumn = document.createElement("TD");
-			newColumn.innerHTML = details[detail];
-			newRow.appendChild(newColumn);
-		}
-		var newColumn = document.createElement("TD");
-		var button = document.createElement("A");
-		button.setAttribute('href', "#");
-		button.setAttribute('class', "editButton glyphicon glyphicon-ok");
-		button.setAttribute('id', details['link']);
-		button.innerHTML = "&nbsp;";
-		newColumn.appendChild(button);
-		
-		var button = document.createElement("A");
-		button.setAttribute('href', "#");
-		button.setAttribute('class', "removeAppButton glyphicon glyphicon-remove");
-		button.setAttribute('id', details['link']);
-		button.innerHTML = "";
-		newColumn.appendChild(button);
-		
-		newRow.appendChild(newColumn);
-		table.appendChild(newRow);
-	}
-	apps =!{JSON.stringify(pending)};
-	table = document.getElementById("pendingLinksTable");
-	
-	for(i=0;i<apps.length;i++){
-		var curApp = apps[i];
-		var details = {};
-		details['name'] = curApp.name, details['link'] =curApp.link, details['image'] = curApp.image,
-		details['category1'] = curApp.c1, details['category2'] = curApp.c2, details['user'] = curApp.user;
-		var newRow = document.createElement("TR");
-		for(var detail in details) {
-			var newColumn = document.createElement("TD");
-			newColumn.innerHTML = details[detail];
-			newRow.appendChild(newColumn);
-		}
-		var newColumn = document.createElement("TD");
-		var button = document.createElement("A");
-		button.setAttribute('href', "#");
-		button.setAttribute('class', "approveButton glyphicon glyphicon-ok");
-		button.setAttribute('id', details['link']);
-		button.innerHTML = "&nbsp;";
-		newColumn.appendChild(button);
-		
-		var button = document.createElement("A");
-		button.setAttribute('href', "#");
-		button.setAttribute('class', "removeButton glyphicon glyphicon-remove");
-		button.setAttribute('id', details['link']);
-		button.innerHTML = "";
-		newColumn.appendChild(button);
-		
-		newRow.appendChild(newColumn);
-		table.appendChild(newRow);
-		
-	
-	}
-	
-	var cookies = document.cookie.split(";");
-	var loggedIn = false;
-	var userName = "";
-	for(var i = 0; i < cookies.length; i++) {
-		var curCookie = cookies[i].split(',');
-		for (var j = 0; j < curCookie.length; j++) {
-			console.log('curCookie', curCookie[j]);
-			if(curCookie[j].indexOf('loggedIn') != -1) {
-				console.log("Logged in", curCookie[j]);
-				if(curCookie[j].indexOf('true') != -1)
-					loggedIn = true;
-			}
-			if(curCookie[j].indexOf('username') != -1 ) {
-				userName = curCookie[j].split(':')[1];
-			}
-		}
-	}
-	var loginDiv = document.getElementById("loginForm");
-	var logoutDiv = document.getElementById("logoutForm");
-	var userLabel = document.getElementById("usernameLabel");
-				
-	if(loggedIn) {
-		loginDiv.style.display = "none";	
-		logoutDiv.style.display = "block";	
-		userLabel.innerHTML = userName;
-	} else {
-		loginDiv.style.display = "block";	
-		logoutDiv.style.display = "none";	
-		userLabel.innerHTML = "";
-	}	
-	
-    
-    
-
-<script type="text/javascript" src="javascripts/jquery.js"></script>
-<script type="text/javascript" src="javascripts/framework.js"></script>
-<script type="text/javascript" src="javascripts/indexJQuery.js"></script>
-<script type="text/javascript" src="javascripts/editJQuery.js"></script>
+ var clickFunc= function(event){
+ if(event.target.alt.indexOf("google") != -1){
+  var win=window.open(event.target.alt, '_blank');
+  win.focus();
+  return;
+ }
+ var f = document.createElement("form");
+ f.setAttribute('method',"get");
+ f.setAttribute('action',"/frame");
+ var s = document.createElement("input"); //input element, Submit button
+ s.setAttribute('type',"hidden");
+ s.setAttribute('name',"user[link]");
+ s.setAttribute('value',event.target.alt);
+ f.appendChild(s);
+ document.body.appendChild(f);
+ f.submit();
+ }
+ var apps =!{JSON.stringify(myObj)};
+ var table = document.getElementById("linksTable");
+ 
+ for(i=0;i<apps.length;i++){
+ var curApp = apps[i];
+ var details = {};
+ details['name'] = curApp.name, details['link'] =curApp.link, details['image'] = curApp.image,
+ details['category1'] = curApp.c1, details['category2'] = curApp.c2, details['rating'] = curApp.rating;
+ var newRow = document.createElement("TR");
+ for(var detail in details) {
+ var newColumn = document.createElement("TD");
+ newColumn.innerHTML = details[detail];
+ newRow.appendChild(newColumn);
+ }
+ var newColumn = document.createElement("TD");
+ var button = document.createElement("A");
+ button.setAttribute('href', "#");
+ button.setAttribute('class', "editButton glyphicon glyphicon-edit");
+ button.setAttribute('id', details['link']);
+ button.innerHTML = "&nbsp;";
+ newColumn.appendChild(button);
+ 
+ var button = document.createElement("A");
+ button.setAttribute('href', "#");
+ button.setAttribute('class', "removeAppButton glyphicon glyphicon-remove");
+ button.setAttribute('id', details['link']);
+ button.innerHTML = "";
+ newColumn.appendChild(button);
+ 
+ newRow.appendChild(newColumn);
+ table.appendChild(newRow);
+ }
+ apps =!{JSON.stringify(pending)};
+ table = document.getElementById("pendingLinksTable");
+ 
+ for(i=0;i<apps.length;i++){
+  var curApp = apps[i];
+  var details = {};
+  details['name'] = curApp.name, details['link'] =curApp.link, details['image'] = curApp.image,
+  details['category1'] = curApp.c1, details['category2'] = curApp.c2, details['user'] = curApp.user;
+  var newRow = document.createElement("TR");
+  for(var detail in details) {
+   var newColumn = document.createElement("TD");
+   newColumn.innerHTML = details[detail];
+   newRow.appendChild(newColumn);
+  }
+  var newColumn = document.createElement("TD");
+  var button = document.createElement("A");
+  button.setAttribute('href', "#");
+  button.setAttribute('class', "approveButton glyphicon glyphicon-ok");
+  button.setAttribute('id', details['link']);
+  button.innerHTML = "&nbsp;";
+  newColumn.appendChild(button);
+  
+  var button = document.createElement("A");
+  button.setAttribute('href', "#");
+  button.setAttribute('class', "removeButton glyphicon glyphicon-remove");
+  button.setAttribute('id', details['link']);
+  button.innerHTML = "";
+  newColumn.appendChild(button);
+  
+  newRow.appendChild(newColumn);
+  table.appendChild(newRow);
+ }
+ 
+ var cookies = document.cookie.split(";");
+ var loggedIn = false;
+ var userName = "";
+ for(var i = 0; i < cookies.length; i++) {
+  var curCookie = cookies[i].split(',');
+  for (var j = 0; j < curCookie.length; j++) {
+   console.log('curCookie', curCookie[j]);
+   if(curCookie[j].indexOf('loggedIn') != -1) {
+    console.log("Logged in", curCookie[j]);
+    if(curCookie[j].indexOf('true') != -1)
+     loggedIn = true;
+    }
+    if(curCookie[j].indexOf('username') != -1 ) {
+     userName = curCookie[j].split(':')[1];
+    }
+   }
+ }
+ var loginDiv = document.getElementById("loginForm");
+ var logoutDiv = document.getElementById("logoutForm");
+ var userLabel = document.getElementById("usernameLabel");			
+ if(loggedIn) {
+  loginDiv.style.display = "none";	
+  logoutDiv.style.display = "block";	
+  userLabel.innerHTML = userName;
+ } else {
+  loginDiv.style.display = "block";	
+  logoutDiv.style.display = "none";	
+  userLabel.innerHTML = "";
+ }

@@ -164,6 +164,22 @@ script(type = 'text/javascript').
 			newColumn.innerHTML = details[detail];
 			newRow.appendChild(newColumn);
 		}
+		var newColumn = document.createElement("TD");
+		var button = document.createElement("A");
+		button.setAttribute('href', "#");
+		button.setAttribute('class', "editButton glyphicon glyphicon-ok");
+		button.setAttribute('id', details['link']);
+		button.innerHTML = "&nbsp;";
+		newColumn.appendChild(button);
+		
+		var button = document.createElement("A");
+		button.setAttribute('href', "#");
+		button.setAttribute('class', "removeAppButton glyphicon glyphicon-remove");
+		button.setAttribute('id', details['link']);
+		button.innerHTML = "";
+		newColumn.appendChild(button);
+		
+		newRow.appendChild(newColumn);
 		table.appendChild(newRow);
 	}
 	apps =!{JSON.stringify(pending)};

@@ -9,6 +9,7 @@ $('.approveButton').click(function(eventObject) {
 		data: {appLink: app},
 		complete: function(data) {
 			console.log("Approved", data);
+			location.reload();
 		},
 		error: function(xhr, status, error) {
 			console.log("Error:", error);
@@ -20,17 +21,28 @@ $('.approveButton').click(function(eventObject) {
 $('.removeButton').click(function(eventObject) {
 	eventObject.preventDefault();
 	var app = $(this).attr('id');
+	removeApp(app, 'pendingApps');
+	
+});
+
+$('.removeAppButton').click(function(eventObject) {
+	eventObject.preventDefault();
+	var app = $(this).attr('id');
+	removeApp(app, 'apps');
+});
+
+function removeApp(app, type) {
 	$.ajax({
 		type: 'POST',
 		url: '/remove',
 		dataType: 'json',
-		data: {appLink: app},
+		data: {appLink: app, table: type},
 		complete: function(data) {
 			console.log("Removed", data);
+			location.reload();
 		},
 		error: function(xhr, status, error) {
 			console.log("Error:", error);
 		}
 	});
-	
-});
+}

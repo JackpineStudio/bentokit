@@ -128,7 +128,8 @@ exports.approveApp = function(req, res) {
 
 exports.removeApp = function(req, res) {
 	var link = req.body.appLink;
-	db.removeApp(link, function() {
+	var table = req.body.table;
+	db.removeApp(link, table, function() {
 		db.getAll(function(apps, pendingApps){
 			res.render('edit', {myObj: apps, pending: pendingApps} );
 		});

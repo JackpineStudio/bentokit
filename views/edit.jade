@@ -2,8 +2,7 @@ html
   head
     title Bentokit
     link(rel='stylesheet', href='stylesheets/basic.css')
-    script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js')
-    script(type='text/javascript', src='javascripts/jquery.js')
+    script(src='http://code.jquery.com/jquery-1.10.1.min.js')
     script(type='text/javascript', src='javascripts/framework.js')
     script(type='text/javascript', src='javascripts/indexJQuery.js')
     script(type='text/javascript', src='javascripts/editJQuery.js')
@@ -18,7 +17,7 @@ html
     meta(name='viewport', content='width=device-width,initial-scale=1,target-densitydpi=device-dpi')
   body
     .wrapper
-      .menu
+      #editMenu.menu
         .fixed
           .box
             a(href='/')
@@ -78,7 +77,7 @@ html
             .box
               button#logoutButton(type='submit')  Logout 
       .links
-        form.simple-form(method='POST', action='/suggestApp', name ="userForm", enctype="multipart/form-data", novalidate='novalidate')
+        form.simple-form(method='POST', action='/insertApp', name ="userForm", enctype="multipart/form-data", novalidate='novalidate')
           h1 Add New Item
           table.table
             tr
@@ -169,6 +168,8 @@ script(type = 'text/javascript').
  for(var detail in details) {
  var newColumn = document.createElement("TD");
  newColumn.innerHTML = details[detail];
+ if(detail == 'category1' || detail == 'category2' || detail == 'rating')
+    newColumn.setAttribute('class', "category");
  newRow.appendChild(newColumn);
  }
  var newColumn = document.createElement("TD");
@@ -201,6 +202,8 @@ script(type = 'text/javascript').
   for(var detail in details) {
    var newColumn = document.createElement("TD");
    newColumn.innerHTML = details[detail];
+   if(detail == 'category1' || detail == 'category2' || detail == 'user')
+    newColumn.setAttribute('class', "category");
    newRow.appendChild(newColumn);
   }
   var newColumn = document.createElement("TD");

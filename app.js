@@ -50,6 +50,7 @@ app.get("/suggest", routes.suggest)
 
 app.post("/suggestApp", function(req, res, next) {
 	console.log("file", req.files);
+	//check for usertype
 	fs.readFile(req.files.image.path, function(err, data) {
 		var imageName = req.files.image.name;
 		if(!imageName) {
@@ -67,6 +68,26 @@ app.post("/suggestApp", function(req, res, next) {
 	
 });
 
+app.post("/insertApp", function(req, res, next) {
+	console.log("file", req.files);
+	//check for usertype
+	fs.readFile(req.files.image.path, function(err, data) {
+		var imageName = req.files.image.name;
+		if(!imageName || imageName == "") {
+			console.log("No image");
+			routes.insertApp(req, res, "");
+			res.redirect('/edit');
+			res.end();
+		} else {
+			var filePath = "images/" + imageName;
+			var path = __dirname + "/public/" + filePath; 
+			routes.insertApp(req, res, filePath);
+			fs.writeFile(path, data, function(err) {
+				res.redirect('/edit');
+			});
+		}
+	});
+});
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

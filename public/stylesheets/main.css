@@ -39,3 +39,24 @@ button {
     font-weight: 500;
     top: 10px;
 }
+
+th {
+    text-align : center;
+}
+
+.links td{
+    padding-bottom : 20px;
+   
+}
+
+.category {
+    text-align: center;
+}
+
+#editMenu {
+    width: 250px;
+}
+
+.link {
+    width:300px;
+}

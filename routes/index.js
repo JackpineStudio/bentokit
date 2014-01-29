@@ -1,4 +1,5 @@
-var db = require('../node_modules/Database_functions.js');
+var db = require('../node_modules/Database_functions.js')
+  , fs = require('fs');
 /*
  * GET home page.
  */
@@ -176,6 +177,21 @@ exports.suggestApp = function(req, res, imageDir) {
 		appDetails['user'] = "Anon";
 	console.log('AppDetails', appDetails);
 	db.suggestApp(appDetails, function() {
+		res.redirect('/');
+	});
+};
+
+exports.insertApp = function(req, res, imageDir) {
+	var appDetails = {};
+	var userName = req.body.usernameLabel;
+	appDetails = req.body;
+	appDetails['image'] = imageDir;
+	if(userName)
+		appDetails['user'] = userName;
+	else
+		appDetails['user'] = "Anon";
+	console.log('AppDetails', appDetails);
+	db.insertApp(appDetails, function() {
 		res.redirect('/');
 	});
 };

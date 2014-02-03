@@ -386,6 +386,11 @@ h2{
 		background-color: #43b31c;
 		text-shadow: 0 1px 1px #092008;
 	} 
+	
+	iframe, object, embed {
+	    /*height:900px;*/
+	   max-width: 100%;
+	}
 }
 .editor-style { 
 	color: #fff;

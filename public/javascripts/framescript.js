@@ -39,4 +39,14 @@ $('#rating').click(function(eventObject) {
 	return false;
 });
 
+window.onresize = function() {
+	console.log("Resize");
+	resizeFrame();
+}
+
+function resizeFrame() {
+	var mainFrame = document.getElementById("mainFrame");
+	mainFrame.style.height = document.body.scrollHeight + 'px';
+	mainFrame.style.width = window.innerWidth + 'px';
+}
 

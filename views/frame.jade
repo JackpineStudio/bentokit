@@ -24,7 +24,7 @@ html
         a#clickme(href='#')
           img.close(src='images/appbookmark-close.png', height='24px', alt='(X) Close')
    iframe#mainFrame(src='#{frameSrc}')
-
+   
 script(type='text/javascript').
  var cookies = document.cookie.split(";");
  var liked = false;
@@ -47,4 +47,10 @@ script(type='text/javascript').
   var t = document.createTextNode("Like This App");
   button.appendChild(t);
   div.appendChild(button);
+ }
+ resizeFrame();
+ function resizeFrame() {
+  var mainFrame = document.getElementById("mainFrame");
+  mainFrame.style.height = document.body.scrollHeight + 'px';
+  mainFrame.style.width = window.innerWidth + 'px';
  }

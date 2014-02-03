@@ -1,185 +1,179 @@
-<!DOCTYPE html><html>
-<head>
-<title>Bentokit</title>
-<link rel="stylesheet" href="stylesheets/basic.css"/>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-<link href='http://fonts.googleapis.com/css?family=Exo:300,500' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="stylesheets/main.css"/>
-<link rel="shortcut icon" href="images/favicon.ico"/>
-<meta name="handheldfriendly" content="true">
-<meta name="mobileoptimized" content="240">
-<meta name="viewport" content="width=device-width,initial-scale=1,target-densitydpi=device-dpi">
+!!! 5
+html
+  head
+    title Bentokit
+    link(rel='stylesheet', href='stylesheets/basic.css')
+    script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js')
+    link(href='http://fonts.googleapis.com/css?family=Exo:300,500', rel='stylesheet', type='text/css')
+    link(rel='stylesheet', href='stylesheets/main.css')
+    link(rel='shortcut icon', href='images/favicon.ico')
+    script(type='text/javascript', src='javascripts/framework.js')
+    script(type='text/javascript', src='javascripts/indexJQuery.js')
+    script(type='text/javascript', src='javascripts/jquery.js')
+    meta(name='handheldfriendly', content='true')
+    meta(name='mobileoptimized', content='240')
+    meta(name='viewport', content='width=device-width,initial-scale=1,target-densitydpi=device-dpi')
+  body
+    .wrapper
+      .menu
+        .fixed
+          .box
+            a(href='/')
+              h1.logo Bentokit
+            p Curating only the best free online design tools.
+          .box
+            ul#filter
+              li
+                h2 Filters
+              li.current
+                a.filter(href='#') All
+          .box
+            a(href='/suggest') // Suggest an awesome app
+            a(href='mailto:hi@appbookmark.co') // Report a dead link
+          .box
+            p
+              | Created by
+              a(href='https://twitter.com/taulantsulko') @taulantsulko
+              | and
+              a(href='https://twitter.com/BossLewis79') @BossLewis79
+          #editDiv.box
+            a(href='/edit') Edit Page
+          #loginForm
+            .box
+              label Username:
+              input#username(type='text', name='username')
+            .box
+              label Password:
+              input#password(type='password', name='password')
+            .box
+              button#loginButton(type='submit')  Login 
+          #logoutForm
+            .box
+              p
+                | Logged in as
+                label#usernameLabel
+            .box
+              button#logoutButton(type='submit')  Logout 
+      .links
+        ul#links
 
-
-</head>
-<body>
-
-<div class="wrapper">
-<div class="menu">
-<div class="fixed">
-<div class="box">
-<a href="/">
-<h1 class=logo" >Bentokit</h1>
-</a>
-<p>Curating only the best free online design tools.</p>
-</div>
-<div class="box">
-<ul id="filter">
-<li><h2>Filters</h2></li>
-<li class="current"><a href="#" class="filter">All</a>
-<li><a href="#" class="filter html5-style">HTML5</a></li>
-<li><a href="#" class="filter css3-style">CSS3</a></li>
-<li><a href="#" class="filter jquery-style">jQuery</a></li>
-<li><a href="#" class="filter editor-style">Editor</a></li>
-<li><a href="#" class="filter typography-style">Typography</a></li>
-<li><a href="#" class="filter color-style">Color</a></li>
-<li><a href="#" class="filter design-style">Design</a></li>
-<li><a href="#" class="filter framework-style">Framework</a></li>
-<li><a href="#" class="filter cms-style">CMS</a></li>
-<li><a href="#" class="filter utility-style">Utility</a></li>
-<li><a href="#" class="filter animation-style">Animation</a></li>
-</ul>
-</div>
-<div class="box">
-<a href="/suggest">// Suggest an awesome app</a></li>
-<a href="mailto:hi@appbookmark.co">// Report a dead link</a></li>
-</div>
-<div class="box">
-<p>Created by<a href="https://twitter.com/taulantsulko">@taulantsulko</a>
-and <a href="https://twitter.com/BossLewis79">@BossLewis79</a>
-</p>
-</div>
-
-<div class="box" id = "editDiv">
-<a href="/edit">Edit Page</a>
-</div>
-
-<div id="loginForm">
-<div class="box">
-<label>Username:</label>
-<input id="username" type="text" name="username"/>
-</div>
-<div class="box">
-<label>Password:</label>
-<input id="password" type="password" name="password"/>
-</div>
-<div class="box">
-<button type='submit' id="loginButton"> Login </button>
-</div>
-</div>
-
-<div id="logoutForm">
-<div class="box">
-<p> Logged in as <label id="usernameLabel"></label></p>
-</div>
-<div class="box">
-<button type='submit' id="logoutButton"> Logout </button>
-</div>
-</div>
-
-</div>
-</div>
-<div class="links" >
-<ul id="links">      
-</ul> 
-</div>
-</div>
-
-
-</body>
-</html>
 script(type = 'text/javascript').
-	var clickFunc= function(event){
-	if(event.target.alt.indexOf("google") != -1){
-			var win=window.open(event.target.alt, '_blank');
-			win.focus();
-			return;
-	}
-	var f = document.createElement("form");
-	f.setAttribute('method',"get");
-	f.setAttribute('action',"/frame");
-	var s = document.createElement("input"); //input element, Submit button
-	s.setAttribute('type',"hidden");
-	s.setAttribute('name',"user[link]");
-	s.setAttribute('value',event.target.alt);
-	f.appendChild(s);
-	document.body.appendChild(f);
-	f.submit();
-	}
-	var apps =!{JSON.stringify(myObj)};
-	console.log(apps);
-	console.log("test");
-	var ul = document.getElementById("links");
-	for(i=0;i<apps.length;i++){
-		var newLi= document.createElement("LI");
-		newLi.className =apps[i].c1+" "+ apps[i].c2;
-		var newA = document.createElement("a");
-		newA.addEventListener('click',clickFunc);
-		var newImage = new Image();
-		newImage.alt=apps[i].link;
-		newImage.src=apps[i].image;
-		newImage.style.height="100px";
-		newImage.style.height="100px";
-		var newDiv= document.createElement('div');
-		newDiv.className="center";
-		newDiv.innerHTML=apps[i].name;
-		newP1 = document.createElement('p');
-		newP2 = document.createElement('p');
-		newP1.className="tag "+apps[i].c1+"-style";
-		newP2.className="tag "+apps[i].c2+"-style";
-		if(apps[i].c1 != null){
-			var p1Text = document.createTextNode(apps[i].c1);
-			newP1.appendChild(p1Text);
-		}
-		if(apps[i].c2 != null){
-			var p2Text = document.createTextNode(apps[i].c2);
-			newP2.appendChild(p2Text);
-		}
-		newA.appendChild(newImage);
-		newA.appendChild(newDiv);
-		newLi.appendChild(newA);
-		newLi.appendChild(newP1);
-		newLi.appendChild(newP2);
-		ul.appendChild(newLi);
-	}
-	var cookies = document.cookie.split(";");
-	var loggedIn = false;
-	var userName = "";
-	for(var i = 0; i < cookies.length; i++) {
-		var curCookie = cookies[i].split(',');
-		for (var j = 0; j < curCookie.length; j++) {
-			console.log('curCookie', curCookie[j]);
-			if(curCookie[j].indexOf('loggedIn') != -1) {
-				console.log("Logged in", curCookie[j]);
-				if(curCookie[j].indexOf('true') != -1)
-					loggedIn = true;
-			}
-			if(curCookie[j].indexOf('username') != -1 ) {
-				userName = curCookie[j].split(':')[1];
-			}
-		}
-	}
-	var loginDiv = document.getElementById("loginForm");
-	var logoutDiv = document.getElementById("logoutForm");
-	var userLabel = document.getElementById("usernameLabel");
-	var editDiv = document.getElementById("editDiv");	
-	if(loggedIn) {
-		loginDiv.style.display = "none";	
-		logoutDiv.style.display = "block";	
-		userLabel.innerHTML = userName;
-		
-		//if(userType == 'moderator')
-		editDiv.style.display = "block";		
-	} else {
-		loginDiv.style.display = "block";	
-		logoutDiv.style.display = "none";	
-		userLabel.innerHTML = "";
-		editDiv.style.display = "none";
-	}	
-	
-    
-    
-
-<script type="text/javascript" src="javascripts/jquery.js"></script>
-<script type="text/javascript" src="javascripts/framework.js"></script>
-<script type="text/javascript" src="javascripts/indexJQuery.js"></script>
+ var clickFunc= function(event){
+  if(event.target.alt.indexOf("google") != -1){
+   var win=window.open(event.target.alt, '_blank');
+   win.focus();
+   return;
+  }
+  var f = document.createElement("form");
+  f.setAttribute('method',"get");
+  f.setAttribute('action',"/frame");
+  var s = document.createElement("input"); //input element, Submit button
+  s.setAttribute('type',"hidden");
+  s.setAttribute('name',"user[link]");
+  s.setAttribute('value',event.target.alt);
+  f.appendChild(s);
+  document.body.appendChild(f);
+  f.submit();
+ }
+ var colors = new Array();
+ var categories = !{JSON.stringify(categoryArray)};
+ console.log("categories", categories);
+ var list = document.getElementById("filter");
+ for (var i = 0; i < categories.length; i++) {
+  var curCategory = categories[i];
+  var listElement = document.createElement("LI");
+  var anchor = document.createElement("a");
+  anchor.setAttribute("href", "#");
+  anchor.setAttribute("class", "filter " + curCategory + "-style");
+  anchor.innerHTML = curCategory.toUpperCase();
+  var letters = '0123456789ABCDEF'.split('');
+  var randomColor = '#';
+  for (var j = 0; j < 6; j++)
+   randomColor += letters[Math.round(Math.random() * 15)];
+  colors[curCategory] = randomColor;
+  var style = "color: #fff; " + "background-color: " + randomColor + ";";
+  anchor.setAttribute("style", style);
+  listElement.appendChild(anchor);
+  list.appendChild(listElement);
+ }
+ var apps =!{JSON.stringify(myObj)};
+ console.log(apps);
+ console.log("test");
+ var ul = document.getElementById("links");
+ for(i=0;i<apps.length;i++){
+  var newLi= document.createElement("LI");
+  newLi.className =apps[i].c1+" "+ apps[i].c2;
+  var newA = document.createElement("a");
+  newA.addEventListener('click',clickFunc);
+  var newImage = new Image();
+  newImage.alt=apps[i].link;
+  newImage.src=apps[i].image;
+  newImage.style.height="100px";
+  newImage.style.height="100px";
+  var newDiv= document.createElement('div');
+  newDiv.className="center";
+  newDiv.innerHTML=apps[i].name;
+  newP1 = document.createElement('p');
+  newP2 = document.createElement('p');
+  
+  var c1Color = colors[apps[i].c1], c2Color = colors[apps[i].c2];
+  var style1 = "color: #fff; " + "background-color: " + c1Color + ";";
+  var style2 = "color: #fff; " + "background-color: " + c2Color + ";";
+  newP1.className="tag "+apps[i].c1+"-style";
+  newP2.className="tag "+apps[i].c2+"-style";
+  
+  
+  
+  if(apps[i].c1 != null){
+   if(c1Color != undefined)
+    newP1.setAttribute('style', style1);
+   var p1Text = document.createTextNode(apps[i].c1);
+   newP1.appendChild(p1Text);
+  }
+  if(apps[i].c2 != null){
+   if(c2Color != undefined)
+    newP2.setAttribute('style', style2);
+   var p2Text = document.createTextNode(apps[i].c2);
+   newP2.appendChild(p2Text);
+  }
+  newA.appendChild(newImage);
+  newA.appendChild(newDiv);
+  newLi.appendChild(newA);
+  newLi.appendChild(newP1);
+  newLi.appendChild(newP2);
+  ul.appendChild(newLi);
+ }
+ var cookies = document.cookie.split(";");
+ var loggedIn = false;
+ var userName = "";
+ for(var i = 0; i < cookies.length; i++) {
+  var curCookie = cookies[i].split(',');
+  for (var j = 0; j < curCookie.length; j++) {
+   console.log('curCookie', curCookie[j]);
+   if(curCookie[j].indexOf('loggedIn') != -1) {
+    console.log("Logged in", curCookie[j]);
+    if(curCookie[j].indexOf('true') != -1)
+     loggedIn = true;
+   }
+   if(curCookie[j].indexOf('username') != -1 ) {
+    userName = curCookie[j].split(':')[1];
+   }
+  }
+ }
+ var loginDiv = document.getElementById("loginForm");
+ var logoutDiv = document.getElementById("logoutForm");
+ var userLabel = document.getElementById("usernameLabel");
+ var editDiv = document.getElementById("editDiv");	
+ if(loggedIn) {
+  loginDiv.style.display = "none";	
+  logoutDiv.style.display = "block";	
+  userLabel.innerHTML = userName;
+  
+  //if(userType == 'moderator')
+  editDiv.style.display = "block";		
+ } else {
+  loginDiv.style.display = "block";	
+  logoutDiv.style.display = "none";	
+  userLabel.innerHTML = "";
+  editDiv.style.display = "none";
+ }

@@ -34,7 +34,10 @@ function home(req, res) {
 				b.rating = 0;
 			return b.rating-a.rating;
 		});
-		res.render('index', {myObj: data} );
+		db.getCategories(function(categories) {
+			res.render('index', {myObj: data, categoryArray: categories});
+		});
+		
 	});
 }
 

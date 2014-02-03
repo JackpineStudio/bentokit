@@ -1,62 +1,50 @@
+!!! 5
+html
+  head
+    title Bentokit
+    link(rel='stylesheet', href='stylesheets/basic.css')
+    link(rel='stylesheet', href='stylesheets/main.css')
+    script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js')
+    script(type='text/javascript', src='javascripts/jquery.js')
+    script(type='text/javascript', src='javascripts/framescript.js')
+    link(href='http://fonts.googleapis.com/css?family=Exo:300,500', rel='stylesheet', type='text/css')
+    link(rel='shortcut icon', href='images/favicon.ico')
+    meta(name='handheldfriendly', content='true')
+    meta(name='mobileoptimized', content='240')
+    meta#locale(name='locale', content='#{frameSrc}')
+    meta(name='viewport', content='width=device-width,initial-scale=1,target-densitydpi=device-dpi')
+  body
+    header
+      input#frameSrc(type='hidden', value='#{frameSrc}')
+      input#appName(type='hidden', value='#{curApp}')
+      input#appRating(type='hidden', value='#{rating}')
+      #book.header
+        a(href='/')
+          h1.logo Bentokit
+        a#clickme(href='#')
+          img.close(src='images/appbookmark-close.png', height='24px', alt='(X) Close')
+   iframe#mainFrame(src='#{frameSrc}')
 
-
-<!DOCTYPE html><html>
-<head>
-<title>Bentokit</title>
-<link rel="stylesheet" href="stylesheets/basic.css"/>
- 
-<link rel="stylesheet" href="stylesheets/main.css"/>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-<script type="text/javascript" src="javascripts/jquery.js"></script>
-<link href='http://fonts.googleapis.com/css?family=Exo:300,500' rel='stylesheet' type='text/css'>
-<link rel="shortcut icon" href="images/favicon.ico"/>
-<meta name="handheldfriendly" content="true">
-<meta name="mobileoptimized" content="240">
-<meta name="locale" id="locale" content="#{frameSrc}" />
-<meta name="viewport" content="width=device-width,initial-scale=1,target-densitydpi=device-dpi">
-</head>
-<body>
-
-<header>
-<input id="frameSrc" type="hidden" value=#{frameSrc}>
-<input id="appName" type="hidden" value="#{curApp}">
-<input id="appRating" type="hidden" value="#{rating}">
-<div class="header" id="book">
-<a href="/">
-<h1 class="logo">Bentokit</h1>
-</a>
-
-
-<a href="#" id="clickme"><img src="images/appbookmark-close.png" class="close"  height="24px" alt="(X) Close"/></a>
-
-script(type='text/javascript')
-	var cookies = document.cookie.split(";");
-	var liked = false;
-	var div = document.getElementById("book");
-	var appName = !{JSON.stringify(curApp)};
-	for (var i = 0; i < cookies.length; i++) {
-		var curCookie = cookies[i].split(',');
-		for (var j = 0; j < curCookie.length; j++) {
-			if(curCookie[j] == appName) {
-				liked = true;
-				break;
-			}
-		}
-	}
-	if(!liked) {
-		var button = document.createElement("BUTTON");
-		//button.setAttribute("href", "");
-		button.setAttribute("id", "rating");
-		//button.setAttribute("class", "filter");
-		var t = document.createTextNode("Like This App");
-		button.appendChild(t);
-		div.appendChild(button);
-	}
-
-</div>
-
-</header>
-<iframe id="mainFrame" src="#{frameSrc}"></iframe>
-</body>
-</html>
-<script type="text/javascript" src="javascripts/framescript.js"></script>
+script(type='text/javascript').
+ var cookies = document.cookie.split(";");
+ var liked = false;
+ var div = document.getElementById("book");
+ var appName = !{JSON.stringify(curApp)};
+ for (var i = 0; i < cookies.length; i++) {
+  var curCookie = cookies[i].split(',');
+  for (var j = 0; j < curCookie.length; j++) {
+   if(curCookie[j] == appName) {
+    liked = true;
+    break;
+   }
+  }
+ }
+ if(!liked) {
+  var button = document.createElement("BUTTON");
+  //button.setAttribute("href", "");
+  button.setAttribute("id", "rating");
+  //button.setAttribute("class", "filter");
+  var t = document.createTextNode("Like This App");
+  button.appendChild(t);
+  div.appendChild(button);
+ }

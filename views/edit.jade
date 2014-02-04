@@ -166,12 +166,14 @@ script(type = 'text/javascript').
  details['category1'] = curApp.c1, details['category2'] = curApp.c2, details['rating'] = curApp.rating;
  var newRow = document.createElement("TR");
  var className = details['link'].substring(7);
- newRow.setAttribute('class', className);
+ newRow.setAttribute('id', className);
  for(var detail in details) {
  var newColumn = document.createElement("TD");
  newColumn.innerHTML = details[detail];
  if(detail == 'category1' || detail == 'category2' || detail == 'rating')
     newColumn.setAttribute('class', "category");
+ else if(detail == 'link' || detail == 'image')
+    newColumn.setAttribute('class', "linkColumn");
  newRow.appendChild(newColumn);
  }
  var newColumn = document.createElement("TD");
@@ -206,6 +208,8 @@ script(type = 'text/javascript').
    newColumn.innerHTML = details[detail];
    if(detail == 'category1' || detail == 'category2' || detail == 'user')
     newColumn.setAttribute('class', "category");
+  else if(detail == 'link' || detail == 'image')
+    newColumn.setAttribute('class', "linkColumn");
    newRow.appendChild(newColumn);
   }
   var newColumn = document.createElement("TD");

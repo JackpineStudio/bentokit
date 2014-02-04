@@ -1,6 +1,4 @@
 $(document).ready(function(){ 
-	console.log("Ready");
-	
 	$('.approveButton').click(function(eventObject) {
 		eventObject.preventDefault();
 		var app = $(this).attr('id');

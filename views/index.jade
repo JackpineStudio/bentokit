@@ -76,29 +76,26 @@ script(type = 'text/javascript').
   f.submit();
  }
  var colors = new Array();
- var categories = !{JSON.stringify(categoryArray)};
+ var categories =!{JSON.stringify(categories)};
  console.log("categories", categories);
  var list = document.getElementById("filter");
  for (var i = 0; i < categories.length; i++) {
-  var curCategory = categories[i];
+  var curCategory = categories[i]
+  console.log(categories);
   var listElement = document.createElement("LI");
   var anchor = document.createElement("a");
   anchor.setAttribute("href", "#");
-  anchor.setAttribute("class", "filter " + curCategory + "-style");
-  anchor.innerHTML = curCategory.toUpperCase();
+  anchor.setAttribute("class", "filter " + curCategory.name + "-style");
+  anchor.innerHTML = curCategory.name.toUpperCase();
   var letters = '0123456789ABCDEF'.split('');
   var randomColor = '#';
-  for (var j = 0; j < 6; j++)
-   randomColor += letters[Math.round(Math.random() * 15)];
-  colors[curCategory] = randomColor;
-  var style = "color: #fff; " + "background-color: " + randomColor + ";";
+  var style = "background-color: " + curCategory.color + ";";
+  colors[curCategory.name] = curCategory.color;
   anchor.setAttribute("style", style);
   listElement.appendChild(anchor);
   list.appendChild(listElement);
  }
  var apps =!{JSON.stringify(myObj)};
- console.log(apps);
- console.log("test");
  var ul = document.getElementById("links");
  for(i=0;i<apps.length;i++){
   var newLi= document.createElement("LI");
@@ -117,8 +114,8 @@ script(type = 'text/javascript').
   newP2 = document.createElement('p');
   
   var c1Color = colors[apps[i].c1], c2Color = colors[apps[i].c2];
-  var style1 = "color: #fff; " + "background-color: " + c1Color + ";";
-  var style2 = "color: #fff; " + "background-color: " + c2Color + ";";
+  var style1 = "background-color: " + c1Color + ";";
+  var style2 = "background-color: " + c2Color + ";";
   newP1.className="tag "+apps[i].c1+"-style";
   newP2.className="tag "+apps[i].c2+"-style";
   

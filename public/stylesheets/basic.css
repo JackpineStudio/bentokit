@@ -140,7 +140,8 @@ h2{
 	 float: left;
 	 padding: 5px;
 	 border-radius: 3px;
-	 margin:3px 6px 3px 0;	
+	 margin:3px 6px 3px 0;
+	 color: #ff;
  }
  
  .filter:hover{
@@ -389,7 +390,7 @@ h2{
 	
 	iframe, object, embed {
 	    /*height:900px;*/
-	   max-width: 100%;
+	   /*max-width: 100%;*/
 	}
 }
 .editor-style { 

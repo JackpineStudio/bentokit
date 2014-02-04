@@ -34,16 +34,18 @@ function home(req, res) {
 				b.rating = 0;
 			return b.rating-a.rating;
 		});
-		db.getCategories(function(categories) {
-			res.render('index', {myObj: data, categoryArray: categories});
-		});
+		//db.getCategories(function(categories) {
+			db.getColors(function(colors) {
+				res.render('index', {myObj: data, categories: colors});
+			});
+			
+		//});
 		
 	});
 }
 
 exports.login = function(userDetails, callback) {
 	login(userDetails, callback);
-	
 };
 
 exports.home = function(req,res){
@@ -62,8 +64,7 @@ exports.loginSuccess = function() {
 };
 
 function loginSuccess(user, req, res) {
-	console.log("index", "Login Success", user); 
-	
+	console.log("index", "Login Success", user);	
 }
 
 exports.loginFailure = function() {
@@ -72,33 +73,25 @@ exports.loginFailure = function() {
 
 function loginFailure() {
 	console.log("Cannot login");
-	
 }
 
 exports.loginHandler = function (req, res) {
 	var userDetails = {};
+	console.log("Loginhandler");
 	userDetails['username'] = req.body.username;
 	userDetails['password'] = req.body.password;
 	console.log('username', userDetails['username'], 'password', userDetails['password'] );
-	db.getAll(function(apps, pendingApps){
-		res.render('edit', {myObj: apps, pending: pendingApps} );
-	});
+	editPage(req, res);
 	var callback = {};
 	callback['success'] = function(user) {
 		loginSuccess(user);
-		//res.render('index',{myObj: data, userType:user['userType']});
 		console.log('Usertype',user['userType']);
 		if(user['userType'] == 'moderator') {
 			console.log('moderator');
-			//editPage(req, res);
-			//res.redirect('/');
-			//home(req, res);
-			
 		} else {
 			console.log('regular user');
 			home(req, res);
 		}
-		
 	};
 	callback['failure'] = loginFailure;
 	login(userDetails, callback);
@@ -116,10 +109,6 @@ function editPage(req, res) {
 }
 
 exports.editPage = function(req, res){
-	/*console.log('UserType', req.body.userType);
-	db.getAll(function(apps, pendingApps){
-		res.render('edit', {myObj: apps, pending: pendingApps} );
-	});*/
 	editPage(req, res);
 };
 

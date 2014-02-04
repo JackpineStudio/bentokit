@@ -129,6 +129,12 @@ exports.removeApp = function(req, res) {
 	});
 };
 
+exports.saveApp = function(req, res) {
+	var app = req.body.appToSave;
+	console.log(app);
+	db.saveApp(app);
+};
+
 exports.addItem = function(req, res) {
 	//db.addNewItem
 };
@@ -187,3 +193,5 @@ exports.insertApp = function(req, res, imageDir) {
 		res.redirect('/');
 	});
 };
+
+

@@ -165,6 +165,8 @@ script(type = 'text/javascript').
  details['name'] = curApp.name, details['link'] =curApp.link, details['image'] = curApp.image,
  details['category1'] = curApp.c1, details['category2'] = curApp.c2, details['rating'] = curApp.rating;
  var newRow = document.createElement("TR");
+ var className = details['link'].substring(7);
+ newRow.setAttribute('class', className);
  for(var detail in details) {
  var newColumn = document.createElement("TD");
  newColumn.innerHTML = details[detail];

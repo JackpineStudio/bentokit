@@ -46,7 +46,8 @@ app.post("/remove", routes.removeApp);
 app.get("/addItem", routes.addItem);
 app.get("/signup", routes.signUp);
 app.post("/signUser", routes.signUser);
-app.get("/suggest", routes.suggest)
+app.get("/suggest", routes.suggest);
+app.post("/saveApp", routes.saveApp);
 
 app.post("/suggestApp", function(req, res, next) {
 	console.log("file", req.files);

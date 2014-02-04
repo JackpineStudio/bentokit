@@ -38,6 +38,34 @@ $(document).ready(function(){
 	
 	$('.editButton').click(function(eventObject) {
 		eventObject.preventDefault();
+		var app = {};
+		var appLink = $(this).attr('id');
+		if($(this).hasClass("glyphicon-edit")) {
+			//show editing form
+			$(this).attr('class', "approveEditButton glyphicon glyphicon-ok");
+			
+		} else if($(this).hasClass('glyphicon-ok')) {
+			//Done editing, save
+			var table = $("#linksTable");
+			var className = appLink.replace("http://", "");
+			console.log(className);
+			
+			app['name'] = $("#nameInput").val();
+			app['link'] = $("#linkInput").val();
+			app['image'] = "";
+			app['category1'] = $("#category1Input").val();
+			app['category2'] = $("#category2Input").val();
+			app['rating'] = 0;
+			app['oldLink'] = appLink;
+			editApp(app);
+			$(this).attr('class', "approveEditButton glyphicon glyphicon-edit");
+		}
+	});
+	
+	$('.approveEditButton').click(function(eventObject){
+		eventObject.preventDefault();
+		$(this).hide();
+		//$(this).attr('class', "editButton glyphicon glyphicon-edit");
 	});
 	
 	function removeApp(app, type) {
@@ -49,6 +77,21 @@ $(document).ready(function(){
 			complete: function(data) {
 				console.log("Removed", data);
 				location.reload();
+			},
+			error: function(xhr, status, error) {
+				console.log("Error:", error);
+			}
+		});
+	}
+	
+	function editApp(app) {
+		$.ajax({
+			type: 'POST',
+			url: '/saveApp',
+			data: {appToSave: app},
+			complete: function(data) {
+				console.log("Done saving");
+				location.reload(); //?Maybe
 			},
 			error: function(xhr, status, error) {
 				console.log("Error:", error);

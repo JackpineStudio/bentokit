@@ -77,11 +77,9 @@ script(type = 'text/javascript').
  }
  var colors = new Array();
  var categories =!{JSON.stringify(categories)};
- console.log("categories", categories);
  var list = document.getElementById("filter");
  for (var i = 0; i < categories.length; i++) {
   var curCategory = categories[i]
-  console.log(categories);
   var listElement = document.createElement("LI");
   var anchor = document.createElement("a");
   anchor.setAttribute("href", "#");

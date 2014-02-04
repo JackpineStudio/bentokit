@@ -23,13 +23,21 @@ $(document).ready(function(){
 	$('.removeButton').click(function(eventObject) {
 		eventObject.preventDefault();
 		var app = $(this).attr('id');
-		removeApp(app, 'pendingApps');
+		if (confirm('Are you sure you want to remove this app?')) {
+			removeApp(app, 'pendingApps');
+		}
 	});
 	
 	$('.removeAppButton').click(function(eventObject) {
 		eventObject.preventDefault();
 		var app = $(this).attr('id');
-		removeApp(app, 'apps');
+		if (confirm('Are you sure you want to remove this app?')) {
+			removeApp(app, 'apps');
+		}
+	});
+	
+	$('.editButton').click(function(eventObject) {
+		eventObject.preventDefault();
 	});
 	
 	function removeApp(app, type) {

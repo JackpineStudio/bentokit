@@ -79,3 +79,8 @@ th {
 .linkColumn {
     font-size: 13px;
 }
+
+.editField {
+    border: 0px;
+    color: black;
+}

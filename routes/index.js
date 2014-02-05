@@ -130,8 +130,16 @@ exports.removeApp = function(req, res) {
 };
 
 exports.saveApp = function(req, res) {
-	var app = req.body.appToSave;
-	console.log(app);
+	var details = req.body.appToSave;
+	var app = {};
+	var inputs =  ["name", "link", "image", "category1", "category2", "rating", "id"];
+	console.log("Details", details.length, "inputs", inputs.length);
+	for (var i = 0; i < inputs.length; i++) {
+		console.log("input", inputs[i]);
+		console.log(i, inputs[i], ":", details[i]);
+		app[inputs[i]] = details[i];
+	}
+	console.log("App", app);
 	db.saveApp(app);
 };
 

@@ -159,40 +159,45 @@ script(type = 'text/javascript').
  var apps =!{JSON.stringify(myObj)};
  var table = document.getElementById("linksTable");
  
- for(i=0;i<apps.length;i++){
- var curApp = apps[i];
- var details = {};
- details['name'] = curApp.name, details['link'] =curApp.link, details['image'] = curApp.image,
- details['category1'] = curApp.c1, details['category2'] = curApp.c2, details['rating'] = curApp.rating;
- var newRow = document.createElement("TR");
- var className = details['link'].substring(7);
- newRow.setAttribute('id', className);
- for(var detail in details) {
- var newColumn = document.createElement("TD");
- newColumn.innerHTML = details[detail];
- if(detail == 'category1' || detail == 'category2' || detail == 'rating')
-    newColumn.setAttribute('class', "category");
- else if(detail == 'link' || detail == 'image')
-    newColumn.setAttribute('class', "linkColumn");
- newRow.appendChild(newColumn);
- }
- var newColumn = document.createElement("TD");
- var button = document.createElement("A");
- button.setAttribute('href', "#");
- button.setAttribute('class', "editButton glyphicon glyphicon-edit");
- button.setAttribute('id', details['link']);
- button.innerHTML = "&nbsp;";
- newColumn.appendChild(button);
- 
- var button = document.createElement("A");
- button.setAttribute('href', "#");
- button.setAttribute('class', "removeAppButton glyphicon glyphicon-remove");
- button.setAttribute('id', details['link']);
- button.innerHTML = "";
- newColumn.appendChild(button);
- 
- newRow.appendChild(newColumn);
- table.appendChild(newRow);
+ for(i = 0; i < apps.length; i++) {
+  var curApp = apps[i];
+  var details = {};
+  details['name'] = curApp.name, details['link'] =curApp.link, details['image'] = curApp.image,
+  details['category1'] = curApp.c1, details['category2'] = curApp.c2, details['rating'] = curApp.rating;
+  var newRow = document.createElement("TR");
+  var className = curApp.id;
+  newRow.setAttribute('id', className);
+  for(var detail in details) {
+   var newColumn = document.createElement("TD");
+   var editField = document.createElement("input");
+   editField.setAttribute('class', className + " " + detail + " editField");
+   editField.setAttribute('type', 'text');
+   editField.setAttribute('disabled', 'disabled');
+   editField.setAttribute('value', details[detail]);
+   if(detail == 'category1' || detail == 'category2' || detail == 'rating')
+      newColumn.setAttribute('class', "category");
+   else if(detail == 'link' || detail == 'image')
+      newColumn.setAttribute('class', "linkColumn");
+   newColumn.appendChild(editField);
+   newRow.appendChild(newColumn);
+  }
+  var newColumn = document.createElement("TD");
+  var button = document.createElement("A");
+  button.setAttribute('href', "#");
+  button.setAttribute('class', "editButton glyphicon glyphicon-edit");
+  button.setAttribute('id', className);
+  button.innerHTML = "&nbsp;";
+  newColumn.appendChild(button);
+  
+  var button = document.createElement("A");
+  button.setAttribute('href', "#");
+  button.setAttribute('class', "removeAppButton glyphicon glyphicon-remove");
+  button.setAttribute('id', details['link']);
+  button.innerHTML = "";
+  newColumn.appendChild(button);
+  
+  newRow.appendChild(newColumn);
+  table.appendChild(newRow);
  }
  apps =!{JSON.stringify(pending)};
  table = document.getElementById("pendingLinksTable");
@@ -259,4 +264,7 @@ script(type = 'text/javascript').
   loginDiv.style.display = "block";	
   logoutDiv.style.display = "none";	
   userLabel.innerHTML = "";
+ }
+ function splitString(name) {
+  return name.replace(/\s/g, "");
  }

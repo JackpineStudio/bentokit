@@ -15,6 +15,7 @@ $(document).ready(function(){
 			dataType: 'json',
 			data: {username : s['username'], password : s['password']},
 			complete : function(data) {
+				console.log("Login data", data);
 				$('#loginForm').hide();
 				$('#logoutForm').show();
 				var user = "username:" + $('#username').attr('value');

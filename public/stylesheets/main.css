@@ -125,8 +125,7 @@ th {
     color: #fff;
     background-color: #333;
     padding: 70px 20px 20px;
-    height: auto;
-
+    
 }
 
 .filters {
@@ -153,7 +152,8 @@ th {
     border-radius: 3px;
     margin:3px 6px 3px 0;
     color: #ff;
-    width: 70%;
+    width: 120px;
+    
  }
 
 .filter:hover{
@@ -170,6 +170,10 @@ th {
     float: left;
     position: relative;
     font-family: 'Exo', sans-serif;
+}
+
+.links {
+    left: 0;
 }
 
 .links a {
@@ -215,6 +219,40 @@ th {
     padding-bottom: 15px;
 }
 
-#loginButton {
+button {
     float: right;
+}
+
+.topbar {
+    background-color: #333;
+}
+
+.toplogo {
+    padding-bottom: 5px;
+    top: 0px;
+    left: 40%;
+}
+
+.form-container {
+    padding-top: 70px;
+}
+
+@media (min-width: 800px) {
+    .sidebar {
+        bottom: 0;
+        position: fixed;
+    }
+
+    .links {
+        left: 15%;
+    }
+}
+
+@media (min-width: 1000px) {
+    .toplogo {
+        left: 45%;
+    }
+}
+
+@media (min-width: 1600px) {
 }

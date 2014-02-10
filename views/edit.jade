@@ -6,6 +6,7 @@ html
     script(type='text/javascript', src='javascripts/framework.js')
     script(type='text/javascript', src='javascripts/indexJQuery.js')
     script(type='text/javascript', src='javascripts/editJQuery.js')
+    script(type='text/javascript', src='javascripts/functions.js')
     link(href='http://fonts.googleapis.com/css?family=Exo:300,500', rel='stylesheet', type='text/css')
     link(rel='shortcut icon', href='images/favicon.ico')
     link(rel='stylesheet', href='http://netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css')
@@ -16,57 +17,43 @@ html
     meta(name='mobileoptimized', content='240')
     meta(name='viewport', content='width=device-width,initial-scale=1,target-densitydpi=device-dpi')
   body
-    .wrapper
-      #editMenu.menu
-        .fixed
+    .container-fluid
+     .row
+      .col-sm-3.col-md-2.sidebar
+        ul
           .box
-            a(href='/')
-              h1 Bentokit
-            p Curating only the best free online design tools.
+           a(href='/')
+            h1.logo Bentokit
+         
+          .box  
+           p Curating only the best free online design tools.
+         
           .box
-            ul#filter
+            ul#filter.filters
               li
                 h2 Filters
               li.current
                 a.filter(href='#') All
-                li
-                  a.filter.html5-style(href='#') HTML5
-                li
-                  a.filter.css3-style(href='#') CSS3
-                li
-                  a.filter.jquery-style(href='#') jQuery
-                li
-                  a.filter.editor-style(href='#') Editor
-                li
-                  a.filter.typography-style(href='#') Typography
-                li
-                  a.filter.color-style(href='#') Color
-                li
-                  a.filter.design-style(href='#') Design
-                li
-                  a.filter.framework-style(href='#') Framework
-                li
-                  a.filter.cms-style(href='#') CMS
-                li
-                  a.filter.utility-style(href='#') Utility
-                li
-                  a.filter.animation-style(href='#') Animation
           .box
-            a(href='mailto:hi@appbookmark.co') // Suggest an awesome app
+            a(href='/suggest') // Suggest an awesome app
             a(href='mailto:hi@appbookmark.co') // Report a dead link
+          
           .box
             p
-              | Created by
-              a(href='https://twitter.com/taulantsulko') @taulantsulko
-              | and
+              | Created by 
+              a(href='https://twitter.com/taulantsulko') @taulantsulko 
+              | and 
               a(href='https://twitter.com/BossLewis79') @BossLewis79
+          #editDiv.box
+            a(href='/edit') Edit Page
+          
           #loginForm
             .box
               label Username:
-              input#username(type='text', name='username')
+              input#username.form-control(type='text', name='username')
             .box
               label Password:
-              input#password(type='password', name='password')
+              input#password.form-control(type='password', name='password')
             .box
               button#loginButton(type='submit')  Login 
           #logoutForm
@@ -76,7 +63,7 @@ html
                 label#usernameLabel
             .box
               button#logoutButton(type='submit')  Logout 
-      .links
+      .col-sm-12.col-md-10.links
         form.simple-form(method='POST', action='/insertApp', name ="userForm", enctype="multipart/form-data", novalidate='novalidate')
           h1 Add New Item
           table.table
@@ -156,6 +143,9 @@ script(type = 'text/javascript').
  document.body.appendChild(f);
  f.submit();
  }
+ var categoriesArray =!{JSON.stringify(categories)};
+ var colors = putCategories(categoriesArray);
+
  var apps =!{JSON.stringify(myObj)};
  var table = document.getElementById("linksTable");
  
@@ -242,36 +232,7 @@ script(type = 'text/javascript').
   newRow.appendChild(newColumn);
   table.appendChild(newRow);
  }
- 
- var cookies = document.cookie.split(";");
- var loggedIn = false;
- var userName = "";
- for(var i = 0; i < cookies.length; i++) {
-  var curCookie = cookies[i].split(',');
-  for (var j = 0; j < curCookie.length; j++) {
-   console.log('curCookie', curCookie[j]);
-   if(curCookie[j].indexOf('loggedIn') != -1) {
-    console.log("Logged in", curCookie[j]);
-    if(curCookie[j].indexOf('true') != -1)
-     loggedIn = true;
-    }
-    if(curCookie[j].indexOf('username') != -1 ) {
-     userName = curCookie[j].split(':')[1];
-    }
-   }
- }
- var loginDiv = document.getElementById("loginForm");
- var logoutDiv = document.getElementById("logoutForm");
- var userLabel = document.getElementById("usernameLabel");			
- if(loggedIn) {
-  loginDiv.style.display = "none";	
-  logoutDiv.style.display = "block";	
-  userLabel.innerHTML = userName;
- } else {
-  loginDiv.style.display = "block";	
-  logoutDiv.style.display = "none";	
-  userLabel.innerHTML = "";
- }
+ loginManager();
  function splitString(name) {
   return name.replace(/\s/g, "");
  }

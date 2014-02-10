@@ -98,7 +98,10 @@ exports.loginPage = function(req, res) {
 
 function editPage(req, res) {
 	db.getAll(function(apps, pendingApps){
-		res.render('edit', {myObj: apps, pending: pendingApps} );
+		db.getColors(function(colors) {
+			res.render('edit', {myObj: apps, pending: pendingApps, categories: colors} );
+		});
+		
 	});
 }
 

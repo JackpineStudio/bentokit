@@ -3,11 +3,11 @@ html
   head
     title Bentokit
     script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js')
+    script(type='text/javascript', src='javascripts/functions.js')
     link(href='http://fonts.googleapis.com/css?family=Exo:300,500', rel='stylesheet', type='text/css')
     link(rel='stylesheet', href='stylesheets/bootstrap.min.css')
     link(rel='stylesheet', href='stylesheets/bootstrap-theme.min.css')
     link(rel='stylesheet', href='stylesheets/main.css')
-
     link(rel='shortcut icon', href='images/favicon.ico')
     script(type='text/javascript', src='javascripts/framework.js')
     script(type='text/javascript', src='javascripts/indexJQuery.js')
@@ -20,7 +20,6 @@ html
      .row
       .col-sm-3.col-md-2.sidebar
         ul
-         
           .box
            a(href='/')
             h1.logo Bentokit
@@ -84,24 +83,9 @@ script(type = 'text/javascript').
   document.body.appendChild(f);
   f.submit();
  }
- var colors = new Array();
- var categories =!{JSON.stringify(categories)};
- var list = document.getElementById("filter");
- for (var i = 0; i < categories.length; i++) {
-  var curCategory = categories[i]
-  var listElement = document.createElement("LI");
-  var anchor = document.createElement("a");
-  anchor.setAttribute("href", "#");
-  anchor.setAttribute("class", "filter " + curCategory.name + "-style");
-  anchor.innerHTML = curCategory.name.toUpperCase();
-  var letters = '0123456789ABCDEF'.split('');
-  var randomColor = '#';
-  var style = "background-color: " + curCategory.color + ";";
-  colors[curCategory.name] = curCategory.color;
-  anchor.setAttribute("style", style);
-  listElement.appendChild(anchor);
-  list.appendChild(listElement);
- }
+ var categoriesArray =!{JSON.stringify(categories)};
+ var colors = putCategories(categoriesArray);
+
  var apps =!{JSON.stringify(myObj)};
  var ul = document.getElementById("links");
  for(i=0;i<apps.length;i++){
@@ -126,8 +110,6 @@ script(type = 'text/javascript').
   newP1.className="tag "+apps[i].c1+"-style";
   newP2.className="tag "+apps[i].c2+"-style";
   
-  
-  
   if(apps[i].c1 != null){
    if(c1Color != undefined)
     newP1.setAttribute('style', style1);
@@ -147,37 +129,6 @@ script(type = 'text/javascript').
   newLi.appendChild(newP2);
   ul.appendChild(newLi);
  }
- var cookies = document.cookie.split(";");
- var loggedIn = false;
- var userName = "";
- for(var i = 0; i < cookies.length; i++) {
-  var curCookie = cookies[i].split(',');
-  for (var j = 0; j < curCookie.length; j++) {
-   console.log('curCookie', curCookie[j]);
-   if(curCookie[j].indexOf('loggedIn') != -1) {
-    console.log("Logged in", curCookie[j]);
-    if(curCookie[j].indexOf('true') != -1)
-     loggedIn = true;
-   }
-   if(curCookie[j].indexOf('username') != -1 ) {
-    userName = curCookie[j].split(':')[1];
-   }
-  }
- }
- var loginDiv = document.getElementById("loginForm");
- var logoutDiv = document.getElementById("logoutForm");
- var userLabel = document.getElementById("usernameLabel");
- var editDiv = document.getElementById("editDiv");	
- if(loggedIn) {
-  loginDiv.style.display = "none";	
-  logoutDiv.style.display = "block";	
-  userLabel.innerHTML = userName;
-  
-  //if(userType == 'moderator')
-  editDiv.style.display = "block";		
- } else {
-  loginDiv.style.display = "block";	
-  logoutDiv.style.display = "none";	
-  userLabel.innerHTML = "";
-  editDiv.style.display = "none";
- }
+
+ loginManager();
+ 

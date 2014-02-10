@@ -11,7 +11,8 @@ var express = require('express')
   , LocalStrategy = require('passport-local').Strategy
   , databaseHandler = require('./node_modules/Database_functions.js')
   , flash = require('connect-flash')
-  , fs = require('fs');
+  , fs = require('fs'),
+  db = require('./node_modules/Database_functions.js');
 
 var app = express();
 
@@ -33,14 +34,13 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 app.use(app.router);
+
 app.get('/', routes.home);
 app.get("/frame",routes.frame);
 app.post("/updateRating", routes.updateRating);
-app.use(passport.initialize());
-app.use(passport.session());
 app.get("/edit", routes.editPage);
 app.get('/loginPage', routes.loginPage);
-app.post('/login', routes.loginHandler);
+app.post('/login2', routes.loginHandler);
 app.post("/approve", routes.approveApp);
 app.post("/remove", routes.removeApp);
 app.get("/addItem", routes.addItem);
@@ -86,6 +86,28 @@ app.post("/insertApp", function(req, res, next) {
 			fs.writeFile(path, data, function(err) {
 				res.redirect('/edit');
 			});
+		}
+	});
+});
+
+app.post('/login', function(req, res) {
+	var userDetails = {};
+	userDetails['username'] = req.body.username;
+	userDetails['password'] = req.body.password;
+	/*routes.login(userDetails, function() {
+		if(userDetails['login'] == "success") {
+			console.log("Logged in");
+			res.redirect('/edit');
+		} else {
+			console.log("Cannot login");
+		}
+ 	});*/
+	db.login(userDetails, function() {
+		if(userDetails['login'] == "success") {
+			console.log("Logged in");
+			res.render('/edit');
+		} else {
+			console.log("Cannot login");
 		}
 	});
 });

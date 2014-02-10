@@ -44,16 +44,15 @@ function loginManager() {
 	var userLabel = document.getElementById("usernameLabel");
 	var editDiv = document.getElementById("editDiv");	
 	if(loggedIn) {
-	loginDiv.style.display = "none";	
-	logoutDiv.style.display = "block";	
-	userLabel.innerHTML = userName;
-
+		loginDiv.style.display = "none";	
+		logoutDiv.style.display = "block";	
+		userLabel.innerHTML = userName;
 	//if(userType == 'moderator')
 	editDiv.style.display = "block";		
 	} else {
-	loginDiv.style.display = "block";	
-	logoutDiv.style.display = "none";	
-	userLabel.innerHTML = "";
-	editDiv.style.display = "none";
+		loginDiv.style.display = "block";	
+		logoutDiv.style.display = "none";	
+		userLabel.innerHTML = "";
+		editDiv.style.display = "none";
 	}
 }

@@ -15,7 +15,7 @@ $(document).ready(function(){
 			dataType: 'json',
 			data: {username : s['username'], password : s['password']},
 			complete : function(data) {
-				/*console.log("Login data", data);
+				console.log("Login data", data);
 				$('#loginForm').hide();
 				$('#logoutForm').show();
 				var user = "username:" + $('#username').attr('value');
@@ -45,7 +45,7 @@ $(document).ready(function(){
 			    document.cookie = value;
 			    $('#usernameLabel').attr('innerHTML', $('#username').attr('value'));
 			    $('#username').attr('value','');
-			    $('#password').attr('value', '');*/
+			    $('#password').attr('value', '');
 			    location.reload();
 			}
 		});

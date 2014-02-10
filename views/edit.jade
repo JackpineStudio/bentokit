@@ -19,7 +19,7 @@ html
   body
     .container-fluid
      .row
-      .col-sm-3.col-md-2.sidebar
+      .col-sm-3.col-md-2.sidebar.editPageBar
         ul
           .box
            a(href='/')
@@ -59,11 +59,11 @@ html
           #logoutForm
             .box
               p
-                | Logged in as
+                | Welcome back &nbsp;<br>
                 label#usernameLabel
             .box
               button#logoutButton(type='submit')  Logout 
-      .col-sm-12.col-md-10.links
+      .col-sm-12.col-md-10.links.editPageLinks
         form.simple-form(method='POST', action='/insertApp', name ="userForm", enctype="multipart/form-data", novalidate='novalidate')
           h1 Add New Item
           table.table

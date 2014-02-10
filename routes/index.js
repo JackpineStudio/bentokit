@@ -91,6 +91,10 @@ exports.loginHandler = function (req, res) {
 	login(userDetails, callback);
 };
 
+exports.login = function(userDetails, callback) {
+	db.login(userDetails, callback);
+};
+
 exports.loginPage = function(req, res) {
 	var userType = req.body.userType;
 	console.log('Login Page', userType);

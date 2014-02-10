@@ -8,7 +8,7 @@ table {
 }
 
 td {
-	word-wrap:break-word;
+	/*word-wrap:normal;*/
 }
 
 .form-control {
@@ -78,9 +78,143 @@ th {
 
 .linkColumn {
     font-size: 13px;
+    padding-left: 4px;
+    padding-right: 4px;
 }
 
 .editField {
     border: 0px;
     color: black;
+    width: 225px;
+}
+
+.menu p{
+    font-weight: 300;
+    font-size: .9em;
+    padding: 0; 
+}
+
+.menu a{
+    font-size: .9em;
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+}
+
+.menu {
+    color: #fff;
+    width: 100%;
+    padding:  20px;
+    height: auto;
+    float: left;
+    background-color: #333;
+    position: relative;
+} 
+
+.menu ul{
+    display: block;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-top: 1px dashed #ffffff;
+    height: auto;
+    
+ }
+ 
+ .sidebar {
+    color: #fff;
+    background-color: #333;
+    padding: 70px 20px 20px;
+    height: auto;
+
+}
+
+.filters {
+    list-style-type: none;
+    display: block;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-top: 1px dashed #ffffff;
+    height: auto;
+}
+
+.filters a {
+    font-size: .9em;
+    text-decoration: none;
+    color: #fff;
+    
+}
+
+.filter{
+    display: block;
+    font-weight: normal;
+    padding: 5px;
+    border-radius: 3px;
+    margin:3px 6px 3px 0;
+    color: #ff;
+    width: 70%;
+ }
+
+.filter:hover{
+    opacity: .5;
+}
+
+.links li {
+    border: 0px solid #eee;
+    width: 200px;
+    height: 200px;
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+    float: left;
+    position: relative;
+    font-family: 'Exo', sans-serif;
+}
+
+.links a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+.links p {
+    display: block;
+    text-align: center;
+
+}
+
+.links img {
+    z-index: 1;
+    margin: 20px 50px 10px;
+    border-radius: 22px;    
+    transition-all: .4s;
+    /*  -webkit-box-shadow:  0px 3px 5px 2px rgba(0, 0, 0, .2);
+    box-shadow:  0px 3px 5px 2px rgba(0, 0, 0, .2);*/
+    -webkit-box-shadow:  0px 3px 8px 2px rgba(0, 0, 0, .2);
+    box-shadow:  0px 3px 8px 2px rgba(0, 0, 0, .2);
+}
+
+.tag {
+    opacity: .2;
+    font-size: .2em;
+    display: block;
+    border-radius: 3px;
+    width: 60px;
+    margin: 2px 70px;
+    padding: 1px 0 0;
+    float: none;
+    display: inline-block;
+}
+
+.center{
+    text-align: center;
+}
+
+.box {
+    padding-bottom: 15px;
+}
+
+#loginButton {
+    float: right;
 }

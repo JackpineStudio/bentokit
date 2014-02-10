@@ -169,11 +169,18 @@ script(type = 'text/javascript').
   newRow.setAttribute('id', className);
   for(var detail in details) {
    var newColumn = document.createElement("TD");
-   var editField = document.createElement("input");
+   var editField;
+   /*if(detail == 'link' || detail == 'image') {
+    editField = document.createElement("TEXTAREA");
+    editField.innerHTML = details[detail];
+   } else {*/
+    editField = document.createElement("INPUT");
+    editField.setAttribute('value', details[detail]);
+   //}
    editField.setAttribute('class', className + " " + detail + " editField");
    editField.setAttribute('type', 'text');
    editField.setAttribute('disabled', 'disabled');
-   editField.setAttribute('value', details[detail]);
+   
    if(detail == 'category1' || detail == 'category2' || detail == 'rating')
       newColumn.setAttribute('class', "category");
    else if(detail == 'link' || detail == 'image')

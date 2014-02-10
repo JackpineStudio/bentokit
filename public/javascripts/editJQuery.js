@@ -8,7 +8,6 @@ $(document).ready(function(){
 			dataType: 'json',
 			data: {appLink: app},
 			complete: function(data) {
-				console.log("Approved", data);
 				location.reload();
 			},
 			error: function(xhr, status, error) {
@@ -43,7 +42,6 @@ $(document).ready(function(){
 			//show editing form
 			for (var i = 0; i < inputs.length; i++) {
 				var className = "." + appID + "." + inputs[i];
-				console.log(className);
 				$curInput = $(className);
 				$curInput.prop('disabled', false);
 				$curInput.css('border', '2px inset');
@@ -56,22 +54,17 @@ $(document).ready(function(){
 			var details = [];
 			for (var i = 0; i < inputs.length; i++) {
 				var className = "." + appID + "." + inputs[i];
-				console.log("Class name", className);
 				$curInput = $(className);
 				$curInput.prop('disabled', true);
 				$curInput.css('border', '0');
 				$curInput.removeClass('form-control');
-				console.log(inputs[i], $curInput.val());
 				val = $curInput.val();
 				if(val != null)
 					details[i] = val;
 				else
 					details[i] ="";
-				console.log(i, details[i]);
 			}
 			details.push(appID);
-			
-			console.log("details", details);
 			$(this).attr('class', "approveEditButton glyphicon glyphicon-edit");
 			editApp(details);
 		}
@@ -90,7 +83,7 @@ $(document).ready(function(){
 			dataType: 'json',
 			data: {appLink: app, table: type},
 			complete: function(data) {
-				console.log("Removed", data);
+				console.log("Removed");
 				location.reload();
 			},
 			error: function(xhr, status, error) {

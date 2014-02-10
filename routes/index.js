@@ -34,13 +34,9 @@ function home(req, res) {
 				b.rating = 0;
 			return b.rating-a.rating;
 		});
-		//db.getCategories(function(categories) {
-			db.getColors(function(colors) {
-				res.render('index', {myObj: data, categories: colors});
-			});
-			
-		//});
-		
+		db.getColors(function(colors) {
+			res.render('index', {myObj: data, categories: colors});
+		});
 	});
 }
 
@@ -58,9 +54,7 @@ function login(userDetails, callback) {
 }
 
 exports.loginSuccess = function() {
-	loginSuccess();
-	
-	
+	loginSuccess();	
 };
 
 function loginSuccess(user, req, res) {

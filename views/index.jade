@@ -2,10 +2,12 @@
 html
   head
     title Bentokit
-    link(rel='stylesheet', href='stylesheets/basic.css')
     script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js')
     link(href='http://fonts.googleapis.com/css?family=Exo:300,500', rel='stylesheet', type='text/css')
+    link(rel='stylesheet', href='stylesheets/bootstrap.min.css')
+    link(rel='stylesheet', href='stylesheets/bootstrap-theme.min.css')
     link(rel='stylesheet', href='stylesheets/main.css')
+
     link(rel='shortcut icon', href='images/favicon.ico')
     script(type='text/javascript', src='javascripts/framework.js')
     script(type='text/javascript', src='javascripts/indexJQuery.js')
@@ -14,15 +16,20 @@ html
     meta(name='mobileoptimized', content='240')
     meta(name='viewport', content='width=device-width,initial-scale=1,target-densitydpi=device-dpi')
   body
-    .wrapper
-      .menu
-        .fixed
+    .container-fluid
+     .row
+      .col-sm-3.col-md-2.sidebar
+        ul
+         
           .box
-            a(href='/')
-              h1.logo Bentokit
-            p Curating only the best free online design tools.
+           a(href='/')
+            h1.logo Bentokit
+         
+          .box  
+           p Curating only the best free online design tools.
+         
           .box
-            ul#filter
+            ul#filter.filters
               li
                 h2 Filters
               li.current
@@ -30,21 +37,23 @@ html
           .box
             a(href='/suggest') // Suggest an awesome app
             a(href='mailto:hi@appbookmark.co') // Report a dead link
+          
           .box
             p
-              | Created by
-              a(href='https://twitter.com/taulantsulko') @taulantsulko
-              | and
+              | Created by 
+              a(href='https://twitter.com/taulantsulko') @taulantsulko 
+              | and 
               a(href='https://twitter.com/BossLewis79') @BossLewis79
           #editDiv.box
             a(href='/edit') Edit Page
+          
           #loginForm
             .box
               label Username:
-              input#username(type='text', name='username')
+              input#username.form-control(type='text', name='username')
             .box
               label Password:
-              input#password(type='password', name='password')
+              input#password.form-control(type='password', name='password')
             .box
               button#loginButton(type='submit')  Login 
           #logoutForm
@@ -54,7 +63,7 @@ html
                 label#usernameLabel
             .box
               button#logoutButton(type='submit')  Logout 
-      .links
+      .col-sm-12.col-md-10.links
         ul#links
 
 script(type = 'text/javascript').

@@ -25,7 +25,7 @@ exports.frame = function(req, res){
   res.render('frame',{frameSrc: link, rating: value, curApp:name}); 
 };
 
-function home(req, res) {
+function home(req, res, items) {
 	db.getAllApps(function(data) {
 		data.sort(function(a,b) {
 			if(a.rating == undefined)
@@ -35,7 +35,22 @@ function home(req, res) {
 			return b.rating-a.rating;
 		});
 		db.getColors(function(colors) {
-			res.render('index', {myObj: data, categories: colors});
+			if(items) {
+				if(items['loggedIn']) {
+					console.log("Logged in");
+					res.render('index', {myObj: data, categories: colors, userDetails: items});
+				} else {
+					console.log("Not logged in");
+					var user = {};
+					user['loggedIn'] = false;
+					res.render('index', {myObj: data, categories: colors, userDetails: user});
+				}	
+			} else {
+				console.log("Items do not exist");
+				var user = {};
+				user['loggedIn'] = false;
+				res.render('index', {myObj: data, categories: colors, userDetails: user});
+			}
 		});
 	});
 }
@@ -45,21 +60,23 @@ exports.login = function(userDetails, callback) {
 };
 
 exports.home = function(req,res){
-	home(req, res);
+	home(req, res, null);
 };
 
-function login(userDetails, callback) {
+function login(userDetails, req, res) {
 	console.log("index", "Trying login");
-	db.login(userDetails, callback);
+	db.login(userDetails, function(items) {
+		console.log("Items", items);
+		//home(req, res, items);
+		res.render('loginSuccess', {userDetails:items});
+		
+	});
 }
 
-exports.loginSuccess = function() {
-	loginSuccess();	
+exports.loginSuccess = function(req, res) {
+	res.render('loginSuccess');	
 };
 
-function loginSuccess(user, req, res) {
-	console.log("index", "Login Success", user);	
-}
 
 exports.loginFailure = function() {
 	loginFailure();
@@ -71,24 +88,12 @@ function loginFailure() {
 
 exports.loginHandler = function (req, res) {
 	var userDetails = {};
-	console.log("Loginhandler");
+	console.log("req",  req.body);
 	userDetails['username'] = req.body.username;
 	userDetails['password'] = req.body.password;
 	console.log('username', userDetails['username'], 'password', userDetails['password'] );
-	editPage(req, res);
-	var callback = {};
-	callback['success'] = function(user) {
-		loginSuccess(user);
-		console.log('Usertype',user['userType']);
-		if(user['userType'] == 'moderator') {
-			console.log('moderator');
-		} else {
-			console.log('regular user');
-			home(req, res);
-		}
-	};
-	callback['failure'] = loginFailure;
-	login(userDetails, callback);
+	login(userDetails, req, res);
+	//res.redirect('/');
 };
 
 exports.login = function(userDetails, callback) {

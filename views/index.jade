@@ -46,7 +46,7 @@ html
           #editDiv.box
             a(href='/edit') Edit Page
           
-          #loginForm
+          form#loginForm(action="/login", method = "POST", name ="loginForm")
             .box
               label Username:
               input#username.form-control(type='text', name='username')
@@ -54,7 +54,7 @@ html
               label Password:
               input#password.form-control(type='password', name='password')
             .box
-              button#loginButton(type='submit')  Login 
+              input(type='submit')  Login 
           #logoutForm
             .box
               p
@@ -130,6 +130,6 @@ script(type = 'text/javascript').
   newLi.appendChild(newP2);
   ul.appendChild(newLi);
  }
-
- loginManager();
+ var user =!{JSON.stringify(userDetails)};
+ loginSuccess(user);
  

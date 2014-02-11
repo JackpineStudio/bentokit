@@ -90,28 +90,26 @@ app.post("/insertApp", function(req, res, next) {
 	});
 });
 
-app.post('/login', function(req, res) {
+app.get("/loginSuccess", routes.loginSuccess);
+
+/*app.post('/login', function(req, res) {
 	var userDetails = {};
 	userDetails['username'] = req.body.username;
 	userDetails['password'] = req.body.password;
-	/*routes.login(userDetails, function() {
-		if(userDetails['login'] == "success") {
+	
+	db.login(userDetails, function(items) {
+		if(items['loggedIn']) {
 			console.log("Logged in");
 			res.redirect('/edit');
 		} else {
-			console.log("Cannot login");
-		}
- 	});*/
-	db.login(userDetails, function() {
-		if(userDetails['login'] == "success") {
-			console.log("Logged in");
-			res.render('/edit');
-		} else {
+			res.redirect('/signup');
 			console.log("Cannot login");
 		}
 	});
-});
+});*/
 
+app.post('/login', routes.loginHandler);
+//app.get('/login', routes.loginHandler);
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });

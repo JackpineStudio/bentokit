@@ -8,6 +8,8 @@ $(document).ready(function(){
 		s['password'] = $('#password').attr('value');
 		if(s['username'] == "" || s['password'] == "" )
 			return;
+		//window.location.href = "/login";
+		return false;
 		$.ajax({
 			//Return an array 
 			type: 'POST' ,// added,
@@ -16,9 +18,10 @@ $(document).ready(function(){
 			data: {username : s['username'], password : s['password']},
 			complete : function(data) {
 				console.log("Login data", data);
-				$('#loginForm').hide();
-				$('#logoutForm').show();
-				var user = "username:" + $('#username').attr('value');
+				
+				//$('#loginForm').hide();
+				//$('#logoutForm').show();
+				/*var user = "username:" + $('#username').attr('value');
 				var logged = "loggedIn:true";
 				var cookies = document.cookie.split(";");
 				var liked = new Array();
@@ -42,11 +45,11 @@ $(document).ready(function(){
 				    liked.push(logged);
 			    }
 			    var value = liked.join(',');
-			    document.cookie = value;
-			    $('#usernameLabel').attr('innerHTML', $('#username').attr('value'));
+			    document.cookie = value;*/
+			    /*$('#usernameLabel').attr('innerHTML', $('#username').attr('value'));
 			    $('#username').attr('value','');
-			    $('#password').attr('value', '');
-			    location.reload();
+			    $('#password').attr('value', '');*/
+			    //location.reload();
 			}
 		});
 		return false;
@@ -54,6 +57,7 @@ $(document).ready(function(){
 	
 	$('#logoutButton').click(function(eventObject) {
 		eventObject.preventDefault();
+		return;
 		$('#loginForm').show();
 		$('#logoutForm').hide();
 		$('#editDiv').hide();

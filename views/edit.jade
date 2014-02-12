@@ -16,6 +16,8 @@ html
     meta(name='handheldfriendly', content='true')
     meta(name='mobileoptimized', content='240')
     meta(name='viewport', content='width=device-width,initial-scale=1,target-densitydpi=device-dpi')
+  script(type = 'text/javascript').
+   checkUserType();
   body
     .container-fluid
      .row
@@ -64,7 +66,7 @@ html
                   &nbsp;
               .box
                 button#logoutButton(type='submit')  Logout 
-                
+
       .col-sm-12.col-md-10.links.editPageLinks
         form.simple-form(method='POST', action='/insertApp', name ="userForm", enctype="multipart/form-data", novalidate='novalidate')
           h1 Add New Item

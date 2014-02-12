@@ -194,4 +194,8 @@ exports.insertApp = function(req, res, imageDir) {
 	});
 };
 
+exports.restricted = function(req, res) {
+	res.render('restricted');
+};
+
 

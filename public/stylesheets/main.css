@@ -254,7 +254,11 @@ button {
 }
 
 #loginSuccessPage {
-    
+
+}
+
+.message {
+    padding-top: 45px;
 }
 
 @media (min-width: 800px) {

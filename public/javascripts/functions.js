@@ -29,7 +29,7 @@ function loginManager() {
 	for(var i = 0; i < cookies.length; i++) {
 		var curCookie = cookies[i].split('=');
 		var name = curCookie[0], value = curCookie[1];
-		if(name == 'loggedIn') {
+		if(name == ' loggedIn' || name == 'loggedIn') {
 			loggedIn = value;
 			userDetails = getUserDetails();
 			console.log("UserDetails", userDetails);
@@ -104,9 +104,17 @@ function getUserDetails() {
 			name = name.substring(1);
 		userDetails[name] = value;
 	}
+	console.log('userDetails', userDetails);
 	return userDetails;
 }
 
 function logout() {
 	document.cookie = "loggedIn=false";
+}
+
+function checkUserType() {
+	var userDetails = getUserDetails();
+	if(userDetails['userType'] != 'moderator') {
+		window.location.replace("/restricted");
+	}
 }

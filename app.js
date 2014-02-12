@@ -88,6 +88,7 @@ app.post("/insertApp", function(req, res, next) {
 
 app.get("/loginSuccess", routes.loginSuccess);
 app.post('/login', routes.loginHandler);
+app.get('/restricted', routes.restricted);
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });

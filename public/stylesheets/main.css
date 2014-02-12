@@ -253,6 +253,10 @@ button {
     
 }
 
+#loginSuccessPage {
+    
+}
+
 @media (min-width: 800px) {
     .sidebar {
         bottom: 0;

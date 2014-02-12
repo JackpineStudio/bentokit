@@ -47,22 +47,24 @@ html
           #editDiv.box
             a(href='/edit') Edit Page
           
-          #loginForm
-            .box
-              label Username:
-              input#username.form-control(type='text', name='username')
-            .box
-              label Password:
-              input#password.form-control(type='password', name='password')
-            .box
-              button#loginButton(type='submit')  Login 
-          #logoutForm
-            .box
-              p
-                | Welcome back &nbsp;<br>
-                label#usernameLabel
-            .box
-              button#logoutButton(type='submit')  Logout 
+          form#loginForm(action="/login", method = "POST", name ="loginForm")
+              .box
+                label Username:
+                input#username.form-control(type='text', name='username')
+              .box
+                label Password:
+                input#password.form-control(type='password', name='password')
+              .box
+                input(type='submit')  Login 
+            #logoutForm
+              .box
+                p
+                  | Logged in as &nbsp;
+                  label#usernameLabel 
+                  &nbsp;
+              .box
+                button#logoutButton(type='submit')  Logout 
+                
       .col-sm-12.col-md-10.links.editPageLinks
         form.simple-form(method='POST', action='/insertApp', name ="userForm", enctype="multipart/form-data", novalidate='novalidate')
           h1 Add New Item

@@ -22,23 +22,28 @@ function putCategories(categoriesArray) {
 }
 //Check cookies for login information
 function loginManager() {
-	document.cookie = "test=test;";
-	console.log(document.cookie);
 	var cookies = document.cookie.split(";");
 	var loggedIn = false;
 	var userName = "";
+	var userDetails = {};
 	for(var i = 0; i < cookies.length; i++) {
 		var curCookie = cookies[i].split('=');
-		console.log("curCookie", curCookie);
+		var name = curCookie[0], value = curCookie[1];
+		if(name == 'loggedIn') {
+			loggedIn = value;
+			userDetails = getUserDetails();
+			console.log("UserDetails", userDetails);
+			console.log("loggedIn:", loggedIn);
+		}
 	}
 	var loginDiv = document.getElementById("loginForm");
 	var logoutDiv = document.getElementById("logoutForm");
 	var userLabel = document.getElementById("usernameLabel");
 	var editDiv = document.getElementById("editDiv");	
-	if(loggedIn) {
+	if(loggedIn == "true") {
 		loginDiv.style.display = "none";	
 		logoutDiv.style.display = "block";	
-		userLabel.innerHTML = userName;
+		userLabel.innerHTML = userDetails['username'];
 		console.log("Type", userDetails);
 		if(userDetails['userType'] == 'moderator') {
 			editDiv.style.display = "block";
@@ -62,24 +67,46 @@ function loginSuccess(userDetails) {
 		var name = cookieArray[i].split("=")[0];
 		var value = cookieArray[i].split("=")[1];
 		var curCookie = "" + name + "=" + value + ";";
-		tempValue.push(curCookie);
-		console.log("name", name, "value", value);
 	}
 
-	if(userDetails['loggedIn']) {
+	var value = "";
+
+	if(userDetails['loggedIn'] == true) {
 		console.log("Logged in");
 		var curCookie = "loggedIn=" + userDetails['loggedIn'] + ";";
-		tempValue.push(curCookie);
+		document.cookie = curCookie;
 		curCookie = "username=" + userDetails['username'] + ";";
-		tempValue.push(curCookie);
+		document.cookie = curCookie;
 		curCookie = "userType=" + userDetails['userType'] + ";";
-		tempValue.push(curCookie);  
+		document.cookie = curCookie;
 	}
-	tempValue.push("testcookie=test");
-	var value = tempValue.join();
-	console.log("Login sucess", value);
-	document.cookie = value;
-	console.log(document.cookie);
+	cookies = document.cookie;
+	cookieArray = cookies.split(';');
+	for (var i = 0; i < cookieArray.length; i++) {
+		var curCookie = cookieArray[i].split('=');
+		console.log("name", curCookie[0], "value", curCookie[1]);
+	}
+
 	document.getElementById('usernameLabel').innerHTML = "Welcome back " + userDetails['username'] + " !";
-	//window.location.replace("/");
+	var intervalFn = setInterval(function(){
+		window.location.replace("/");
+		clearInterval(intervalFn);
+	}, 1200);
+}
+
+function getUserDetails() {
+	var userDetails = {};
+	var cookies = document.cookie.split(";");
+	for(var i = 0; i < cookies.length; i++) {
+		var curCookie = cookies[i].split('=');
+		var name = curCookie[0], value = curCookie[1];
+		if(name[0] == " ")
+			name = name.substring(1);
+		userDetails[name] = value;
+	}
+	return userDetails;
+}
+
+function logout() {
+	document.cookie = "loggedIn=false";
 }

@@ -35,22 +35,7 @@ function home(req, res, items) {
 			return b.rating-a.rating;
 		});
 		db.getColors(function(colors) {
-			if(items) {
-				if(items['loggedIn']) {
-					console.log("Logged in");
-					res.render('index', {myObj: data, categories: colors, userDetails: items});
-				} else {
-					console.log("Not logged in");
-					var user = {};
-					user['loggedIn'] = false;
-					res.render('index', {myObj: data, categories: colors, userDetails: user});
-				}	
-			} else {
-				console.log("Items do not exist");
-				var user = {};
-				user['loggedIn'] = false;
-				res.render('index', {myObj: data, categories: colors, userDetails: user});
-			}
+				res.render('index', {myObj: data, categories: colors});
 		});
 	});
 }
@@ -68,7 +53,12 @@ function login(userDetails, req, res) {
 	db.login(userDetails, function(items) {
 		console.log("Items", items);
 		//home(req, res, items);
-		res.render('loginSuccess', {userDetails:items});
+		if(items['loggedIn']) {
+			res.render('loginSuccess', {userDetails:items});
+			home(req, res, userDetails);
+		} else {
+			home(req, res);
+		}
 		
 	});
 }

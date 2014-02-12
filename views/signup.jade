@@ -1,6 +1,6 @@
 !!! 5
 html
-head
+ head
     title Bentokit
     link(rel='stylesheet', href='stylesheets/basic.css')
     link(href='http://fonts.googleapis.com/css?family=Exo:300,500', rel='stylesheet', type='text/css')
@@ -16,78 +16,79 @@ head
     meta(name='mobileoptimized', content='240')
     meta(name='viewport', content='width=device-width,initial-scale=1,target-densitydpi=device-dpi')
  
-  body(ng-app='validationApp', ng-controller='mainController')
-    .navbar.navbar-inverse.navbar-fixed-top.topbar()
-      a(href='/')
-       h1.logo.toplogo Bentokit
-    .container.form-container()
-      form.simple-form(method='POST', action='/signUser', name ="userForm", novalidate='novalidate')
-        .row
-          .col-md-3
-          .col-md-6.col-sm-12.form-group(ng-class="{'has-error' : userForm.username.$invalid && !userForm.username.$pristine}")
-           h3.signupLabel Username:
-           input#usernameField.form-control(
-            ng-model='user.username'
-            type='text'
-            name = "username"
-            required = "required" 
-           )
-           p.help-block(ng-show="userForm.username.$invalid && !userForm.username.$pristine") Please enter a username
-          .col-md-3
-        .row
-          .col-md-3
-          .col-md-6.col-sm-12.form-group(ng-class="{'has-error' : userForm.password.$invalid && !userForm.password.$pristine}")
-           h3.signupLabel Password:
-           input#password1Field.form-control(
-            ng-model='user.password'
-            type='password'
-            name = "password"
-            required = "required" 
-           )
-           p.help-block(ng-show="userForm.password.$invalid && !userForm.password.$pristine") Please enter an password
-          .col-md-3
-        .row
-          .col-md-3
-          .col-md-6.col-sm-12.form-group(ng-class="{'has-error' : userForm.password2.$invalid && !userForm.password2.$pristine}")
-           h3.signupLabel Re-type Password:
-           input#password2Field.form-control(
-            ng-model='user.password2'
-            type='password'
-            name = "password2"
-            required = "required" 
-           )
-           p.help-block(ng-show="user.password1 != user.password2 && userForm.password2.$invalid && !userForm.password2.$pristine") Please enter password
-          .col-md-3
-        .row
-          .col-md-3
-          .col-md-6.col-sm-12.form-group(ng-class="{'has-error' : userForm.name.$invalid && !userForm.name.$pristine}")
-           h3.signupLabel Name:
-           input#nameField.form-control(
-            ng-model='user.name'
-            type='text'
-            name = "name"
-            required = "required" 
-           )
-           p.help-block(ng-show="userForm.name.$invalid && !userForm.name.$pristine") Please enter your name
-          .col-md-3
-        .row
-          .col-md-3
-          .col-md-6.col-sm-12.form-group(ng-class="{'has-error' : userForm.email.$invalid && !userForm.email.$pristine}")
-           h3.signupLabel Email:
-           input#emailField.form-control(
-            ng-model='user.email'
-            type='text'
-            name = "email"
-            required = "required"
-           )
-           p.help-block(ng-show="userForm.email.$invalid && !userForm.email.$pristine") Please enter an email address
-          .col-md-3
-        .row
-          .col-md-3
-          .col-md-6.col-sm-12
-           button(
-            type="submit"
-            ng-disabled = "userForm.$invalid"
-           ) Submit
-          .col-md-3 
-           
+ body(ng-app='validationApp', ng-controller='mainController')
+   .navbar.navbar-inverse.navbar-fixed-top.topbar()
+     a(href='/')
+      h1.logo.toplogo Bentokit
+   .container.form-container()
+     form.simple-form(method='POST', action='/signUser', name ="userForm", novalidate='novalidate')
+       .row
+         .col-md-3
+         .col-md-6.col-sm-12.form-group(ng-class="{'has-error' : userForm.username.$invalid && !userForm.username.$pristine}")
+          h3.signupLabel Username:
+          input#usernameField.form-control(
+           ng-model='user.username'
+           type='text'
+           name = "username"
+           required = "required" 
+          )
+          p.help-block(ng-show="userForm.username.$invalid && !userForm.username.$pristine") Please enter a username
+         .col-md-3
+       .row
+         .col-md-3
+         .col-md-6.col-sm-12.form-group(ng-class="{'has-error' : userForm.password.$invalid && !userForm.password.$pristine}")
+          h3.signupLabel Password:
+          input#password1Field.form-control(
+           ng-model='user.password'
+           type='password'
+           name = "password"
+           required = "required" 
+          )
+          p.help-block(ng-show="userForm.password.$invalid && !userForm.password.$pristine") Please enter an password
+         .col-md-3
+       .row
+         .col-md-3
+         .col-md-6.col-sm-12.form-group(ng-class="{'has-error' : userForm.password2.$invalid && !userForm.password2.$pristine}")
+          h3.signupLabel Re-type Password:
+          input#password2Field.form-control(
+           ng-model='user.password2'
+           type='password'
+           name = "password2"
+           required = "required" 
+          )
+          p.help-block(ng-show="user.password1 != user.password2 && userForm.password2.$invalid && !userForm.password2.$pristine") Please enter password
+         .col-md-3
+       .row
+         .col-md-3
+         .col-md-6.col-sm-12.form-group(ng-class="{'has-error' : userForm.name.$invalid && !userForm.name.$pristine}")
+          h3.signupLabel Name:
+          input#nameField.form-control(
+           ng-model='user.name'
+           type='text'
+           name = "name"
+           required = "required" 
+          )
+          p.help-block(ng-show="userForm.name.$invalid && !userForm.name.$pristine") Please enter your name
+         .col-md-3
+       .row
+         .col-md-3
+         .col-md-6.col-sm-12.form-group(ng-class="{'has-error' : userForm.email.$invalid && !userForm.email.$pristine}")
+          h3.signupLabel Email:
+          input#emailField.form-control(
+           ng-model='user.email'
+           type='text'
+           name = "email"
+           required = "required"
+          )
+          p.help-block(ng-show="userForm.email.$invalid && !userForm.email.$pristine") Please enter an email address
+         .col-md-3
+       .row
+         .col-md-3
+         .col-md-6.col-sm-12
+          button(
+           type="submit"
+           ng-disabled = "userForm.$invalid"
+          ) Submit
+         .col-md-3 
+          
+ 

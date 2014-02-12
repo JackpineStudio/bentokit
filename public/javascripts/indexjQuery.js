@@ -1,9 +1,5 @@
 $(document).ready(function(){ 
 	
-	$('#loginButton').click(function(eventObject) {
-		eventObject.preventDefault();
-	});
-	
 	$('#logoutButton').click(function(eventObject) {
 		eventObject.preventDefault();
 		$('#loginForm').show();

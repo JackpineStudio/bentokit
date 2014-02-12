@@ -7,12 +7,8 @@ var express = require('express')
   , routes = require('./routes')
   , http = require('http')
   , path = require('path')
-  , passport = require('passport')
-  , LocalStrategy = require('passport-local').Strategy
-  , databaseHandler = require('./node_modules/Database_functions.js')
   , flash = require('connect-flash')
-  , fs = require('fs'),
-  db = require('./node_modules/Database_functions.js');
+  , fs = require('fs');
 
 var app = express();
 
@@ -91,25 +87,7 @@ app.post("/insertApp", function(req, res, next) {
 });
 
 app.get("/loginSuccess", routes.loginSuccess);
-
-/*app.post('/login', function(req, res) {
-	var userDetails = {};
-	userDetails['username'] = req.body.username;
-	userDetails['password'] = req.body.password;
-	
-	db.login(userDetails, function(items) {
-		if(items['loggedIn']) {
-			console.log("Logged in");
-			res.redirect('/edit');
-		} else {
-			res.redirect('/signup');
-			console.log("Cannot login");
-		}
-	});
-});*/
-
 app.post('/login', routes.loginHandler);
-//app.get('/login', routes.loginHandler);
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });

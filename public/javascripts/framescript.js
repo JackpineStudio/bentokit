@@ -11,14 +11,7 @@ $(document).ready(function(){
 		var s = $("meta[name=locale]").attr("content");
 	    var appName = $("#appName").attr("value");
 	    var s = $("#frameSrc").attr("value");
-	    var liked = new Array();
-	    for (var i = 0; i < cookies.length; i++) {
-			var curCookie = cookies[i].trim();
-			liked.push(curCookie);
-	    }
-	    liked.push(appName);
-	    var value = liked.join(',');
-	    document.cookie = value;
+	    like();
 	    $.ajax({
 			type: 'POST' ,// added,
 			url:"/updateRating" ,
@@ -50,5 +43,19 @@ $(document).ready(function(){
 		var mainFrame = document.getElementById("mainFrame");
 		mainFrame.style.height = document.body.scrollHeight + 'px';
 		mainFrame.style.width = window.innerWidth + 'px';
-}
+	}
+
+	function like() {
+		var tempValue = "";
+		for (var i = 0; i < cookies.length; i++) {
+			var name = cookies[i].split("=")[0];
+			var value = cookies[i].split("=")[1];
+			if(name == " liked") {
+				console.log("value", value);
+				tempValue += value;
+			}
+		}
+		tempValue += "," + appName;
+	  	document.cookie = "liked=" + tempValue + ";";
+	}
 });

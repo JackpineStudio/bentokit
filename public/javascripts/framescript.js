@@ -35,7 +35,6 @@ $(document).ready(function(){
 	});
 	
 	window.onresize = function() {
-		console.log("Resize");
 		resizeFrame();
 	};
 	
@@ -51,7 +50,6 @@ $(document).ready(function(){
 			var name = cookies[i].split("=")[0];
 			var value = cookies[i].split("=")[1];
 			if(name == " liked") {
-				console.log("value", value);
 				tempValue += value;
 			}
 		}

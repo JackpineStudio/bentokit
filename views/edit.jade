@@ -37,8 +37,8 @@ html
               li.current
                 a.filter(href='#') All
           .box
-            a(href='/suggest') // Suggest an awesome app
-            a(href='mailto:hi@appbookmark.co') // Report a dead link
+            a(href='/suggest') Suggest an awesome app <br/>
+            a(href='mailto:hi@appbookmark.co') Report a dead link
           
           .box
             p
@@ -50,22 +50,22 @@ html
             a(href='/edit') Edit Page
           
           form#loginForm(action="/login", method = "POST", name ="loginForm")
-              .box
-                label Username:
-                input#username.form-control(type='text', name='username')
-              .box
-                label Password:
-                input#password.form-control(type='password', name='password')
-              .box
-                button#loginButton(type='submit') Login  
-            #logoutForm
-              .box
-                p
-                  | Logged in as &nbsp;
-                  label#usernameLabel 
-                  &nbsp;
-              .box
-                button#logoutButton(type='submit')  Logout 
+            .box
+              label Username:
+              input#username.form-control(type='text', name='username')
+            .box
+              label Password:
+              input#password.form-control(type='password', name='password')
+            .box
+              button#loginButton(type='submit') Login 
+          #logoutForm
+            .box
+              p
+                | Logged in as &nbsp;
+                label#usernameLabel 
+                &nbsp;
+            .box
+              button#logoutButton(type='submit')  Logout 
 
       .col-sm-12.col-md-10.links.editPageLinks
         form.simple-form(method='POST', action='/insertApp', name ="userForm", enctype="multipart/form-data", novalidate='novalidate')

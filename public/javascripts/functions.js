@@ -32,8 +32,6 @@ function loginManager() {
 		if(name == ' loggedIn' || name == 'loggedIn') {
 			loggedIn = value;
 			userDetails = getUserDetails();
-			console.log("UserDetails", userDetails);
-			console.log("loggedIn:", loggedIn);
 		}
 	}
 	var loginDiv = document.getElementById("loginForm");
@@ -44,11 +42,8 @@ function loginManager() {
 		loginDiv.style.display = "none";	
 		logoutDiv.style.display = "block";	
 		userLabel.innerHTML = userDetails['username'];
-		console.log("Type", userDetails);
-		if(userDetails['userType'] == 'moderator') {
+		if(userDetails['userType'] == 'moderator') 
 			editDiv.style.display = "block";
-			console.log("moderator");
-		}
 		else 
    			editDiv.style.display = "none";
 	} else {
@@ -72,7 +67,6 @@ function loginSuccess(userDetails) {
 	var value = "";
 
 	if(userDetails['loggedIn'] == true) {
-		console.log("Logged in");
 		var curCookie = "loggedIn=" + userDetails['loggedIn'] + ";";
 		document.cookie = curCookie;
 		curCookie = "username=" + userDetails['username'] + ";";
@@ -84,7 +78,6 @@ function loginSuccess(userDetails) {
 	cookieArray = cookies.split(';');
 	for (var i = 0; i < cookieArray.length; i++) {
 		var curCookie = cookieArray[i].split('=');
-		console.log("name", curCookie[0], "value", curCookie[1]);
 	}
 
 	document.getElementById('usernameLabel').innerHTML = "Welcome back " + userDetails['username'] + " !";
@@ -104,7 +97,6 @@ function getUserDetails() {
 			name = name.substring(1);
 		userDetails[name] = value;
 	}
-	console.log('userDetails', userDetails);
 	return userDetails;
 }
 

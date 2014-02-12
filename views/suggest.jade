@@ -90,15 +90,13 @@ html
           .col-md-3 
          
  script(type="text/javascript").
-  var cookies = document.cookie.split(";");
+  /*var cookies = document.cookie.split(";");
   var loggedIn = false;
   var userName = "";
   for(var i = 0; i < cookies.length; i++) {
    var curCookie = cookies[i].split(',');
    for (var j = 0; j < curCookie.length; j++) {
-    console.log('curCookie', curCookie[j]);
     if(curCookie[j].indexOf('loggedIn') != -1) {
-     console.log("Logged in", curCookie[j]);
      if(curCookie[j].indexOf('true') != -1)
       loggedIn = true;
      }
@@ -106,7 +104,7 @@ html
       userName = curCookie[j].split(':')[1];
      }
    }
-  }
+  }*/
   //var loginDiv = document.getElementById("loginForm");
   //var logoutDiv = document.getElementById("logoutForm");
   var userLabel = document.getElementById("usernameLabel");

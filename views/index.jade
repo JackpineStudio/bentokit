@@ -34,9 +34,6 @@ html
                 h2 Filters
               li.current
                 a.filter(href='#') All
-          .box
-            a(href='/suggest') Suggest an awesome app <br/>
-            a(href='mailto:hi@appbookmark.co') Report a dead link
           
           .box
             p
@@ -46,7 +43,13 @@ html
               a(href='https://twitter.com/BossLewis79') @BossLewis79
           #editDiv.box
             a(href='/edit') Edit Page
+          #apply.box
+            a(href='/apply') Apply to be a Moderator
           
+          .box
+            a(href='/suggest') Suggest an awesome app <br/>
+            a(href='mailto:hi@appbookmark.co') Report a dead link
+
           form#loginForm(action="/login", method = "POST", name ="loginForm")
             .box
               label Username:
@@ -135,8 +138,6 @@ script(type = 'text/javascript').
    button.setAttribute("id", apps[i].name);
    button.setAttribute("onclick", "like(" + '"' + apps[i].name + '"' + ");");
    button.innerHTML = "";
-
-   
    newDiv.appendChild(button);
    
   }

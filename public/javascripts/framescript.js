@@ -6,7 +6,6 @@ $(document).ready(function(){
 	  });
 	});
 	
-	
 	window.onresize = function() {
 		resizeFrame();
 	};
@@ -16,6 +15,4 @@ $(document).ready(function(){
 		mainFrame.style.height = document.body.scrollHeight + 'px';
 		mainFrame.style.width = window.innerWidth + 'px';
 	}
-
-	
 });

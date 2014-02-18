@@ -1,0 +1,47 @@
+!!! 5
+html
+ head
+    title Bentokit
+    link(rel='stylesheet', href='stylesheets/basic.css')
+    link(href='http://fonts.googleapis.com/css?family=Exo:300,500', rel='stylesheet', type='text/css')
+    link(rel='shortcut icon', href='images/favicon.ico')
+    link(rel='stylesheet', href='http://netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css')
+    link(rel='stylesheet', href='stylesheets/bootstrap.min.css')
+    link(rel='stylesheet', href='stylesheets/bootstrap-theme.min.css')
+    link(rel='stylesheet', href='stylesheets/main.css')
+    link(rel='shortcut icon', href='images/favicon.ico')
+    script(src="http://code.angularjs.org/1.2.6/angular.js")
+    script(src='javascripts/script.js')
+    meta(name='handheldfriendly', content='true')
+    meta(name='mobileoptimized', content='240')
+    meta(name='viewport', content='width=device-width,initial-scale=1,target-densitydpi=device-dpi')
+ 
+ body(ng-app='validationApp', ng-controller='mainController')
+   .navbar.navbar-inverse.navbar-fixed-top.topbar()
+     a(href='/')
+      h1.logo.toplogo Bentokit
+   .container.form-container()
+     form.simple-form(method='POST', action='/sendApplication', name ="userForm", novalidate='novalidate')
+       .row
+         .col-md-3
+         .col-md-6.col-sm-12.form-group(ng-class="{'has-error' : userForm.explainText.$invalid && !userForm.explainText.$pristine}")
+          h3.signupLabel Please explain why you want to become a moderator:
+          textarea#explainField.form-control(
+           ng-model='user.explainText'
+           type='text'
+           name = "explainText"
+           required = "required" 
+          )
+          p.help-block(ng-show="userForm.explainText.$invalid && !userForm.explainText.$pristine") Please fill this textbox
+         .col-md-3
+       
+       .row
+         .col-md-3
+         .col-md-6.col-sm-12
+          button(
+           type="submit"
+           ng-disabled = "userForm.$invalid"
+          ) Apply
+         .col-md-3 
+          
+ 

@@ -9,10 +9,6 @@ exports.updateRating = function(req,res){
 	db.updateRating(object);
 };
 
-exports.approveApp = function(req, res) {
-	var object = "";
-	db.approveApp(object);
-};
 exports.frame = function(req, res){
   var link = req.query.user.link;
   var object = -1;
@@ -94,9 +90,9 @@ exports.loginPage = function(req, res) {
 };
 
 function editPage(req, res) {
-	db.getAll(function(apps, pendingApps){
+	db.getAll(function(apps, pendingApps, users){
 		db.getColors(function(colors) {
-			res.render('edit', {myObj: apps, pending: pendingApps, categories: colors} );
+			res.render('edit', {myObj: apps, pending: pendingApps, categories: colors, pendingUsers : users} );
 		});
 		
 	});
@@ -108,6 +104,7 @@ exports.editPage = function(req, res){
 
 exports.approveApp = function(req, res) {
 	var link = req.body.appLink;
+	console.log("link", link);
 	db.approveApp(link, function() {
 		res.render('edit', {} );
 	});
@@ -138,9 +135,7 @@ exports.addItem = function(req, res) {
 };
 
 exports.signUp = function(req, res) {
-	//db.getUsers(function(users) {
-		res.render('signup', {});
-	//});
+	res.render('signup', {});
 };
 
 exports.signUser = function(req, res) {
@@ -196,4 +191,19 @@ exports.restricted = function(req, res) {
 	res.render('restricted');
 };
 
+exports.applyPage = function(req, res) {
+	res.render('apply');
+};
 
+exports.sendApplication = function(req, res) {
+	var details = req.body;
+	details['username'] = "bob";
+	db.saveApplication(details, function() {
+		res.redirect('/');
+	});
+	
+};
+
+exports.approveUser = function(req, res) {
+	
+};

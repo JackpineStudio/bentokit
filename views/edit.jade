@@ -129,6 +129,15 @@ html
             th Category 2
             th User Added
             th Approve
+
+        h1 Pending Users
+        table#pendingUsersTable.table
+          tr
+            th Username
+            th Reason
+            th Suggested Apps
+            th Approve
+
 script(type = 'text/javascript').
  var clickFunc= function(event){
  if(event.target.alt.indexOf("google") != -1){
@@ -193,7 +202,7 @@ script(type = 'text/javascript').
   var button = document.createElement("A");
   button.setAttribute('href', "#");
   button.setAttribute('class', "removeAppButton glyphicon glyphicon-remove");
-  button.setAttribute('id', details['link']);
+  button.setAttribute('id', className);
   button.innerHTML = "";
   newColumn.appendChild(button);
   
@@ -207,7 +216,7 @@ script(type = 'text/javascript').
   var curApp = apps[i];
   var details = {};
   details['name'] = curApp.name, details['link'] =curApp.link, details['image'] = curApp.image,
-  details['category1'] = curApp.c1, details['category2'] = curApp.c2, details['user'] = curApp.user;
+  details['category1'] = curApp.c1, details['category2'] = curApp.c2, details['user'] = curApp.user, details['id'] = curApp.id;
   var newRow = document.createElement("TR");
   for(var detail in details) {
    var newColumn = document.createElement("TD");
@@ -222,20 +231,50 @@ script(type = 'text/javascript').
   var button = document.createElement("A");
   button.setAttribute('href', "#");
   button.setAttribute('class', "approveButton glyphicon glyphicon-ok");
-  button.setAttribute('id', details['link']);
+  button.setAttribute('id', details['id']);
   button.innerHTML = "&nbsp;";
   newColumn.appendChild(button);
   
   var button = document.createElement("A");
   button.setAttribute('href', "#");
   button.setAttribute('class', "removeButton glyphicon glyphicon-remove");
-  button.setAttribute('id', details['link']);
+  button.setAttribute('id', details['id']);
   button.innerHTML = "";
   newColumn.appendChild(button);
   
   newRow.appendChild(newColumn);
   table.appendChild(newRow);
  }
+
+ table = document.getElementById("pendingUsersTable");
+ var pendingUsers =!{JSON.stringify(pendingUsers)}; 
+ for (var i = 0; i < pendingUsers.length; i++) {
+   var curUser = pendingUsers[i];
+   var details = {};
+   var newRow = document.createElement("TR");
+   details['username'] = curUser.username, details['text'] = curUser.text;
+   for (var detail in details) {
+     var newColumn = document.createElement("TD");
+     newColumn.innerHTML = details[detail];
+     newRow.appendChild(newColumn);
+   }
+   var newColumn = document.createElement("TD");
+   var button = document.createElement("A");
+   button.setAttribute('href', "#");
+   button.setAttribute('class', "approveUserButton glyphicon glyphicon-ok");
+   button.setAttribute('id', details['username']);
+   button.innerHTML = "&nbsp;";
+   newColumn.appendChild(button);
+   
+   var button = document.createElement("A");
+   button.setAttribute('href', "#");
+   button.setAttribute('class', "disapproveUserButton glyphicon glyphicon-remove");
+   button.setAttribute('id', details['username']);
+   button.innerHTML = "";
+   newColumn.appendChild(button);
+   newRow.appendChild(newColumn);
+   table.appendChild(newRow);
+  }
  loginManager();
  function splitString(name) {
   return name.replace(/\s/g, "");

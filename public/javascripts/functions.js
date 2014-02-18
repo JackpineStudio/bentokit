@@ -20,7 +20,7 @@ function putCategories(categoriesArray) {
 	}
 	return colors;
 }
-//Check cookies for login information
+
 function loginManager() {
 	var cookies = document.cookie.split(";");
 	var loggedIn = false;
@@ -37,15 +37,25 @@ function loginManager() {
 	var loginDiv = document.getElementById("loginForm");
 	var logoutDiv = document.getElementById("logoutForm");
 	var userLabel = document.getElementById("usernameLabel");
-	var editDiv = document.getElementById("editDiv");	
+	var editDiv = document.getElementById("editDiv");
+	var applyDiv = document.getElementById("apply");
 	if(loggedIn == "true") {
 		loginDiv.style.display = "none";	
 		logoutDiv.style.display = "block";	
 		userLabel.innerHTML = userDetails['username'];
-		if(userDetails['userType'] == 'moderator') 
+		if(userDetails['userType'] == 'moderator') {
 			editDiv.style.display = "block";
-		else 
+			if(applyDiv != null)
+				applyDiv.style.display = "none";
+		}
+		else {
    			editDiv.style.display = "none";
+   			if(!(userDetails['userType'] == 'inProcess')) {
+   				if(applyDiv != null)
+   					applyDiv.style.display = "block";
+   			}
+   			
+		}
 	} else {
 		loginDiv.style.display = "block";	
 		logoutDiv.style.display = "none";	
@@ -63,9 +73,7 @@ function loginSuccess(userDetails) {
 		var value = cookieArray[i].split("=")[1];
 		var curCookie = "" + name + "=" + value + ";";
 	}
-
 	var value = "";
-
 	if(userDetails['loggedIn'] == true) {
 		var curCookie = "loggedIn=" + userDetails['loggedIn'] + ";";
 		document.cookie = curCookie;
@@ -79,9 +87,7 @@ function loginSuccess(userDetails) {
 	for (var i = 0; i < cookieArray.length; i++) {
 		var curCookie = cookieArray[i].split('=');
 	}
-
 	var moderator = userDetails['userType'] == 'moderator';
-
 	document.getElementById('usernameLabel').innerHTML = "Welcome back " + userDetails['username'] + " !";
 	var intervalFn = setInterval(function(){
 		if(moderator) 
@@ -109,6 +115,11 @@ function logout() {
 	document.cookie = "loggedIn=false";
 }
 
+function checkLoggedIn() {
+	var userDetails = getUserDetails();
+	return userDetails['loggedIn'];
+}
+
 function checkUserType() {
 	var userDetails = getUserDetails();
 	if(userDetails['userType'] != 'moderator') {
@@ -128,7 +139,6 @@ function checkLiked(appName){
 			}
 		}
 	}
-
 	return liked;
 }
 

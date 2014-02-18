@@ -13,7 +13,6 @@ $(document).ready(function(){
 		var id = $(this).attr("id")
 		$likeicon = $(".likeicon, ." + id);
 		$likeicon.show();
-
 	});
 
 	$(".like-icon").click(function(eventObject) {
@@ -38,7 +37,6 @@ $(document).ready(function(){
 		$likeLabel = $(".like-label." + id);
 		var numOfLikes = parseInt($likeLabel.html()) + 1;
 	    $likeLabel.html(numOfLikes);
-	    
 	    $(this).fadeOut('slow',function(){
 			//Animation 
 		});

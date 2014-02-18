@@ -2,6 +2,7 @@ $(document).ready(function(){
 	$('.approveButton').click(function(eventObject) {
 		eventObject.preventDefault();
 		var app = $(this).attr('id');
+		console.log("app name", app);
 		$.ajax({
 			type: 'POST',
 			url: '/approve',
@@ -17,6 +18,22 @@ $(document).ready(function(){
 		
 	});
 	
+	$('.approveUserButton').click(function(eventObject) {
+		var user = $(this).attr('id');
+		$.ajax({
+			type: 'POST',
+			url: '/approveUser',
+			dataType: 'json',
+			data: {username: user},
+			complete: function(data) {
+				location.reload();
+			},
+			error: function(xhr, status, error) {
+				console.log("Error:", error);
+			}
+		});
+	});
+
 	$('.removeButton').click(function(eventObject) {
 		eventObject.preventDefault();
 		var app = $(this).attr('id');

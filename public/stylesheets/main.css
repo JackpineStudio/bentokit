@@ -275,6 +275,14 @@ button {
     padding-left: 10px;
 }
 
+#apply {
+    display: none;
+}
+
+#explainField {
+    height: 200px;
+}
+
 @media (min-width: 800px) {
     .sidebar {
         bottom: 0;

@@ -51,8 +51,7 @@ function loginManager() {
 		else {
    			editDiv.style.display = "none";
    			if(!(userDetails['userType'] == 'inProcess')) {
-   				if(applyDiv != null)
-   					applyDiv.style.display = "block";
+   				applyDiv.style.display = "block";
    			}
    			
 		}

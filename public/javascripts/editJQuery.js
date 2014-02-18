@@ -20,18 +20,12 @@ $(document).ready(function(){
 	
 	$('.approveUserButton').click(function(eventObject) {
 		var user = $(this).attr('id');
-		$.ajax({
-			type: 'POST',
-			url: '/approveUser',
-			dataType: 'json',
-			data: {username: user},
-			complete: function(data) {
-				location.reload();
-			},
-			error: function(xhr, status, error) {
-				console.log("Error:", error);
-			}
-		});
+		decideUser(user, "approve");
+	});
+
+	$('.disapproveUserButton').click(function(eventObject) {
+		var user = $(this).attr('id');
+		decideUser(user, "disapprove");
 	});
 
 	$('.removeButton').click(function(eventObject) {
@@ -93,6 +87,24 @@ $(document).ready(function(){
 		//$(this).attr('class', "editButton glyphicon glyphicon-edit");
 	});
 	
+	function decideUser(user, decision) {
+		var urlA = "/approveUser"
+		if(decision != "approve")
+			urlA = "/disapproveUser";
+		$.ajax({
+			type: 'POST',
+			url: urlA,
+			dataType: 'json',
+			data: {username: user},
+			complete: function(data) {
+				location.reload();
+			},
+			error: function(xhr, status, error) {
+				console.log("Error:", error);
+			}
+		});
+	}
+
 	function removeApp(app, type) {
 		$.ajax({
 			type: 'POST',

@@ -205,5 +205,15 @@ exports.sendApplication = function(req, res) {
 };
 
 exports.approveUser = function(req, res) {
-	
+	var username = req.body.username;
+	db.approveUser(username, function() {
+		res.render('edit', {} );
+	});
+};
+
+exports.disapproveUser = function(req, res) {
+	var username = req.body.username;
+	db.disapproveUser(username, function() {
+		res.render('edit', {} );
+	});
 };

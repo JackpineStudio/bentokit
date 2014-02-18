@@ -92,6 +92,7 @@ app.get('/restricted', routes.restricted);
 app.get('/apply', routes.applyPage);
 app.post('/sendApplication', routes.sendApplication);
 app.post('/approveUser', routes.approveUser);
+app.post('/disapproveUser', routes.disapproveUser);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

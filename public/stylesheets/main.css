@@ -283,6 +283,15 @@ button {
     height: 200px;
 }
 
+#pendingUsersTable {
+    padding-bottom:  30px;
+    padding-top: 10px;
+}
+
+#pendingUsersTable td {
+    text-align: center;
+}
+
 @media (min-width: 800px) {
     .sidebar {
         bottom: 0;

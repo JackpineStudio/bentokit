@@ -197,11 +197,10 @@ exports.applyPage = function(req, res) {
 
 exports.sendApplication = function(req, res) {
 	var details = req.body;
-	details['username'] = "bob";
+	console.log("Details", details);
 	db.saveApplication(details, function() {
 		res.redirect('/');
 	});
-	
 };
 
 exports.approveUser = function(req, res) {

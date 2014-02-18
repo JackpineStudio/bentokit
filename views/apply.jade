@@ -12,16 +12,47 @@ html
     link(rel='shortcut icon', href='images/favicon.ico')
     script(src="http://code.angularjs.org/1.2.6/angular.js")
     script(src='javascripts/script.js')
+    script(type='text/javascript', src='javascripts/functions.js')
     meta(name='handheldfriendly', content='true')
     meta(name='mobileoptimized', content='240')
     meta(name='viewport', content='width=device-width,initial-scale=1,target-densitydpi=device-dpi')
- 
+ script(type = 'text/javascript').
+   checkLoggedIn();
  body(ng-app='validationApp', ng-controller='mainController')
    .navbar.navbar-inverse.navbar-fixed-top.topbar()
      a(href='/')
       h1.logo.toplogo Bentokit
    .container.form-container()
      form.simple-form(method='POST', action='/sendApplication', name ="userForm", novalidate='novalidate')
+       input#username(
+         name = "username"
+         type = 'hidden'
+         value = " "
+        )
+       .row
+         .col-md-3
+         .col-md-6.col-sm-12.form-group(ng-class="{'has-error' : userForm.firstname.$invalid && !userForm.firstname.$pristine}")
+          h3.signupLabel First Name:
+          input#firstNameField.form-control(
+           ng-model='user.firstname'
+           type='firstname'
+           name = "firstname"
+           required = "required" 
+          )
+          p.help-block(ng-show="userForm.firstname.$invalid && !userForm.firstname.$pristine") Please enter your first name
+         .col-md-3
+        .row
+         .col-md-3
+         .col-md-6.col-sm-12.form-group(ng-class="{'has-error' : userForm.lastname.$invalid && !userForm.lastname.$pristine}")
+          h3.signupLabel Last Name:
+          input#lastnameField.form-control(
+           ng-model='user.lastname'
+           type='lastname'
+           name = "lastname"
+           required = "required" 
+          )
+          p.help-block(ng-show="userForm.lastname.$invalid && !userForm.lastname.$pristine") Please enter your last name
+         .col-md-3
        .row
          .col-md-3
          .col-md-6.col-sm-12.form-group(ng-class="{'has-error' : userForm.explainText.$invalid && !userForm.explainText.$pristine}")
@@ -43,5 +74,16 @@ html
            ng-disabled = "userForm.$invalid"
           ) Apply
          .col-md-3 
-          
+
+script(type="text/javascript").
+ 
+  var userDetails = getUserDetails();
+  var loggedIn = userDetails['loggedIn'];
+  var userLabel = document.getElementById("username");
+  if(loggedIn) {
+   userLabel.value = userDetails['username'];
+  } else {
+   userLabel.innerHTML = "";
+  }  
+
  

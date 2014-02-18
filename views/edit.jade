@@ -133,9 +133,10 @@ html
         h1 Pending Users
         table#pendingUsersTable.table
           tr
+            th First Name
+            th Last Name
             th Username
             th Reason
-            th Suggested Apps
             th Approve
 
 script(type = 'text/javascript').
@@ -252,7 +253,7 @@ script(type = 'text/javascript').
    var curUser = pendingUsers[i];
    var details = {};
    var newRow = document.createElement("TR");
-   details['username'] = curUser.username, details['text'] = curUser.text;
+   details['firstname'] = curUser.firstname, details['lastname'] = curUser.lastname, details['username'] = curUser.username, details['text'] = curUser.text;
    for (var detail in details) {
      var newColumn = document.createElement("TD");
      newColumn.innerHTML = details[detail];

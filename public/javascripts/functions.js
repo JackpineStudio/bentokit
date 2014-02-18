@@ -114,9 +114,19 @@ function logout() {
 	document.cookie = "loggedIn=false";
 }
 
-function checkLoggedIn() {
+function loggedIn() {
 	var userDetails = getUserDetails();
-	return userDetails['loggedIn'];
+	console.log("logged in ", userDetails['loggedIn']);
+	if(userDetails['loggedIn'].indexOf('false') != -1)
+		return false;
+	else 
+		return true;
+}
+
+function checkLoggedIn() {
+	if(!loggedIn()) {
+		window.location.replace("/restricted");
+	}
 }
 
 function checkUserType() {

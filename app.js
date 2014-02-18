@@ -67,7 +67,6 @@ app.post("/suggestApp", function(req, res, next) {
 
 app.post("/insertApp", function(req, res, next) {
 	console.log("file", req.files);
-	//check for usertype
 	fs.readFile(req.files.image.path, function(err, data) {
 		var imageName = req.files.image.name;
 		if(!imageName || imageName == "") {

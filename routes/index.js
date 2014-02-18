@@ -4,7 +4,7 @@ var db = require('../node_modules/Database_functions.js')
  * GET home page.
  */
 exports.updateRating = function(req,res){
-	console.log("Update Rating");
+	console.log("Update Rating", req.body.objectData);
 	var object = (req.body.objectData);
 	db.updateRating(object);
 };
@@ -52,7 +52,6 @@ function login(userDetails, req, res) {
 	console.log("index", "Trying login");
 	db.login(userDetails, function(items) {
 		console.log("Items", items);
-		//home(req, res, items);
 		if(items['loggedIn']) {
 			res.render('loginSuccess', {userDetails:items});
 			home(req, res, userDetails);

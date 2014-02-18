@@ -261,6 +261,20 @@ button {
     padding-top: 45px;
 }
 
+.like-elements {
+    /*display: none;*/
+}
+
+.like-icon {
+    color: red !important;
+    left: 4px;
+    display: none;
+}
+
+.like-label {
+    padding-left: 10px;
+}
+
 @media (min-width: 800px) {
     .sidebar {
         bottom: 0;

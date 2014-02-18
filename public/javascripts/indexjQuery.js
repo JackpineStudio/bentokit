@@ -6,25 +6,42 @@ $(document).ready(function(){
 		$('#logoutForm').hide();
 		$('#editDiv').hide();
 		logout();
-		return;
-		var cookies = document.cookie.split(";");
-		var liked = new Array();
-	    for (var i = 0; i < cookies.length; i++) {
-			var curCookie = cookies[i].split(',');
-			for (var j = 0; j < curCookie.length; j++) {
-				if(curCookie[j].indexOf('loggedIn') != -1) {
-					liked.push('loggedIn:false');
-				} else if(curCookie[j].indexOf('username') != -1 ) {
-					liked.push(curCookie[j]);
-					$('#username').attr('value',curCookie[j].split(':')[1]);	
-				} else {
-					//liked.push(curCookie);
-				}
-			}     
-	    }
-	    window.location.href = "/";
-	    var value = liked.join(',');
-	    document.cookie = value;
+	});
+
+	$('.app').hover(function(eventObject) {
+		eventObject.preventDefault();
+		var id = $(this).attr("id")
+		$likeicon = $(".likeicon, ." + id);
+		$likeicon.show();
+
+	});
+
+	$(".like-icon").click(function(eventObject) {
+		eventObject.preventDefault();
+		var appName = $(this).attr("id");
+		var classNames = $(this).attr("class").split(" ");
+		var id = classNames[classNames.length -1 ];
+		var s = appName;
+		$.ajax({
+			type: 'POST' ,// added,
+			url:"/updateRating" ,
+			dataType: 'json',
+			data: {objectData: s} ,
+			success: function (data) {
+				var ret = jQuery.parseJSON(data);
+			},
+			error: function (xhr, status, error) {
+				console.log('Error: ' + error.message);
+			}
+		});	
+		
+		$likeLabel = $(".like-label." + id);
+		var numOfLikes = parseInt($likeLabel.html()) + 1;
+	    $likeLabel.html(numOfLikes);
+	    
+	    $(this).fadeOut('slow',function(){
+			//Animation 
+		});
 		return false;
 	});
 

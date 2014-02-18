@@ -9,6 +9,7 @@ html
     script(type='text/javascript', src='javascripts/framework.js')
     script(type='text/javascript', src='javascripts/indexJQuery.js')
     script(type='text/javascript', src='javascripts/jquery.js')
+    link(rel='stylesheet', href='http://netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css')
     link(rel='stylesheet', href='stylesheets/bootstrap.min.css')
     link(rel='stylesheet', href='stylesheets/bootstrap-theme.min.css')
     link(rel='stylesheet', href='stylesheets/main.css')
@@ -89,11 +90,14 @@ script(type = 'text/javascript').
 
  var apps =!{JSON.stringify(myObj)};
  var ul = document.getElementById("links");
- for(i=0;i<apps.length;i++){
+ for(i = 0; i < apps.length; i++){
   var newLi= document.createElement("LI");
   newLi.className =apps[i].c1+" "+ apps[i].c2;
   var newA = document.createElement("a");
-  newA.addEventListener('click',clickFunc);
+  newA.setAttribute("class", "app");
+  newA.setAttribute("id", apps[i].id);
+  newA.setAttribute("href", apps[i].link);
+  
   var newImage = new Image();
   newImage.alt=apps[i].link;
   newImage.src=apps[i].image;
@@ -101,7 +105,7 @@ script(type = 'text/javascript').
   newImage.style.height="100px";
   var newDiv= document.createElement('div');
   newDiv.className="center";
-  newDiv.innerHTML=apps[i].name;
+  newDiv.innerHTML= apps[i].name;
   newP1 = document.createElement('p');
   newP2 = document.createElement('p');
   
@@ -123,6 +127,26 @@ script(type = 'text/javascript').
    var p2Text = document.createTextNode(apps[i].c2);
    newP2.appendChild(p2Text);
   }
+  var liked = checkLiked(apps[i].name);
+  if(!liked) {
+   var button = document.createElement("A");
+   button.setAttribute("href", "#");
+   button.setAttribute("class", "glyphicon glyphicon-heart like-elements like-icon " + apps[i].id);
+   button.setAttribute("id", apps[i].name);
+   button.setAttribute("onclick", "like(" + '"' + apps[i].name + '"' + ");");
+   button.innerHTML = "";
+
+   
+   newDiv.appendChild(button);
+   
+  }
+
+  var t = document.createElement("label");
+  t.setAttribute("class", "like-elements like-label "  + apps[i].id);
+  t.setAttribute("id", apps[i].name);
+  t.innerHTML = "" + apps[i].rating;
+  newDiv.appendChild(t);
+
   newA.appendChild(newImage);
   newA.appendChild(newDiv);
   newLi.appendChild(newA);

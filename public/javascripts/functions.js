@@ -110,3 +110,39 @@ function checkUserType() {
 		window.location.replace("/restricted");
 	}
 }
+
+function checkLiked(appName){
+	var cookies = document.cookie.split(";");
+	var liked = false;
+	for (var i = 0; i < cookies.length; i++) {
+		var curCookie = cookies[i].split(',');
+		for (var j = 0; j < curCookie.length; j++) {
+			if(curCookie[j] == appName) {
+			liked = true;
+			break;
+			}
+		}
+	}
+
+	return liked;
+}
+
+function like(appName) {
+	var cookies = document.cookie.split(";");
+	var tempValue = "";
+	for (var i = 0; i < cookies.length; i++) {
+		var name = cookies[i].split("=")[0];
+		var value = cookies[i].split("=")[1];
+		if(name.indexOf("liked") != -1) {
+			tempValue += value;
+		}
+	}
+	tempValue += "," + appName;
+  	document.cookie = "liked=" + tempValue + ";";
+}
+
+function resizeFrame() {
+	var mainFrame = document.getElementById("mainFrame");
+	mainFrame.style.height = document.body.scrollHeight + 'px';
+	mainFrame.style.width = window.innerWidth + 'px';
+}

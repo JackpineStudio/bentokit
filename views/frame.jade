@@ -7,6 +7,7 @@ html
     script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js')
     script(type='text/javascript', src='javascripts/jquery.js')
     script(type='text/javascript', src='javascripts/framescript.js')
+    script(type='text/javascript', src='javascripts/functions.js')
     link(href='http://fonts.googleapis.com/css?family=Exo:300,500', rel='stylesheet', type='text/css')
     link(rel='shortcut icon', href='images/favicon.ico')
     meta(name='handheldfriendly', content='true')
@@ -26,31 +27,16 @@ html
    iframe#mainFrame(src='#{frameSrc}')
    
 script(type='text/javascript').
- var cookies = document.cookie.split(";");
- var liked = false;
- var div = document.getElementById("book");
  var appName = !{JSON.stringify(curApp)};
- for (var i = 0; i < cookies.length; i++) {
-  var curCookie = cookies[i].split(',');
-  for (var j = 0; j < curCookie.length; j++) {
-   if(curCookie[j] == appName) {
-    liked = true;
-    break;
-   }
-  }
- }
+ var div = document.getElementById("book");
+ var liked = checkLiked(appName);
  if(!liked) {
   var button = document.createElement("BUTTON");
-  //button.setAttribute("href", "");
   button.setAttribute("id", "rating");
-  //button.setAttribute("class", "filter");
+ // button.setAttribute("onclick", "like(" + '"' + appName + '"' + ");")
   var t = document.createTextNode("Like This App");
   button.appendChild(t);
   div.appendChild(button);
  }
  resizeFrame();
- function resizeFrame() {
-  var mainFrame = document.getElementById("mainFrame");
-  mainFrame.style.height = document.body.scrollHeight + 'px';
-  mainFrame.style.width = window.innerWidth + 'px';
- }
+ 

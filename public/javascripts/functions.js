@@ -80,9 +80,14 @@ function loginSuccess(userDetails) {
 		var curCookie = cookieArray[i].split('=');
 	}
 
+	var moderator = userDetails['userType'] == 'moderator';
+
 	document.getElementById('usernameLabel').innerHTML = "Welcome back " + userDetails['username'] + " !";
 	var intervalFn = setInterval(function(){
-		window.location.replace("/");
+		if(moderator) 
+			window.location.replace("/edit");
+		else 
+			window.location.replace("/");
 		clearInterval(intervalFn);
 	}, 1200);
 }

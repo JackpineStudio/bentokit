@@ -82,7 +82,6 @@ exports.loginHandler = function (req, res) {
 	userDetails['password'] = req.body.password;
 	console.log('username', userDetails['username'], 'password', userDetails['password'] );
 	login(userDetails, req, res);
-	//res.redirect('/');
 };
 
 exports.login = function(userDetails, callback) {

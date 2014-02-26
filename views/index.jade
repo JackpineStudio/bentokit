@@ -2,13 +2,13 @@
 html
   head
     title Bentokit
-    script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js')
-    script(type='text/javascript', src='javascripts/functions.js')
-    link(href='http://fonts.googleapis.com/css?family=Exo:300,500', rel='stylesheet', type='text/css')
-    link(rel='shortcut icon', href='images/favicon.ico')
+    script(src='http://code.jquery.com/jquery-1.10.1.min.js')
     script(type='text/javascript', src='javascripts/framework.js')
     script(type='text/javascript', src='javascripts/indexJQuery.js')
+    script(type='text/javascript', src='javascripts/functions.js')
     script(type='text/javascript', src='javascripts/jquery.js')
+    link(href='http://fonts.googleapis.com/css?family=Exo:300,500', rel='stylesheet', type='text/css')
+    link(rel='shortcut icon', href='images/favicon.ico')
     link(rel='stylesheet', href='http://netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css')
     link(rel='stylesheet', href='stylesheets/bootstrap.min.css')
     link(rel='stylesheet', href='stylesheets/bootstrap-theme.min.css')
@@ -19,7 +19,7 @@ html
   body
     .container-fluid
      .row
-      .col-sm-3.col-md-2.sidebar
+      .col-sm-3.col-md-2.sidebar.editPageBar
         ul
           .box
            a(href='/')
@@ -95,7 +95,7 @@ script(type = 'text/javascript').
  var ul = document.getElementById("links");
  for(i = 0; i < apps.length; i++){
   var newLi= document.createElement("LI");
-  newLi.className =apps[i].c1+" "+ apps[i].c2;
+  newLi.className = apps[i].c1+" "+ apps[i].c2;
   var newA = document.createElement("a");
   newA.setAttribute("class", "app");
   newA.setAttribute("id", apps[i].id);

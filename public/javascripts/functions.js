@@ -95,13 +95,13 @@ function loginSuccess(userDetails) {
 		alert(message);
 	}
 
-	// var intervalFn = setInterval(function(){
-	// 	if(moderator) 
-	// 		window.location.replace("/edit");
-	// 	else 
-	// 		window.location.replace("/");
-	// 	clearInterval(intervalFn);
-	// }, 1200);
+	var intervalFn = setInterval(function(){
+		if(moderator) 
+			window.location.replace("/edit");
+		else 
+			window.location.replace("/");
+		clearInterval(intervalFn);
+	}, 1200);
 }
 
 function loginFailure() {

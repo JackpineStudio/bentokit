@@ -323,6 +323,20 @@ button {
     width: 120px;
 }
 
+#menuDiv {
+    height: 30px;
+}
+
+#menuDiv h1 {
+    float: left;
+}
+
+#menuButton {
+    color: white;
+    float: right;
+    padding-top: 16px;
+}
+
 @media (min-width: 768px) {
     
     .message {
@@ -336,6 +350,7 @@ button {
     .editPageBar {
         width: 180px;
         height: 5000px;
+        display: block;
     }
 
     #signupButton {
@@ -344,6 +359,10 @@ button {
 
     #loginButton {
         width: 62px;
+    }
+
+    #menuDiv {
+        display: none;
     }
 }
 

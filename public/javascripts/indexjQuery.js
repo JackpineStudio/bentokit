@@ -43,6 +43,30 @@ $(document).ready(function(){
 		return false;
 	});
 
+	$("#menuButton").click(function(eventObject) {
+		eventObject.preventDefault();
+		$menuButton = $(this);
+		$sideBar = $(".sidebar");
+		if ($menuButton.hasClass("shown")) {
+			$menuButton.removeClass("shown");
+			$menuButton.html("[Show Menu]");
+			$sideBar.hide(function () {
+				$(this).slideUp("fast", function(){
+					$('html,body').animate({scrollTop: $menuButton.offset().top}, 'fast');
+				});
+			});
+
+		} else {
+			$menuButton.addClass("shown");
+			$menuButton.html("[Hide Menu]");
+			$sideBar.show(function () {
+				$(this).slideDown("fast", function(){
+				// Animation complete
+				});
+			});
+		}
+	});
+
 	function logout() {
 		document.cookie = "loggedIn=false";
 		document.cookie = "userType=none";

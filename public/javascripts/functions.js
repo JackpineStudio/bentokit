@@ -87,7 +87,7 @@ function loginSuccess(userDetails) {
 		var curCookie = cookieArray[i].split('=');
 	}
 	var moderator = userDetails['userType'] == 'moderator';
-	document.getElementById('usernameLabel').innerHTML = "Welcome back " + userDetails['username'] + " !";
+	document.getElementById('usernameLabel').innerHTML =userDetails['username'] + " !";
 	
 	if (userDetails['notification'].length != 0) {
 		var notification = userDetails['notification'][0]
@@ -95,13 +95,13 @@ function loginSuccess(userDetails) {
 		alert(message);
 	}
 
-	var intervalFn = setInterval(function(){
-		if(moderator) 
-			window.location.replace("/edit");
-		else 
-			window.location.replace("/");
-		clearInterval(intervalFn);
-	}, 1200);
+	// var intervalFn = setInterval(function(){
+	// 	if(moderator) 
+	// 		window.location.replace("/edit");
+	// 	else 
+	// 		window.location.replace("/");
+	// 	clearInterval(intervalFn);
+	// }, 1200);
 }
 
 function loginFailure() {

@@ -244,7 +244,6 @@ button {
 .toplogo {
     padding-bottom: 5px;
     top: 0px;
-    left: 40%;
 }
 
 .form-container {
@@ -267,7 +266,17 @@ button {
 
 .message {
     padding-top: 45px;
-    padding-left: 25px;
+    /*padding-left: 50%;*/
+    color: black;
+    text-align: center;
+    font-size: 24px;
+    padding-top: 50%;
+}
+
+#usernameLabel {
+    font-size: 1.3em;
+    font-weight: normal;
+    color: #FF530D;
 }
 
 .like-elements {
@@ -299,10 +308,6 @@ button {
 
 #pendingUsersTable td {
     text-align: center;
-}
-
-.message {
-    padding-top: 50%;
 }
 
 .editPageBar {
@@ -341,10 +346,11 @@ button {
     padding-bottom: 30px;
 }
 
+
 @media (min-width: 768px) {
     
     .message {
-        padding-left: 35%;
+        /*padding-left: 35%;*/
     }
 
     .filter {
@@ -398,12 +404,7 @@ button {
 
     .message {
         padding-top: 20%;
-        padding-left: 20%;
-    }
-
-    #usernameLabel {
-        font-size: 3.0em;
-
+        /*padding-left: 20%;*/
     }
 
     .filter {

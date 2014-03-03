@@ -88,11 +88,25 @@ function loginSuccess(userDetails) {
 	}
 	var moderator = userDetails['userType'] == 'moderator';
 	document.getElementById('usernameLabel').innerHTML = "Welcome back " + userDetails['username'] + " !";
+	
+	if (userDetails['notification'].length != 0) {
+		var notification = userDetails['notification'][0]
+		var message =  notification['message'];
+		alert(message);
+	}
+
 	var intervalFn = setInterval(function(){
 		if(moderator) 
 			window.location.replace("/edit");
 		else 
 			window.location.replace("/");
+		clearInterval(intervalFn);
+	}, 1200);
+}
+
+function loginFailure() {
+	var intervalFn = setInterval(function(){
+		window.location.replace("/");
 		clearInterval(intervalFn);
 	}, 1200);
 }
@@ -174,3 +188,15 @@ function resizeFrame() {
 function signupPage() {
 	window.location.replace("/signup");
 }
+
+function signupSuccess() {
+	var intervalFn = setInterval(function(){
+		window.location.replace("/");
+		clearInterval(intervalFn);
+	}, 1200);
+}
+
+function signupFailure() {
+
+}
+

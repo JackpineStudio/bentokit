@@ -68,9 +68,13 @@ $(document).ready(function(){
 	});
 
 	function logout() {
+		var loc = window.location + "";
 		document.cookie = "loggedIn=false";
 		document.cookie = "userType=none";
 		document.cookie = "username=none";
+		if(loc.indexOf("edit") != -1)
+			window.location.replace("/");
+		
 	}
 });
 

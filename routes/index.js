@@ -52,7 +52,8 @@ function login(userDetails, req, res) {
 			res.render('loginSuccess', {userDetails:items});
 			home(req, res, userDetails);
 		} else {
-			home(req, res);
+			res.render('loginFailure', {userDetails:items});
+			home(req, res, userDetails);
 		}
 		
 	});
@@ -60,6 +61,10 @@ function login(userDetails, req, res) {
 
 exports.loginSuccess = function(req, res) {
 	res.render('loginSuccess');	
+};
+
+exports.loginFailure = function(req, res) {
+	res.render('loginFailure');	
 };
 
 
@@ -73,10 +78,8 @@ function loginFailure() {
 
 exports.loginHandler = function (req, res) {
 	var userDetails = {};
-	console.log("req",  req.body);
 	userDetails['username'] = req.body.username;
 	userDetails['password'] = req.body.password;
-	console.log('username', userDetails['username'], 'password', userDetails['password'] );
 	login(userDetails, req, res);
 };
 
@@ -88,6 +91,33 @@ exports.loginPage = function(req, res) {
 	var userType = req.body.userType;
 	console.log('Login Page', userType);
 };
+
+exports.signUp = function(req, res) {
+	res.render('signup', {});
+};
+
+exports.signUser = function(req, res) {
+	var userDetails = {};
+	userDetails = req.body;
+	console.log('UserDetails', userDetails);
+	db.addUser(userDetails, function(success) {
+		//Success or failure
+		
+		if(success) 
+			res.render("signupSuccess");
+		else 
+			res.render("signupFailure");		
+	});
+};
+
+exports.signUpSuccess = function(req, res) {
+	res.render('signUpSuccess', {});
+};
+
+exports.signUpFailure = function(req, res) {
+	res.render('signUpFailure', {});
+};
+
 
 function editPage(req, res) {
 	db.getAll(function(apps, pendingApps, users){
@@ -132,25 +162,6 @@ exports.saveApp = function(req, res) {
 
 exports.addItem = function(req, res) {
 	//db.addNewItem
-};
-
-exports.signUp = function(req, res) {
-	res.render('signup', {});
-};
-
-exports.signUser = function(req, res) {
-	var userDetails = {};
-	userDetails = req.body;
-	console.log('UserDetails', userDetails);
-	db.addUser(userDetails, function() {
-		//Success or failure
-		var callback = {};
-		console.log('Password', userDetails['password']);
-		callback['success'] = function() {
-			res.render('loginSuccess');
-		};
-		
-	});
 };
 
 exports.suggest = function(req, res) {

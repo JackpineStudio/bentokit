@@ -36,12 +36,14 @@ app.get("/frame",routes.frame);
 app.post("/updateRating", routes.updateRating);
 app.get("/edit", routes.editPage);
 app.get('/loginPage', routes.loginPage);
-app.post('/login2', routes.loginHandler);
 app.post("/approve", routes.approveApp);
 app.post("/remove", routes.removeApp);
 app.get("/addItem", routes.addItem);
 app.get("/signup", routes.signUp);
 app.post("/signUser", routes.signUser);
+app.get("/signupSuccess", routes.signUpSuccess);
+app.get("/signupFailure", routes.signUpFailure);
+
 app.get("/suggest", routes.suggest);
 app.post("/saveApp", routes.saveApp);
 
@@ -86,6 +88,7 @@ app.post("/insertApp", function(req, res, next) {
 });
 
 app.get("/loginSuccess", routes.loginSuccess);
+app.get("/loginFailure", routes.loginFailure);
 app.post('/login', routes.loginHandler);
 app.get('/restricted', routes.restricted);
 app.get('/apply', routes.applyPage);

@@ -1,0 +1,29 @@
+!!! 5
+html
+ head
+   title Bentokit
+   script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js')
+   script(type='text/javascript', src='javascripts/functions.js')
+   link(href='http://fonts.googleapis.com/css?family=Exo:300,500', rel='stylesheet', type='text/css')
+   link(rel='shortcut icon', href='images/favicon.ico')
+   link(rel='stylesheet', href='http://netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css')
+   script(type='text/javascript', src='javascripts/framework.js')
+   script(type='text/javascript', src='javascripts/indexJQuery.js')
+   script(type='text/javascript', src='javascripts/jquery.js')
+   link(rel='stylesheet', href='stylesheets/bootstrap.min.css')
+   link(rel='stylesheet', href='stylesheets/bootstrap-theme.min.css')
+   link(rel='stylesheet', href='stylesheets/main.css')
+   meta(name='handheldfriendly', content='true')
+   meta(name='mobileoptimized', content='240')
+   meta(name='viewport', content='width=device-width,initial-scale=1,target-densitydpi=device-dpi')
+ body
+  .navbar.navbar-inverse.navbar-fixed-top.topbar()
+   a(href='/')
+    h1.logo.toplogo Bentokit
+  .container
+    .row
+     .col-sm-12.col-md-12.message
+      label#usernameLabel Username already exists!
+ script(type = 'text/javascript').
+  signupFailure();
+   

@@ -337,6 +337,10 @@ button {
     padding-top: 16px;
 }
 
+.simple-form {
+    padding-bottom: 30px;
+}
+
 @media (min-width: 768px) {
     
     .message {

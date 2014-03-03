@@ -147,7 +147,7 @@ exports.signUser = function(req, res) {
 		var callback = {};
 		console.log('Password', userDetails['password']);
 		callback['success'] = function() {
-			res.redirect('/');
+			res.render('loginSuccess');
 		};
 		
 	});

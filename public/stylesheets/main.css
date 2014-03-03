@@ -29,6 +29,7 @@ button {
     text-align: center;
     padding: 6px 12px;
     opacity: .65;
+    opacity: 1;
 }
 
 .logo {
@@ -304,7 +305,26 @@ button {
     padding-top: 50%;
 }
 
+.editPageBar {
+    padding-top: 8px;
+}
+
+.editPageBar ul {
+    padding-left: 12px;
+}
+
+#signupButton {
+    background-color: #FF530D;
+    float:left;
+    width: 120px;
+}
+
+#loginButton {
+    width: 120px;
+}
+
 @media (min-width: 768px) {
+    
     .message {
         padding-left: 35%;
     }
@@ -312,9 +332,23 @@ button {
     .filter {
         width: 80px;
     }
+
+    .editPageBar {
+        width: 180px;
+        height: 5000px;
+    }
+
+    #signupButton {
+        width: 62px;
+    }
+
+    #loginButton {
+        width: 62px;
+    }
 }
 
 @media (min-width: 800px) {
+    
     .sidebar {
         bottom: 0;
         /*position: fixed;*/
@@ -334,6 +368,7 @@ button {
 }
 
 @media (min-width: 1000px) {
+    
     .toplogo {
         left: 45%;
     }
@@ -349,8 +384,25 @@ button {
     }
 
     .filter {
-        width: 120px;
+        width: 100px;
         /*float: none;*/
+    }
+
+    .editPageBar {
+        width: 180px;
+        height: 3500px;
+    }
+
+    .editPageBar a {
+        font-size: 12px;
+    }
+}
+
+@media (min-width: 1280px) {
+
+    .editPageBar {
+        width: 180px;
+        height: 2600px;
     }
 }
 

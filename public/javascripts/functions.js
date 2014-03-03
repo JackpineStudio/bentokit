@@ -170,3 +170,7 @@ function resizeFrame() {
 	mainFrame.style.height = document.body.scrollHeight + 'px';
 	mainFrame.style.width = window.innerWidth + 'px';
 }
+
+function signupPage() {
+	window.location.replace("/signup");
+}

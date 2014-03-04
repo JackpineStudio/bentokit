@@ -7,12 +7,15 @@ html
     script(type='text/javascript', src='javascripts/indexJQuery.js')
     script(type='text/javascript', src='javascripts/editJQuery.js')
     script(type='text/javascript', src='javascripts/functions.js')
+    script(type='text/javascript', src='javascripts/responsive-tables.js')
     link(href='http://fonts.googleapis.com/css?family=Exo:300,500', rel='stylesheet', type='text/css')
     link(rel='shortcut icon', href='images/favicon.ico')
     link(rel='stylesheet', href='http://netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css')
     link(rel='stylesheet', href='stylesheets/bootstrap.min.css')
     link(rel='stylesheet', href='stylesheets/bootstrap-theme.min.css')
     link(rel='stylesheet', href='stylesheets/main.css')
+    link(rel='stylesheet', href='stylesheets/responsive-tables.css')
+    
     meta(name='handheldfriendly', content='true')
     meta(name='mobileoptimized', content='240')
     meta(name='viewport', content='width=device-width,initial-scale=1,target-densitydpi=device-dpi')
@@ -73,57 +76,58 @@ html
       .col-sm-12.col-md-10.links.editPageLinks
         form.simple-form(method='POST', action='/insertApp', name ="userForm", enctype="multipart/form-data", novalidate='novalidate')
           h1 Add New Item
-          table.table
-            tr
-              th App Name
-              th Link
-              th Image
-              th Category 1
-              th Category 2
-              th
-            tr
-              td.col-sm-12.col-md-1
-                input#nameInput.form-control(
-                 ng-model='app.appname'
-                 type='text'
-                 name = "name"
-                 required = "required"
-                )
-              td.col-sm-12.col-md-1
-                input#linkInput.form-control(
-                 type='text'
-                 name = "link"
+          table.responsive.table
+            thead
+             tr
+               th App Name
+               th Link
+               th Image
+               th Category 1
+               th Category 2
+               th
+            tbody
+             tr
+               td.col-sm-12.col-md-1
+                 input#nameInput.form-control(
+                  ng-model='app.appname'
+                  type='text'
+                  name = "name"
+                  required = "required"
                  )
-              td.col-sm-12.col-md-1
-                input#imageInput(
-                 type='file'
-                 name = "image"
-                )
-              td.col-sm-12.col-md-1
-                input#category1Input.form-control(
-                 type='text'
-                 name = "category1"
+               td.col-sm-12.col-md-1
+                 input#linkInput.form-control(
+                  type='text'
+                  name = "link"
+                  )
+               td.col-sm-12.col-md-1
+                 input#imageInput(
+                  type='file'
+                  name = "image"
                  )
-              td.col-sm-12.col-md-1
-                input#category2Input.form-control(
-                 type='text'
-                 name = "category2"
-                 )
-              td.col-sm-12.col-md-1
-                button(
-                 type = "submit"
-				) Add Item
-        h1 Apps 
-        table#linksTable.table
-          tr
-            th App Name
-            th Link
-            th Image
-            th Category 1
-            th Category 2
-            th Rating
+               td.col-sm-12.col-md-1
+                 input#category1Input.form-control(
+                  type='text'
+                  name = "category1"
+                  )
+               td.col-sm-12.col-md-1
+                 input#category2Input.form-control(
+                  type='text'
+                  name = "category2"
+                  )
+               td.col-sm-12.col-md-1
+                 button(type = "submit") Add Item
+          h1 Apps 
+         table#linksTable.responsive.table
+          thead
+           tr
+             th App Name
+             th Link
+             th Image
+             th Category 1
+             th Category 2
+             th Rating
         h1 Pending Apps
-        table#pendingLinksTable.table
+        table#pendingLinksTable.responsive.table
           tr
             th App Name
             th Link
@@ -134,7 +138,7 @@ html
             th Approve
 
         h1 Pending Users
-        table#pendingUsersTable.table
+        table#pendingUsersTable.responsive.table
           tr
             th First Name
             th Last Name
@@ -165,6 +169,7 @@ script(type = 'text/javascript').
 
  var apps =!{JSON.stringify(myObj)};
  var table = document.getElementById("linksTable");
+ var tbody = document.createElement("TBODY");
  
  for(i = 0; i < apps.length; i++) {
   var curApp = apps[i];
@@ -211,8 +216,10 @@ script(type = 'text/javascript').
   newColumn.appendChild(button);
   
   newRow.appendChild(newColumn);
-  table.appendChild(newRow);
+  tbody.appendChild(newRow);
  }
+ table.appendChild(tbody);
+
  apps =!{JSON.stringify(pending)};
  table = document.getElementById("pendingLinksTable");
  

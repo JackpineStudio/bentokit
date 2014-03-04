@@ -47,12 +47,8 @@ th {
 
 .links td{
     padding-bottom : 20px;
-   
 }
 
-.category {
-    text-align: center;
-}
 
 #editMenu {
     width: 250px;
@@ -354,6 +350,14 @@ button {
     padding-bottom: 30px;
 }
 
+#linksTable input {
+    text-align: left;
+    font-size: 12px;
+}
+
+#linksTable tr {
+
+}
 
 @media (min-width: 768px) {
     
@@ -377,11 +381,15 @@ button {
     }
 
     .editPageLinks {
-        padding-left: 190px;
+        padding-left: 220px;
     }
 
-    .editPageLinks td { 
-        padding-right: 500px;
+    #linksTable td {
+        padding: 0;
+    }
+    #linksTable input {
+        width: 150px;
+        padding-right: 8px;
     }
 
     #signupButton {
@@ -441,6 +449,11 @@ button {
     .editPageBar a {
         font-size: 12px;
     }
+
+    .editPageLinks {
+        padding-left: 200px;
+    }
+
 }
 
 @media (min-width: 1280px) {
@@ -448,6 +461,10 @@ button {
     .editPageBar {
         width: 180px;
         height: 2600px;
+    }
+
+    .editPageLinks {
+        padding-left: 30px;
     }
 }
 

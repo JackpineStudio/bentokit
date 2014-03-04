@@ -23,11 +23,11 @@ html
      .row
       .col-sm-3.col-md-2.sidebar.editPageBar
         ul
-          .box
+          .box.sidebarText 
            a(href='/')
             h1.logo Bentokit
          
-          .box  
+          .box.sidebarText   
            p Curating only the best free online design tools.
          
           .box
@@ -36,20 +36,23 @@ html
                 h2 Filters
               li.current
                 a.filter(href='#') All
-          .box
-            a(href='/suggest') Suggest an awesome app <br/>
-            a(href='mailto:hi@appbookmark.co') Report a dead link
-          
-          .box
+
+          .box.sidebarText
             p
               | Created by 
               a(href='https://twitter.com/taulantsulko') @taulantsulko 
+              a(href='https://twitter.com/BossLewis79') @BossLewis79 &nbsp;
               | and 
-              a(href='https://twitter.com/BossLewis79') @BossLewis79
-          #editDiv.box
-            a(href='/edit') Edit Page
+              a(href='https://twitter.com/borasabuncu') @borasabuncu
+
+          #editDiv.box.sidebarText
+            a(href='/edit') Home
           
-          form#loginForm(action="/login", method = "POST", name ="loginForm")
+          .box.sidebarText
+            a(href='/suggest') Suggest an awesome app <br/>
+            a(href='mailto:hi@appbookmark.co') Report a dead link
+          
+          form#loginForm.logForm(action="/login", method = "POST", name ="loginForm")
             .box
               label Username:
               input#username.form-control(type='text', name='username')
@@ -58,7 +61,7 @@ html
               input#password.form-control(type='password', name='password')
             .box
               button#loginButton(type='submit') Login 
-          #logoutForm
+          #logoutForm.logForm
             .box
               p
                 | Logged in as &nbsp;
